@@ -212,15 +212,25 @@ function setLang(lang) {
 // ==================== DATA ====================
 let matchData = [];
 let standings = {};
+let teamNamesCN = {};
+
+function teamName(en) {
+  const cn = teamNamesCN[en] || '';
+  if (currentLang === 'cn') return cn || en;
+  if (currentLang === 'dual') return cn ? cn + ' ' + en : en;
+  return en; // 'en'
+}
 
 async function loadData() {
   try {
-    const [mRes, sRes] = await Promise.all([
+    const [mRes, sRes, tRes] = await Promise.all([
       fetch('match_data.json'),
-      fetch('standings.json')
+      fetch('standings.json'),
+      fetch('team_names.json')
     ]);
     matchData = await mRes.json();
     standings = await sRes.json();
+    teamNamesCN = await tRes.json();
     renderAll();
     let updateText;
     if (currentLang === 'cn') updateText = t('lastUpdate') + ': ' + new Date().toLocaleString('zh-CN');
@@ -256,7 +266,7 @@ function renderStandings() {
     table.forEach((team, i) => {
       html += `<tr>
         <td class="num-col">${i+1}</td>
-        <td class="team-col">${team.team}</td>
+        <td class="team-col">${teamName(team.team)}</td>
         <td class="num-col">${team.gp}</td>
         <td class="num-col">${team.w}</td>
         <td class="num-col">${team.d}</td>
@@ -307,9 +317,9 @@ function renderMatches() {
       html += `<div class="match-card ${cardClass}">
         <div class="match-date">${infoLine}</div>
         <div class="match-teams">
-          <div class="team"><div class="team-name">${match.home_team}</div></div>
+          <div class="team"><div class="team-name">${teamName(match.home_team)}</div></div>
           <div class="score ${!isDone&&!isLive?'pending':''}">${isDone||isLive ? match.home_score+'-'+match.away_score : 'vs'}</div>
-          <div class="team"><div class="team-name">${match.away_team}</div></div>
+          <div class="team"><div class="team-name">${teamName(match.away_team)}</div></div>
         </div>
         <div class="match-info"><span class="match-status ${statusCls}">${statusLabel}</span></div>
       </div>`;
@@ -330,9 +340,9 @@ function renderLive() {
       html += `<div class="match-card live">
         <div class="match-date">${m.date} ${m.time} ${m.tz} · ${m.group}${t('group')} · ${m.venue}</div>
         <div class="match-teams">
-          <div class="team"><div class="team-name">${m.home_team}</div></div>
+          <div class="team"><div class="team-name">${teamName(m.home_team)}</div></div>
           <div class="score">${m.home_score}-${m.away_score}</div>
-          <div class="team"><div class="team-name">${m.away_team}</div></div>
+          <div class="team"><div class="team-name">${teamName(m.away_team)}</div></div>
         </div>
         <div class="match-info"><span class="match-status status-live">${t('status.live')}</span></div>
       </div>`;
