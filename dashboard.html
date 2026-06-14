@@ -3,36 +3,35 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>⚽ 2026 世界杯实时看板 | FIFA World Cup 2026 Live</title>
+<title>⚽ 2026 世界杯 | FIFA World Cup 2026</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:#0f1724;color:#e2e8f0;min-height:100vh}
 .header{background:linear-gradient(135deg,#1a1a2e,#16213e,#0f3460);padding:20px;text-align:center;border-bottom:3px solid #e2b04a}
 .header h1{font-size:2em;color:#e2b04a;margin-bottom:5px}
 .header .subtitle{color:#94a3b8;font-size:.9em}
-.last-update{text-align:center;color:#64748b;padding:8px;font-size:.8em}
-.container{max-width:1400px;margin:0 auto;padding:15px}
-
-/* LIVE banner */
+.top-bar{display:flex;justify-content:space-between;align-items:center;padding:8px 15px;flex-wrap:wrap;gap:8px}
+.last-update{color:#64748b;font-size:.8em}
+.lang-switch{display:flex;gap:4px}
+.lang-btn{padding:4px 12px;background:#1e293b;border:1px solid #334155;color:#94a3b8;border-radius:6px;cursor:pointer;font-size:.8em;transition:all .2s}
+.lang-btn.active{background:#e2b04a;color:#0f1724;border-color:#e2b04a;font-weight:bold}
+.lang-btn:hover{border-color:#e2b04a}
+.container{max-width:1400px;margin:0 auto;padding:0 15px 15px}
 .live-banner{background:#dc2626;color:white;text-align:center;padding:8px;font-weight:bold;display:none;animation:pulse 2s infinite}
 .live-banner.active{display:block}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:0.7}}
 .live-dot{display:inline-block;width:10px;height:10px;background:#fff;border-radius:50%;margin-right:6px;animation:blink 1s infinite}
 @keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
-
-/* Groups grid */
-.groups-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:15px;margin-top:15px}
+.groups-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:15px;margin-top:15px}
 .group-card{background:#1e293b;border-radius:12px;overflow:hidden;border:1px solid #334155}
 .group-header{background:linear-gradient(90deg,#1e40af,#3b82f6);padding:10px 15px;font-weight:bold;font-size:1.1em;color:#fff}
 .group-table{width:100%;border-collapse:collapse}
-.group-table th{background:#0f1724;padding:6px 8px;font-size:.75em;text-transform:uppercase;color:#94a3b8;text-align:center}
-.group-table td{padding:8px;border-bottom:1px solid #1e293b;font-size:.9em}
+.group-table th{background:#0f1724;padding:6px 8px;font-size:.72em;text-transform:uppercase;color:#94a3b8;text-align:center}
+.group-table td{padding:8px;border-bottom:1px solid #1e293b;font-size:.88em}
 .group-table tr:hover{background:#334155}
 .team-col{text-align:left;font-weight:500}
-.num-col{text-align:center;width:28px}
+.num-col{text-align:center;width:26px}
 .pts{font-weight:bold;color:#e2b04a}
-
-/* Matches section */
 .section-title{font-size:1.3em;color:#e2b04a;margin:25px 0 10px;padding-bottom:8px;border-bottom:2px solid #e2b04a}
 .matches-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(350px,1fr));gap:12px}
 .match-card{background:#1e293b;border-radius:10px;padding:15px;border:1px solid #334155;transition:all .2s}
@@ -44,7 +43,6 @@ body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:#0f172
 .match-teams{display:flex;align-items:center;justify-content:space-between;gap:12px}
 .team{flex:1;text-align:center}
 .team-name{font-weight:600;font-size:.95em}
-.team-flag{font-size:1.5em}
 .score{font-size:1.8em;font-weight:bold;min-width:70px;text-align:center;color:#f8fafc}
 .score.pending{color:#64748b;font-size:1em}
 .match-info{text-align:center;color:#64748b;font-size:.75em;margin-top:8px}
@@ -52,19 +50,12 @@ body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:#0f172
 .status-live{background:#dc2626;color:#fff}
 .status-ft{background:#16a34a;color:#fff}
 .status-scheduled{background:#334155;color:#94a3b8}
-
-/* Bracket */
 .bracket-container{margin-top:20px;overflow-x:auto}
-.bracket-svg{min-width:1000px;width:100%;height:auto}
-
-/* Tabs */
 .tabs{display:flex;gap:5px;margin:15px 0;flex-wrap:wrap}
 .tab{padding:8px 20px;background:#1e293b;border:1px solid #334155;border-radius:8px 8px 0 0;cursor:pointer;color:#94a3b8;font-size:.9em}
 .tab.active{background:#3b82f6;color:#fff;border-color:#3b82f6}
 .tab-content{display:none}
 .tab-content.active{display:block}
-
-/* Responsive */
 @media(max-width:768px){
   .groups-grid{grid-template-columns:1fr}
   .matches-grid{grid-template-columns:1fr}
@@ -75,41 +66,44 @@ body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:#0f172
 <body>
 
 <div class="header">
-  <h1>⚽ 2026 FIFA 世界杯实时看板</h1>
-  <div class="subtitle">Canada 🇨🇦 · USA 🇺🇸 · Mexico 🇲🇽 | 6月11日 - 7月19日 | 48队 · 104场</div>
+  <h1>⚽ 2026 FIFA 世界杯 · FIFA World Cup</h1>
+  <div class="subtitle">🇨🇦 Canada · 🇺🇸 USA · 🇲🇽 Mexico | Jun 11 – Jul 19 | 48 Teams · 104 Matches / 48队 · 104场</div>
+</div>
+
+<div class="top-bar">
+  <div class="lang-switch">
+    <button class="lang-btn active" onclick="setLang('dual')" id="btn-dual">中英双语 Dual</button>
+    <button class="lang-btn" onclick="setLang('cn')" id="btn-cn">中文 CN</button>
+    <button class="lang-btn" onclick="setLang('en')" id="btn-en">English EN</button>
+  </div>
+  <div class="last-update" id="lastUpdate">Loading / 加载中...</div>
 </div>
 
 <div class="live-banner" id="liveBanner">
-  <span class="live-dot"></span> 比赛进行中 · LIVE MATCHES IN PROGRESS
+  <span class="live-dot"></span><span id="liveBannerText">比赛进行中 · LIVE MATCHES IN PROGRESS</span>
 </div>
-
-<div class="last-update" id="lastUpdate">加载中...</div>
 
 <div class="container">
 
 <div class="tabs">
-  <div class="tab active" onclick="switchTab('standings')">📊 积分榜</div>
-  <div class="tab" onclick="switchTab('matches')">📅 比赛</div>
-  <div class="tab" onclick="switchTab('live')">🔴 直播中</div>
-  <div class="tab" onclick="switchTab('bracket')">🏆 淘汰赛对阵</div>
+  <div class="tab active" onclick="switchTab('standings')"><span data-i18n="tab.standings">📊 积分榜 / Standings</span></div>
+  <div class="tab" onclick="switchTab('matches')"><span data-i18n="tab.matches">📅 比赛 / Matches</span></div>
+  <div class="tab" onclick="switchTab('live')"><span data-i18n="tab.live">🔴 直播 / Live</span></div>
+  <div class="tab" onclick="switchTab('bracket')"><span data-i18n="tab.bracket">🏆 淘汰赛 / Bracket</span></div>
 </div>
 
-<!-- Standings Tab -->
 <div class="tab-content active" id="tab-standings">
   <div class="groups-grid" id="groupsGrid"></div>
 </div>
 
-<!-- Matches Tab -->
 <div class="tab-content" id="tab-matches">
   <div id="matchesByDate"></div>
 </div>
 
-<!-- Live Tab -->
 <div class="tab-content" id="tab-live">
   <div class="matches-grid" id="liveMatches"></div>
 </div>
 
-<!-- Bracket Tab -->
 <div class="tab-content" id="tab-bracket">
   <div class="bracket-container" id="bracketView"></div>
 </div>
@@ -117,12 +111,108 @@ body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:#0f172
 </div>
 
 <script>
+// ==================== I18N ====================
+const I18N = {
+  cn: {
+    'tab.standings': '📊 积分榜',
+    'tab.matches': '📅 比赛日程',
+    'tab.live': '🔴 直播中',
+    'tab.bracket': '🏆 淘汰赛对阵',
+    'banner.live': '比赛进行中 · 实时比分',
+    'lastUpdate': '最后更新',
+    'loading': '加载中...',
+    'retrying': '加载失败，重试中...',
+    'group': '组',
+    'table.rank': '#',
+    'table.team': '球队',
+    'table.gp': '赛',
+    'table.w': '胜',
+    'table.d': '平',
+    'table.l': '负',
+    'table.gf': '进',
+    'table.ga': '失',
+    'table.gd': '差',
+    'table.pts': '分',
+    'status.live': '🔴 进行中',
+    'status.ft': '✅ 已结束',
+    'status.scheduled': '⏰ 未开始',
+    'matches': '场',
+    'noLive': '暂无进行中的比赛',
+    'noLiveSub': '下一场比赛即将开始',
+    'bracket.title': '🏆 淘汰赛阶段（小组赛后揭晓）',
+    'bracket.r32': '32强赛',
+    'bracket.r16': '16强赛',
+    'bracket.qf': '1/4决赛',
+    'bracket.sf': '半决赛',
+    'bracket.tp': '三四名决赛',
+    'bracket.final': '🏆 决赛',
+    'bracket.venue.miami': '@ 迈阿密',
+    'bracket.venue.ny': '@ 纽约/新泽西',
+  },
+  en: {
+    'tab.standings': '📊 Standings',
+    'tab.matches': '📅 Matches',
+    'tab.live': '🔴 Live',
+    'tab.bracket': '🏆 Bracket',
+    'banner.live': 'LIVE MATCHES IN PROGRESS',
+    'lastUpdate': 'Last updated',
+    'loading': 'Loading...',
+    'retrying': 'Loading failed, retrying...',
+    'group': 'Group',
+    'table.rank': '#',
+    'table.team': 'Team',
+    'table.gp': 'P',
+    'table.w': 'W',
+    'table.d': 'D',
+    'table.l': 'L',
+    'table.gf': 'GF',
+    'table.ga': 'GA',
+    'table.gd': 'GD',
+    'table.pts': 'Pts',
+    'status.live': '🔴 LIVE',
+    'status.ft': '✅ FT',
+    'status.scheduled': '⏰ Upcoming',
+    'matches': 'matches',
+    'noLive': 'No live matches at the moment',
+    'noLiveSub': 'Next match starting soon',
+    'bracket.title': '🏆 Knockout Stage (revealed after group stage)',
+    'bracket.r32': 'Round of 32',
+    'bracket.r16': 'Round of 16',
+    'bracket.qf': 'Quarter-finals',
+    'bracket.sf': 'Semi-finals',
+    'bracket.tp': '3rd Place',
+    'bracket.final': '🏆 FINAL',
+    'bracket.venue.miami': '@ Miami',
+    'bracket.venue.ny': '@ New York/New Jersey',
+  }
+};
+
+let currentLang = 'dual';
+
+function t(key) {
+  if (currentLang === 'cn') return I18N.cn[key] || key;
+  if (currentLang === 'en') return I18N.en[key] || key;
+  const c = I18N.cn[key];
+  const e = I18N.en[key];
+  if (c && e && c !== e) return c + ' / ' + e;
+  return c || e || key;
+}
+
+function setLang(lang) {
+  currentLang = lang;
+  document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('btn-' + lang).classList.add('active');
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    el.textContent = t(el.getAttribute('data-i18n'));
+  });
+  document.getElementById('liveBannerText').textContent = t('banner.live');
+  renderAll();
+}
+
 // ==================== DATA ====================
 let matchData = [];
 let standings = {};
-let currentTab = 'standings';
 
-// ==================== FETCH ====================
 async function loadData() {
   try {
     const [mRes, sRes] = await Promise.all([
@@ -132,15 +222,16 @@ async function loadData() {
     matchData = await mRes.json();
     standings = await sRes.json();
     renderAll();
-    document.getElementById('lastUpdate').textContent =
-      '最后更新: ' + new Date().toLocaleString('zh-CN');
+    let updateText;
+    if (currentLang === 'cn') updateText = t('lastUpdate') + ': ' + new Date().toLocaleString('zh-CN');
+    else if (currentLang === 'en') updateText = t('lastUpdate') + ': ' + new Date().toLocaleString('en-US');
+    else updateText = t('lastUpdate') + ': ' + new Date().toLocaleString('zh-CN') + ' / ' + new Date().toLocaleString('en-US');
+    document.getElementById('lastUpdate').textContent = updateText;
   } catch(e) {
-    console.error('Failed to load data:', e);
-    document.getElementById('lastUpdate').textContent = '加载数据失败，正在重试...';
+    document.getElementById('lastUpdate').textContent = t('retrying');
   }
 }
 
-// ==================== RENDER ====================
 function renderAll() {
   renderStandings();
   renderMatches();
@@ -155,22 +246,25 @@ function renderStandings() {
   for (const g of order) {
     const table = standings[g] || [];
     if (!table.length) continue;
-    html += `<div class="group-card">
-      <div class="group-header">🏆 ${g}组 Group ${g}</div>
-      <table class="group-table">
-        <tr><th>#</th><th>球队</th><th>赛</th><th>胜</th><th>平</th><th>负</th><th>GF</th><th>GA</th><th>GD</th><th>分</th></tr>`;
-    table.forEach((t, i) => {
+    html += '<div class="group-card">';
+    html += `<div class="group-header">🏆 ${g}${t('group')}</div>`;
+    html += '<table class="group-table"><tr>';
+    ['table.rank','table.team','table.gp','table.w','table.d','table.l','table.gf','table.ga','table.gd','table.pts'].forEach(k => {
+      html += '<th>' + t(k) + '</th>';
+    });
+    html += '</tr>';
+    table.forEach((team, i) => {
       html += `<tr>
         <td class="num-col">${i+1}</td>
-        <td class="team-col">${t.team}</td>
-        <td class="num-col">${t.gp}</td>
-        <td class="num-col">${t.w}</td>
-        <td class="num-col">${t.d}</td>
-        <td class="num-col">${t.l}</td>
-        <td class="num-col">${t.gf}</td>
-        <td class="num-col">${t.ga}</td>
-        <td class="num-col">${t.gd>0?'+':''}${t.gd}</td>
-        <td class="num-col pts">${t.pts}</td>
+        <td class="team-col">${team.team}</td>
+        <td class="num-col">${team.gp}</td>
+        <td class="num-col">${team.w}</td>
+        <td class="num-col">${team.d}</td>
+        <td class="num-col">${team.l}</td>
+        <td class="num-col">${team.gf}</td>
+        <td class="num-col">${team.ga}</td>
+        <td class="num-col">${team.gd>0?'+':''}${team.gd}</td>
+        <td class="num-col pts">${team.pts}</td>
       </tr>`;
     });
     html += '</table></div>';
@@ -180,7 +274,6 @@ function renderStandings() {
 
 function renderMatches() {
   const container = document.getElementById('matchesByDate');
-  // Group by date
   const byDate = {};
   matchData.forEach(m => {
     const d = m.date || '?';
@@ -189,27 +282,36 @@ function renderMatches() {
   });
 
   const sortedDates = Object.keys(byDate).sort();
+  const monthNamesCN = ['','1月','2月','3月','4月','5月','6月','7月','8月','9月','10月','11月','12月'];
+  const monthNamesEN = ['','Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
   let html = '';
   for (const date of sortedDates) {
     const matches = byDate[date];
-    const [y,m,d] = date.split('-');
-    html += `<div class="section-title">📅 ${m}月${d}日 (${matches.length}场)</div>`;
+    const parts = date.split('-');
+    const mo = parseInt(parts[1]), day = parseInt(parts[2]);
+    let dateLabel;
+    if (currentLang === 'cn') dateLabel = `📅 ${monthNamesCN[mo]}${day}日 (${matches.length}${t('matches')})`;
+    else if (currentLang === 'en') dateLabel = `📅 ${monthNamesEN[mo]} ${day} (${matches.length} ${t('matches')})`;
+    else dateLabel = `📅 ${monthNamesEN[mo]} ${day} · ${monthNamesCN[mo]}${day}日 (${matches.length} ${t('matches')})`;
+
+    html += `<div class="section-title">${dateLabel}</div>`;
     html += '<div class="matches-grid">';
-    matches.forEach(m => {
-      const isLive = !m.is_result && m.home_score !== null && m.home_score !== undefined;
-      const isDone = m.is_result;
+    matches.forEach(match => {
+      const isLive = !match.is_result && match.home_score !== null && match.home_score !== undefined;
+      const isDone = match.is_result;
       const cardClass = isLive ? 'live' : (isDone ? 'finished' : '');
-      const statusHtml = isLive ? '<span class="match-status status-live">🔴 LIVE</span>' :
-                         isDone ? '<span class="match-status status-ft">✅ FT</span>' :
-                         '<span class="match-status status-scheduled">⏰ 未开始</span>';
+      const statusLabel = isLive ? t('status.live') : (isDone ? t('status.ft') : t('status.scheduled'));
+      const statusCls = isLive ? 'status-live' : (isDone ? 'status-ft' : 'status-scheduled');
+      let infoLine = `${match.date} ${match.time||''} ${match.tz||''} · ${match.group||''}${t('group')} · ${match.venue||''}`;
+
       html += `<div class="match-card ${cardClass}">
-        <div class="match-date">${m.date} ${m.time||''} ${m.tz||''} · ${m.group||''}组 · ${m.venue||''}</div>
+        <div class="match-date">${infoLine}</div>
         <div class="match-teams">
-          <div class="team"><div class="team-name">${m.home_team}</div></div>
-          <div class="score ${!isDone&&!isLive?'pending':''}">${isDone||isLive ? m.home_score+'-'+m.away_score : 'vs'}</div>
-          <div class="team"><div class="team-name">${m.away_team}</div></div>
+          <div class="team"><div class="team-name">${match.home_team}</div></div>
+          <div class="score ${!isDone&&!isLive?'pending':''}">${isDone||isLive ? match.home_score+'-'+match.away_score : 'vs'}</div>
+          <div class="team"><div class="team-name">${match.away_team}</div></div>
         </div>
-        <div class="match-info">${statusHtml}</div>
+        <div class="match-info"><span class="match-status ${statusCls}">${statusLabel}</span></div>
       </div>`;
     });
     html += '</div>';
@@ -226,51 +328,51 @@ function renderLive() {
     let html = '';
     liveMatches.forEach(m => {
       html += `<div class="match-card live">
-        <div class="match-date">${m.date} ${m.time} ${m.tz} · ${m.group}组 · ${m.venue}</div>
+        <div class="match-date">${m.date} ${m.time} ${m.tz} · ${m.group}${t('group')} · ${m.venue}</div>
         <div class="match-teams">
           <div class="team"><div class="team-name">${m.home_team}</div></div>
           <div class="score">${m.home_score}-${m.away_score}</div>
           <div class="team"><div class="team-name">${m.away_team}</div></div>
         </div>
-        <div class="match-info"><span class="match-status status-live">🔴 LIVE</span></div>
+        <div class="match-info"><span class="match-status status-live">${t('status.live')}</span></div>
       </div>`;
     });
     container.innerHTML = html;
   } else {
     banner.classList.remove('active');
-    container.innerHTML = '<div style="text-align:center;color:#64748b;padding:40px;">暂无进行中的比赛<br>No live matches at the moment</div>';
+    container.innerHTML = `<div style="text-align:center;color:#64748b;padding:40px;">
+      <p style="font-size:1.2em;">${t('noLive')}</p>
+      <p style="margin-top:8px;">${t('noLiveSub')}</p>
+    </div>`;
   }
 }
 
 function renderBracket() {
   const container = document.getElementById('bracketView');
-  // Build knockout bracket from cup_finals pattern
   container.innerHTML = `
     <div style="text-align:center;color:#94a3b8;padding:30px;">
-      <h3>🏆 淘汰赛阶段</h3>
-      <p style="margin-top:10px;">小组赛结束后揭晓对阵</p>
+      <h3>${t('bracket.title')}</h3>
       <table style="margin:20px auto;text-align:left;border-collapse:collapse;">
-        <tr><td style="padding:8px;color:#e2b04a;">Round of 32</td><td style="padding:8px;">6月28日 - 7月3日</td><td style="padding:8px;color:#64748b;">16场</td></tr>
-        <tr><td style="padding:8px;color:#e2b04a;">Round of 16</td><td style="padding:8px;">7月4日 - 7月7日</td><td style="padding:8px;color:#64748b;">8场</td></tr>
-        <tr><td style="padding:8px;color:#e2b04a;">Quarter-finals</td><td style="padding:8px;">7月9日 - 7月11日</td><td style="padding:8px;color:#64748b;">4场</td></tr>
-        <tr><td style="padding:8px;color:#e2b04a;">Semi-finals</td><td style="padding:8px;">7月14日 - 7月15日</td><td style="padding:8px;color:#64748b;">2场</td></tr>
-        <tr><td style="padding:8px;color:#e2b04a;">3rd Place</td><td style="padding:8px;">7月18日 @ 迈阿密</td><td style="padding:8px;color:#64748b;">1场</td></tr>
-        <tr><td style="padding:8px;color:#e2b04a;font-size:1.2em;">🏆 FINAL</td><td style="padding:8px;font-size:1.1em;">7月19日 @ 纽约/新泽西</td><td style="padding:8px;color:#e2b04a;font-weight:bold;">1场</td></tr>
+        <tr><td style="padding:8px;color:#e2b04a;">${t('bracket.r32')}</td><td style="padding:8px;">Jun 28 – Jul 3 / 6月28日–7月3日</td><td style="padding:8px;color:#64748b;">16 ${t('matches')}</td></tr>
+        <tr><td style="padding:8px;color:#e2b04a;">${t('bracket.r16')}</td><td style="padding:8px;">Jul 4 – 7 / 7月4日–7日</td><td style="padding:8px;color:#64748b;">8 ${t('matches')}</td></tr>
+        <tr><td style="padding:8px;color:#e2b04a;">${t('bracket.qf')}</td><td style="padding:8px;">Jul 9 – 11 / 7月9日–11日</td><td style="padding:8px;color:#64748b;">4 ${t('matches')}</td></tr>
+        <tr><td style="padding:8px;color:#e2b04a;">${t('bracket.sf')}</td><td style="padding:8px;">Jul 14 – 15 / 7月14日–15日</td><td style="padding:8px;color:#64748b;">2 ${t('matches')}</td></tr>
+        <tr><td style="padding:8px;color:#e2b04a;">${t('bracket.tp')}</td><td style="padding:8px;">Jul 18 ${t('bracket.venue.miami')}</td><td style="padding:8px;color:#64748b;">1 ${t('matches')}</td></tr>
+        <tr><td style="padding:8px;color:#e2b04a;font-size:1.2em;">${t('bracket.final')}</td><td style="padding:8px;font-size:1.1em;">Jul 19 ${t('bracket.venue.ny')}</td><td style="padding:8px;color:#e2b04a;font-weight:bold;">1 ${t('matches')}</td></tr>
       </table>
     </div>`;
 }
 
 function switchTab(name) {
-  currentTab = name;
+  const tabOrder = {standings:1, matches:2, live:3, bracket:4};
   document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
   document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
-  document.querySelector(`.tab:nth-child(${{standings:1,matches:2,live:3,bracket:4}[name]})`).classList.add('active');
+  document.querySelector(`.tab:nth-child(${tabOrder[name]})`).classList.add('active');
   document.getElementById(`tab-${name}`).classList.add('active');
 }
 
-// ==================== INIT ====================
 loadData();
-setInterval(loadData, 60000); // Auto-refresh every 60s
+setInterval(loadData, 60000);
 </script>
 </body>
 </html>
