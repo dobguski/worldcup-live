@@ -8,6 +8,9 @@
 build.log
 _site/
 *.json
+!match_data.json
+!standings.json
+!team_names.json
 
 
 ##
