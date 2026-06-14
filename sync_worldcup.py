@@ -576,16 +576,21 @@ def calculate_standings(matches: list[dict]) -> dict:
 # GIT SYNC
 # ============================================================
 def git_commit_and_push(message: str = "Auto-sync: update match results") -> bool:
-    """Commit changes and push to remote."""
+    """Commit changes and push to dashboard remote (GitHub Pages)."""
     import subprocess
     try:
         subprocess.run(["git", "add", "2026--usa/cup.txt", "match_data.json",
-                        "standings.json", "team_names.json", "dashboard.html"],
+                        "standings.json", "team_names.json", "dashboard.html",
+                        "index.html", "sync_worldcup.py"],
                        cwd=REPO_DIR, capture_output=True, check=False)
         subprocess.run(["git", "commit", "-m", message],
                        cwd=REPO_DIR, capture_output=True, check=False)
-        subprocess.run(["git", "push"],
-                       cwd=REPO_DIR, capture_output=True, check=False)
+        # Push to dashboard remote (GitHub Pages), fallback to origin
+        for remote in ["dashboard", "origin"]:
+            result = subprocess.run(["git", "push", remote],
+                                    cwd=REPO_DIR, capture_output=True, check=False)
+            if result.returncode == 0:
+                break
         return True
     except Exception as e:
         print(f"  [WARN] Git sync failed: {e}")
