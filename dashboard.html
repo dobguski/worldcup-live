@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>⚽ 2026 世界杯实时看板 | FIFA World Cup 2026 Live</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:#0f1724;color:#e2e8f0;min-height:100vh}
+.header{background:linear-gradient(135deg,#1a1a2e,#16213e,#0f3460);padding:20px;text-align:center;border-bottom:3px solid #e2b04a}
+.header h1{font-size:2em;color:#e2b04a;margin-bottom:5px}
+.header .subtitle{color:#94a3b8;font-size:.9em}
+.last-update{text-align:center;color:#64748b;padding:8px;font-size:.8em}
+.container{max-width:1400px;margin:0 auto;padding:15px}
+
+/* LIVE banner */
+.live-banner{background:#dc2626;color:white;text-align:center;padding:8px;font-weight:bold;display:none;animation:pulse 2s infinite}
+.live-banner.active{display:block}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.7}}
+.live-dot{display:inline-block;width:10px;height:10px;background:#fff;border-radius:50%;margin-right:6px;animation:blink 1s infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
+
+/* Groups grid */
+.groups-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:15px;margin-top:15px}
+.group-card{background:#1e293b;border-radius:12px;overflow:hidden;border:1px solid #334155}
+.group-header{background:linear-gradient(90deg,#1e40af,#3b82f6);padding:10px 15px;font-weight:bold;font-size:1.1em;color:#fff}
+.group-table{width:100%;border-collapse:collapse}
+.group-table th{background:#0f1724;padding:6px 8px;font-size:.75em;text-transform:uppercase;color:#94a3b8;text-align:center}
+.group-table td{padding:8px;border-bottom:1px solid #1e293b;font-size:.9em}
+.group-table tr:hover{background:#334155}
+.team-col{text-align:left;font-weight:500}
+.num-col{text-align:center;width:28px}
+.pts{font-weight:bold;color:#e2b04a}
+
+/* Matches section */
+.section-title{font-size:1.3em;color:#e2b04a;margin:25px 0 10px;padding-bottom:8px;border-bottom:2px solid #e2b04a}
+.matches-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(350px,1fr));gap:12px}
+.match-card{background:#1e293b;border-radius:10px;padding:15px;border:1px solid #334155;transition:all .2s}
+.match-card:hover{border-color:#e2b04a}
+.match-card.live{border:2px solid #dc2626;animation:glow 2s infinite}
+@keyframes glow{0%,100%{box-shadow:0 0 5px #dc2626}50%{box-shadow:0 0 15px #dc2626}}
+.match-card.finished{opacity:.85}
+.match-date{font-size:.8em;color:#64748b;margin-bottom:8px}
+.match-teams{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.team{flex:1;text-align:center}
+.team-name{font-weight:600;font-size:.95em}
+.team-flag{font-size:1.5em}
+.score{font-size:1.8em;font-weight:bold;min-width:70px;text-align:center;color:#f8fafc}
+.score.pending{color:#64748b;font-size:1em}
+.match-info{text-align:center;color:#64748b;font-size:.75em;margin-top:8px}
+.match-status{display:inline-block;padding:2px 8px;border-radius:10px;font-size:.7em;font-weight:bold;margin-top:5px}
+.status-live{background:#dc2626;color:#fff}
+.status-ft{background:#16a34a;color:#fff}
+.status-scheduled{background:#334155;color:#94a3b8}
+
+/* Bracket */
+.bracket-container{margin-top:20px;overflow-x:auto}
+.bracket-svg{min-width:1000px;width:100%;height:auto}
+
+/* Tabs */
+.tabs{display:flex;gap:5px;margin:15px 0;flex-wrap:wrap}
+.tab{padding:8px 20px;background:#1e293b;border:1px solid #334155;border-radius:8px 8px 0 0;cursor:pointer;color:#94a3b8;font-size:.9em}
+.tab.active{background:#3b82f6;color:#fff;border-color:#3b82f6}
+.tab-content{display:none}
+.tab-content.active{display:block}
+
+/* Responsive */
+@media(max-width:768px){
+  .groups-grid{grid-template-columns:1fr}
+  .matches-grid{grid-template-columns:1fr}
+  .header h1{font-size:1.4em}
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>⚽ 2026 FIFA 世界杯实时看板</h1>
+  <div class="subtitle">Canada 🇨🇦 · USA 🇺🇸 · Mexico 🇲🇽 | 6月11日 - 7月19日 | 48队 · 104场</div>
+</div>
+
+<div class="live-banner" id="liveBanner">
+  <span class="live-dot"></span> 比赛进行中 · LIVE MATCHES IN PROGRESS
+</div>
+
+<div class="last-update" id="lastUpdate">加载中...</div>
+
+<div class="container">
+
+<div class="tabs">
+  <div class="tab active" onclick="switchTab('standings')">📊 积分榜</div>
+  <div class="tab" onclick="switchTab('matches')">📅 比赛</div>
+  <div class="tab" onclick="switchTab('live')">🔴 直播中</div>
+  <div class="tab" onclick="switchTab('bracket')">🏆 淘汰赛对阵</div>
+</div>
+
+<!-- Standings Tab -->
+<div class="tab-content active" id="tab-standings">
+  <div class="groups-grid" id="groupsGrid"></div>
+</div>
+
+<!-- Matches Tab -->
+<div class="tab-content" id="tab-matches">
+  <div id="matchesByDate"></div>
+</div>
+
+<!-- Live Tab -->
+<div class="tab-content" id="tab-live">
+  <div class="matches-grid" id="liveMatches"></div>
+</div>
+
+<!-- Bracket Tab -->
+<div class="tab-content" id="tab-bracket">
+  <div class="bracket-container" id="bracketView"></div>
+</div>
+
+</div>
+
+<script>
+// ==================== DATA ====================
+let matchData = [];
+let standings = {};
+let currentTab = 'standings';
+
+// ==================== FETCH ====================
+async function loadData() {
+  try {
+    const [mRes, sRes] = await Promise.all([
+      fetch('match_data.json'),
+      fetch('standings.json')
+    ]);
+    matchData = await mRes.json();
+    standings = await sRes.json();
+    renderAll();
+    document.getElementById('lastUpdate').textContent =
+      '最后更新: ' + new Date().toLocaleString('zh-CN');
+  } catch(e) {
+    console.error('Failed to load data:', e);
+    document.getElementById('lastUpdate').textContent = '加载数据失败，正在重试...';
+  }
+}
+
+// ==================== RENDER ====================
+function renderAll() {
+  renderStandings();
+  renderMatches();
+  renderLive();
+  renderBracket();
+}
+
+function renderStandings() {
+  const grid = document.getElementById('groupsGrid');
+  const order = 'ABCDEFGHIJKL'.split('');
+  let html = '';
+  for (const g of order) {
+    const table = standings[g] || [];
+    if (!table.length) continue;
+    html += `<div class="group-card">
+      <div class="group-header">🏆 ${g}组 Group ${g}</div>
+      <table class="group-table">
+        <tr><th>#</th><th>球队</th><th>赛</th><th>胜</th><th>平</th><th>负</th><th>GF</th><th>GA</th><th>GD</th><th>分</th></tr>`;
+    table.forEach((t, i) => {
+      html += `<tr>
+        <td class="num-col">${i+1}</td>
+        <td class="team-col">${t.team}</td>
+        <td class="num-col">${t.gp}</td>
+        <td class="num-col">${t.w}</td>
+        <td class="num-col">${t.d}</td>
+        <td class="num-col">${t.l}</td>
+        <td class="num-col">${t.gf}</td>
+        <td class="num-col">${t.ga}</td>
+        <td class="num-col">${t.gd>0?'+':''}${t.gd}</td>
+        <td class="num-col pts">${t.pts}</td>
+      </tr>`;
+    });
+    html += '</table></div>';
+  }
+  grid.innerHTML = html;
+}
+
+function renderMatches() {
+  const container = document.getElementById('matchesByDate');
+  // Group by date
+  const byDate = {};
+  matchData.forEach(m => {
+    const d = m.date || '?';
+    if (!byDate[d]) byDate[d] = [];
+    byDate[d].push(m);
+  });
+
+  const sortedDates = Object.keys(byDate).sort();
+  let html = '';
+  for (const date of sortedDates) {
+    const matches = byDate[date];
+    const [y,m,d] = date.split('-');
+    html += `<div class="section-title">📅 ${m}月${d}日 (${matches.length}场)</div>`;
+    html += '<div class="matches-grid">';
+    matches.forEach(m => {
+      const isLive = !m.is_result && m.home_score !== null && m.home_score !== undefined;
+      const isDone = m.is_result;
+      const cardClass = isLive ? 'live' : (isDone ? 'finished' : '');
+      const statusHtml = isLive ? '<span class="match-status status-live">🔴 LIVE</span>' :
+                         isDone ? '<span class="match-status status-ft">✅ FT</span>' :
+                         '<span class="match-status status-scheduled">⏰ 未开始</span>';
+      html += `<div class="match-card ${cardClass}">
+        <div class="match-date">${m.date} ${m.time||''} ${m.tz||''} · ${m.group||''}组 · ${m.venue||''}</div>
+        <div class="match-teams">
+          <div class="team"><div class="team-name">${m.home_team}</div></div>
+          <div class="score ${!isDone&&!isLive?'pending':''}">${isDone||isLive ? m.home_score+'-'+m.away_score : 'vs'}</div>
+          <div class="team"><div class="team-name">${m.away_team}</div></div>
+        </div>
+        <div class="match-info">${statusHtml}</div>
+      </div>`;
+    });
+    html += '</div>';
+  }
+  container.innerHTML = html;
+}
+
+function renderLive() {
+  const container = document.getElementById('liveMatches');
+  const liveMatches = matchData.filter(m => !m.is_result && m.home_score !== null && m.home_score !== undefined);
+  const banner = document.getElementById('liveBanner');
+  if (liveMatches.length > 0) {
+    banner.classList.add('active');
+    let html = '';
+    liveMatches.forEach(m => {
+      html += `<div class="match-card live">
+        <div class="match-date">${m.date} ${m.time} ${m.tz} · ${m.group}组 · ${m.venue}</div>
+        <div class="match-teams">
+          <div class="team"><div class="team-name">${m.home_team}</div></div>
+          <div class="score">${m.home_score}-${m.away_score}</div>
+          <div class="team"><div class="team-name">${m.away_team}</div></div>
+        </div>
+        <div class="match-info"><span class="match-status status-live">🔴 LIVE</span></div>
+      </div>`;
+    });
+    container.innerHTML = html;
+  } else {
+    banner.classList.remove('active');
+    container.innerHTML = '<div style="text-align:center;color:#64748b;padding:40px;">暂无进行中的比赛<br>No live matches at the moment</div>';
+  }
+}
+
+function renderBracket() {
+  const container = document.getElementById('bracketView');
+  // Build knockout bracket from cup_finals pattern
+  container.innerHTML = `
+    <div style="text-align:center;color:#94a3b8;padding:30px;">
+      <h3>🏆 淘汰赛阶段</h3>
+      <p style="margin-top:10px;">小组赛结束后揭晓对阵</p>
+      <table style="margin:20px auto;text-align:left;border-collapse:collapse;">
+        <tr><td style="padding:8px;color:#e2b04a;">Round of 32</td><td style="padding:8px;">6月28日 - 7月3日</td><td style="padding:8px;color:#64748b;">16场</td></tr>
+        <tr><td style="padding:8px;color:#e2b04a;">Round of 16</td><td style="padding:8px;">7月4日 - 7月7日</td><td style="padding:8px;color:#64748b;">8场</td></tr>
+        <tr><td style="padding:8px;color:#e2b04a;">Quarter-finals</td><td style="padding:8px;">7月9日 - 7月11日</td><td style="padding:8px;color:#64748b;">4场</td></tr>
+        <tr><td style="padding:8px;color:#e2b04a;">Semi-finals</td><td style="padding:8px;">7月14日 - 7月15日</td><td style="padding:8px;color:#64748b;">2场</td></tr>
+        <tr><td style="padding:8px;color:#e2b04a;">3rd Place</td><td style="padding:8px;">7月18日 @ 迈阿密</td><td style="padding:8px;color:#64748b;">1场</td></tr>
+        <tr><td style="padding:8px;color:#e2b04a;font-size:1.2em;">🏆 FINAL</td><td style="padding:8px;font-size:1.1em;">7月19日 @ 纽约/新泽西</td><td style="padding:8px;color:#e2b04a;font-weight:bold;">1场</td></tr>
+      </table>
+    </div>`;
+}
+
+function switchTab(name) {
+  currentTab = name;
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+  document.querySelector(`.tab:nth-child(${{standings:1,matches:2,live:3,bracket:4}[name]})`).classList.add('active');
+  document.getElementById(`tab-${name}`).classList.add('active');
+}
+
+// ==================== INIT ====================
+loadData();
+setInterval(loadData, 60000); // Auto-refresh every 60s
+</script>
+</body>
+</html>
