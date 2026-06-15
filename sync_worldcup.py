@@ -467,6 +467,179 @@ CLUB_CN = {
     "Lyngby": "林比",
 }
 
+# Chinese football player name translations
+PLAYER_NAME_CN = {
+    # Full names (well-known players)
+    "Alexis Vega": "亚历克西斯·维加",
+    "Alexis Mac Allister": "亚历克西斯·麦卡利斯特",
+    "Adrien Rabiot": "阿德里安·拉比奥",
+    "Aleksandar Pavlović": "亚历山大·帕夫洛维奇",
+    "Kylian Mbappé": "基利安·姆巴佩",
+    "Lionel Messi": "利昂内尔·梅西",
+    "Cristiano Ronaldo": "克里斯蒂亚诺·罗纳尔多",
+    "Kevin De Bruyne": "凯文·德布劳内",
+    "Virgil van Dijk": "维吉尔·范迪克",
+    "Harry Kane": "哈里·凯恩",
+    "Julián Álvarez": "胡利安·阿尔瓦雷斯",
+    "Vinícius Júnior": "维尼修斯·儒尼奥尔",
+    "Jude Bellingham": "裘德·贝林厄姆",
+    "Erling Haaland": "埃尔林·哈兰德",
+    "Jamal Musiala": "贾马尔·穆西亚拉",
+    "Florian Wirtz": "弗洛里安·维尔茨",
+    "Bukayo Saka": "布卡约·萨卡",
+    "Phil Foden": "菲尔·福登",
+    "Pedri": "佩德里",
+    "Gavi": "加维",
+    "Lamine Yamal": "拉明·亚马尔",
+    "Rodri": "罗德里",
+    "Mohamed Salah": "穆罕默德·萨拉赫",
+}
+# Given name translations (common first names)
+GIVEN_CN = {
+    "Alexis": "亚历克西斯", "Alex": "亚历克斯", "Alexander": "亚历山大",
+    "Aleksandar": "亚历山大", "David": "大卫", "Brian": "布莱恩",
+    "Christian": "克里斯蒂安", "Cristian": "克里斯蒂安", "Ahmed": "艾哈迈德",
+    "Diego": "迭戈", "Carlos": "卡洛斯", "César": "塞萨尔",
+    "Jan": "扬", "Jakub": "雅各布", "Álex": "亚历克斯",
+    "Andreas": "安德烈亚斯", "Arthur": "阿图尔", "Federico": "费德里科",
+    "Francisco": "弗朗西斯科", "Gonçalo": "贡萨洛", "Bradley": "布拉德利",
+    "Hugo": "乌戈", "Adam": "亚当", "Jacob": "雅各布",
+    "Amar": "阿马尔", "Armin": "阿尔明", "Bruno": "布鲁诺",
+    "Danilo": "达尼洛", "Marco": "马尔科", "Lucas": "卢卡斯",
+    "Nicolás": "尼古拉斯", "Mateo": "马特奥", "Santiago": "圣地亚哥",
+    "Emiliano": "埃米利亚诺", "Rodrigo": "罗德里戈", "Gabriel": "加布里埃尔",
+    "Rafael": "拉斐尔", "Miguel": "米格尔", "Pablo": "巴勃罗",
+    "Javier": "哈维尔", "Andrés": "安德烈斯", "Fernando": "费尔南多",
+    "Ricardo": "里卡多", "Eduardo": "爱德华多", "Roberto": "罗伯托",
+    "Antonio": "安东尼奥", "José": "何塞", "Manuel": "曼努埃尔",
+    "Daniel": "丹尼尔", "Samuel": "萨穆埃尔", "Thomas": "托马斯",
+    "James": "詹姆斯", "William": "威廉", "George": "乔治",
+    "Henry": "亨利", "Charles": "查尔斯", "Joseph": "约瑟夫",
+    "Michael": "迈克尔", "John": "约翰", "Robert": "罗伯特",
+    "Paul": "保罗", "Mark": "马克", "Steven": "史蒂文",
+    "Kevin": "凯文", "Jason": "杰森", "Ryan": "瑞安",
+    "Eric": "埃里克", "Kyle": "凯尔", "Scott": "斯科特",
+    "Joshua": "约书亚", "Andrew": "安德鲁", "Peter": "彼得",
+    "Matthew": "马修", "Anthony": "安东尼", "Christopher": "克里斯托弗",
+    "Benjamin": "本杰明", "Nicholas": "尼古拉斯", "Jonathan": "乔纳森",
+    "Tyler": "泰勒", "Brandon": "布兰登", "Justin": "贾斯汀",
+    "Timothy": "蒂莫西", "Patrick": "帕特里克", "Sean": "肖恩",
+    "Ethan": "伊桑", "Noah": "诺亚", "Liam": "利亚姆",
+    "Oliver": "奥利弗", "Luka": "卢卡", "Ivan": "伊万",
+    "Sergej": "谢尔盖", "Dmitri": "德米特里", "Artem": "阿尔乔姆",
+    "Mohamed": "穆罕默德", "Ali": "阿里", "Hassan": "哈桑",
+    "Omar": "奥马尔", "Youssef": "优素福", "Karim": "卡里姆",
+    "Mehdi": "迈赫迪", "Amine": "阿明", "Walid": "瓦利德",
+    "Achraf": "阿什拉夫", "Hakim": "哈基姆", "Sofiane": "索菲扬",
+    "Ritsu": "律", "Takefusa": "建英", "Kaoru": "薫",
+    "Daichi": "大地", "Takumi": "拓海", "Hidemasa": "英正",
+    "Wataru": "航", "Ko": "幸", "Shogo": "翔吾",
+    "Son": "孙", "Kim": "金", "Park": "朴",
+    "Lee": "李", "Hwang": "黄", "Cho": "赵",
+    "Jung": "郑", "Kang": "姜", "Yoon": "尹",
+}
+# Surname translations (common last names)
+SURNAME_CN = {
+    "Vega": "维加", "Mac Allister": "麦卡利斯特", "Rabiot": "拉比奥",
+    "Pavlović": "帕夫洛维奇", "Rodríguez": "罗德里格斯",
+    "González": "冈萨雷斯", "Ramírez": "拉米雷斯", "Medina": "梅迪纳",
+    "Touré": "图雷", "Santos": "桑托斯", "Silva": "席尔瓦",
+    "Fernández": "费尔南德斯", "López": "洛佩斯", "Martínez": "马丁内斯",
+    "García": "加西亚", "Hernández": "埃尔南德斯", "Pérez": "佩雷斯",
+    "Torres": "托雷斯", "Flores": "弗洛雷斯", "Morales": "莫拉莱斯",
+    "Messi": "梅西", "Ronaldo": "罗纳尔多", "Neymar": "内马尔",
+    "Mbappé": "姆巴佩", "Haaland": "哈兰德", "Kane": "凯恩",
+    "Müller": "穆勒", "Neuer": "诺伊尔", "Kroos": "克罗斯",
+    "Bellingham": "贝林厄姆", "Foden": "福登", "Saka": "萨卡",
+    "Grealish": "格拉利什", "Rashford": "拉什福德", "Mount": "芒特",
+    "Alvarez": "阿尔瓦雷斯", "Álvarez": "阿尔瓦雷斯",
+    "Gómez": "戈麦斯", "Jiménez": "希门尼斯", "Ruiz": "鲁伊斯",
+    "Díaz": "迪亚斯", "Moreno": "莫雷诺", "Romero": "罗梅罗",
+    "Navarro": "纳瓦罗", "Vargas": "巴尔加斯", "Rojas": "罗哈斯",
+    "Alves": "阿尔维斯", "Costa": "科斯塔", "Pereira": "佩雷拉",
+    "Oliveira": "奥利维拉", "Souza": "索萨", "Nunes": "努内斯",
+    "Mendes": "门德斯", "Carvalho": "卡瓦略", "Ferreira": "费雷拉",
+    "Johnson": "约翰逊", "Williams": "威廉姆斯", "Brown": "布朗",
+    "Taylor": "泰勒", "Wilson": "威尔逊", "Anderson": "安德森",
+    "Miller": "米勒", "Davis": "戴维斯", "Moore": "穆尔",
+    "Clark": "克拉克", "Lewis": "刘易斯", "Walker": "沃克",
+    "Young": "杨", "Allen": "艾伦", "King": "金",
+    "Wright": "赖特", "Scott": "斯科特", "Adams": "亚当斯",
+    "Baker": "贝克", "Carter": "卡特", "Harris": "哈里斯",
+    "Smith": "史密斯", "Jones": "琼斯", "White": "怀特",
+    "Green": "格林", "Hall": "霍尔", "Turner": "特纳",
+    "Müller": "穆勒", "Schmidt": "施密特", "Schneider": "施奈德",
+    "Fischer": "菲舍尔", "Weber": "韦伯", "Wagner": "瓦格纳",
+    "Becker": "贝克尔", "Hoffmann": "霍夫曼", "Schäfer": "舍费尔",
+    "Ito": "伊藤", "Ito": "伊藤", "Tanaka": "田中",
+    "Yamamoto": "山本", "Nakamura": "中村", "Suzuki": "铃木",
+    "Takahashi": "高桥", "Watanabe": "渡边", "Sato": "佐藤",
+    "Yamada": "山田", "Yoshida": "吉田",
+    "Lee": "李", "Kim": "金", "Park": "朴", "Choi": "崔",
+    "Jung": "郑", "Kang": "姜", "Yoon": "尹", "Jang": "张",
+    "Son": "孙", "Hwang": "黄", "Cho": "赵", "Nam": "南",
+}
+
+def player_name_cn(en_name: str) -> str:
+    """Translate a player name to Chinese. Uses dictionary + algorithmic fallback."""
+    if not en_name:
+        return ""
+    # Check full name dictionary first
+    if en_name in PLAYER_NAME_CN:
+        return PLAYER_NAME_CN[en_name]
+    parts = en_name.split()
+    if len(parts) == 1:
+        # Single name - could be given or surname
+        return GIVEN_CN.get(parts[0], "") or SURNAME_CN.get(parts[0], "")
+    elif len(parts) >= 2:
+        given_cn = GIVEN_CN.get(parts[0], "")
+        surname_cn = SURNAME_CN.get(parts[-1], "")
+        if given_cn and surname_cn:
+            return f"{given_cn}·{surname_cn}"
+        elif surname_cn:
+            return surname_cn
+        elif given_cn:
+            return given_cn
+    # Built-in transliteration fallback for common syllables
+    return _transliterate(en_name)
+
+def _transliterate(name: str) -> str:
+    """Simple Latin->Chinese transliteration for common syllables."""
+    syllables = {
+        "al": "阿尔", "an": "安", "ar": "阿尔", "as": "阿斯",
+        "ba": "巴", "be": "贝", "bi": "比", "bo": "博", "br": "布",
+        "ca": "卡", "ce": "塞", "ch": "奇", "ci": "西", "co": "科", "cu": "库",
+        "da": "达", "de": "德", "di": "迪", "do": "多", "du": "杜",
+        "el": "埃尔", "em": "埃姆", "en": "恩", "er": "尔", "es": "埃斯",
+        "fa": "法", "fe": "费", "fi": "菲", "fo": "福", "fr": "弗",
+        "ga": "加", "ge": "热", "gi": "吉", "go": "戈", "gu": "古",
+        "ha": "哈", "he": "赫", "hi": "希", "ho": "霍", "hu": "胡",
+        "il": "伊尔", "im": "伊姆", "in": "因", "ir": "伊尔", "is": "伊斯",
+        "ja": "哈", "je": "杰", "ji": "吉", "jo": "乔", "ju": "朱",
+        "ka": "卡", "ke": "凯", "ki": "基", "ko": "科", "ku": "库",
+        "la": "拉", "le": "莱", "li": "利", "lo": "洛", "lu": "卢",
+        "ma": "马", "me": "梅", "mi": "米", "mo": "莫", "mu": "穆",
+        "na": "纳", "ne": "内", "ni": "尼", "no": "诺", "nu": "努",
+        "ol": "奥尔", "om": "奥姆", "on": "昂", "or": "奥尔", "os": "奥斯",
+        "pa": "帕", "pe": "佩", "pi": "皮", "po": "波", "pr": "普",
+        "qu": "奎",
+        "ra": "拉", "re": "雷", "ri": "里", "ro": "罗", "ru": "鲁",
+        "sa": "萨", "se": "塞", "si": "西", "so": "索", "su": "苏",
+        "ta": "塔", "te": "特", "ti": "蒂", "to": "托", "tu": "图",
+        "ul": "乌尔", "um": "乌姆", "un": "温", "ur": "乌尔", "us": "乌斯",
+        "va": "瓦", "ve": "韦", "vi": "维", "vo": "沃", "vu": "武",
+        "wa": "瓦", "we": "韦", "wi": "威", "wo": "沃",
+        "ya": "亚", "ye": "耶", "yi": "伊", "yo": "约", "yu": "尤",
+        "za": "扎", "ze": "泽", "zi": "齐", "zo": "佐", "zu": "祖",
+    }
+    # Try to match syllables
+    result = name.lower()
+    # Apply known syllables (longer matches first)
+    for syl, cn in sorted(syllables.items(), key=lambda x: -len(x[0])):
+        result = result.replace(syl, cn)
+    return result if result != name.lower() else ""
+
+
 # Chinese translations for historical best results
 HISTORY_BEST_CN = {
     "Winners": "冠军",
