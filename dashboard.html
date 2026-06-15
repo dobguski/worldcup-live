@@ -142,6 +142,31 @@ body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:#0f172
 .team-card-history{font-size:.7em;color:#94a3b8;margin-top:4px}
 .player-table{width:100%;border-collapse:collapse;font-size:.72em;margin-top:6px}
 .player-table th{color:#64748b;border-bottom:1px solid #334155;padding:3px 4px;text-align:center;font-weight:500}
+.player-name-link{cursor:pointer;transition:color .2s}
+.player-name-link:hover{color:#e2b04a;text-decoration:underline}
+/* Player Detail Modal */
+.modal-overlay{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,.75);z-index:1000;justify-content:center;align-items:center;padding:20px}
+.modal-overlay.active{display:flex}
+.modal-card{background:#1a2332;border-radius:14px;border:1px solid #334155;max-width:480px;width:100%;max-height:85vh;overflow-y:auto;padding:24px;box-shadow:0 20px 60px rgba(0,0,0,.5)}
+.modal-close{float:right;background:none;border:none;color:#64748b;font-size:1.5em;cursor:pointer;padding:0;line-height:1}
+.modal-close:hover{color:#fff}
+.modal-header{display:flex;align-items:center;gap:12px;margin-bottom:16px}
+.modal-number{font-size:2em;font-weight:bold;color:#e2b04a;min-width:48px;text-align:center}
+.modal-name{font-size:1.3em;font-weight:bold;color:#fff}
+.modal-name-cn{font-size:.9em;color:#94a3b8}
+.modal-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.modal-field{background:#0f1724;border-radius:8px;padding:10px 12px}
+.modal-field-label{font-size:.65em;color:#64748b;text-transform:uppercase;letter-spacing:.5px;margin-bottom:4px}
+.modal-field-value{font-size:.9em;color:#e2e8f0;font-weight:500}
+.modal-stats{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:12px}
+.modal-stat{background:#0f1724;border-radius:8px;padding:10px;text-align:center}
+.modal-stat-value{font-size:1.3em;font-weight:bold;color:#e2b04a}
+.modal-stat-label{font-size:.65em;color:#64748b;margin-top:2px}
+.modal-flag{font-size:.8em;padding:2px 8px;border-radius:10px;display:inline-block;margin:2px}
+.modal-flag.main{background:#1e3a5f;color:#60a5fa}
+.modal-flag.other{background:#1e293b;color:#94a3b8}
+.player-detail-trigger{cursor:pointer;transition:color .2s}
+.player-detail-trigger:hover{color:#e2b04a}
 .player-table td{padding:3px 4px;border-bottom:1px solid #1e293b}
 .player-table tr:hover td{background:#0f1724}
 .player-num{color:#e2b04a;font-weight:bold;text-align:center;width:28px}
@@ -212,6 +237,14 @@ body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:#0f172
   <div class="bracket-container" id="bracketView"></div>
 </div>
 
+</div>
+
+<!-- PLAYER DETAIL MODAL -->
+<div class="modal-overlay" id="playerModal" onclick="if(event.target===this)closePlayerModal()">
+  <div class="modal-card">
+    <button class="modal-close" onclick="closePlayerModal()">&times;</button>
+    <div id="playerModalContent"></div>
+  </div>
 </div>
 
 <script>
@@ -836,6 +869,84 @@ function buildPMRow(match) {
 
   html += '</div>';
   return html;
+}
+
+// ==================== PLAYER DETAIL MODAL ====================
+let playerDetails = {};
+
+async function loadPlayerDetails() {
+  try {
+    const res = await fetch('player_details.json');
+    if (res.ok) playerDetails = await res.json();
+  } catch(e) {}
+}
+
+function openPlayerModal(playerName) {
+  const pd = playerDetails[playerName];
+  if (!pd) return;
+
+  const content = document.getElementById('playerModalContent');
+  const cn = pd.name_cn || '';
+  const age = pd.age || '';
+  const birth = pd.birth_date || '';
+  const birthplace = pd.birth_place || '';
+  const nationality = pd.nationality || '';
+  const nationalityTeam = pd.nationality_team || '';
+  const pos = pd.position || '';
+  const posCn = pd.position_cn || '';
+  const club = pd.club || '';
+  const clubCn = pd.club_cn || '';
+  const number = pd.number || '';
+  const height = pd.height || '';
+  const weight = pd.weight || '';
+
+  // Check if dual nationality
+  const isDual = nationality && nationalityTeam && nationality !== nationalityTeam;
+
+  let html = '<div class="modal-header">';
+  if (number) html += `<div class="modal-number">#${number}</div>`;
+  html += '<div>';
+  html += `<div class="modal-name">${pd.name}</div>`;
+  if (cn && cn !== pd.name) html += `<div class="modal-name-cn">${cn}</div>`;
+  html += '</div></div>';
+
+  // Core info grid
+  html += '<div class="modal-grid">';
+  if (age) html += `<div class="modal-field"><div class="modal-field-label">年龄</div><div class="modal-field-value">${age}岁</div></div>`;
+  if (birth) html += `<div class="modal-field"><div class="modal-field-label">出生日期</div><div class="modal-field-value">${birth}</div></div>`;
+  if (birthplace) html += `<div class="modal-field"><div class="modal-field-label">出生地</div><div class="modal-field-value">${birthplace}</div></div>`;
+  if (posCn || pos) html += `<div class="modal-field"><div class="modal-field-label">位置</div><div class="modal-field-value">${posCn ? posCn+' '+pos : pos}</div></div>`;
+  if (clubCn || club) html += `<div class="modal-field"><div class="modal-field-label">效力俱乐部</div><div class="modal-field-value">${clubCn ? clubCn+' '+club : club}</div></div>`;
+  if (height) html += `<div class="modal-field"><div class="modal-field-label">身高</div><div class="modal-field-value">${height}</div></div>`;
+  if (weight) html += `<div class="modal-field"><div class="modal-field-label">体重</div><div class="modal-field-value">${weight}</div></div>`;
+  html += '</div>';
+
+  // Nationality badges
+  if (nationality) {
+    html += '<div style="margin-top:8px;">';
+    html += `<span class="modal-flag main">🏴 ${nationality}</span>`;
+    if (isDual) html += `<span class="modal-flag other">🌍 代表: ${nationalityTeam}</span>`;
+    html += '</div>';
+  }
+
+  // Stats
+  if (pd.club_goals !== undefined) {
+    html += '<div class="modal-stats">';
+    html += `<div class="modal-stat"><div class="modal-stat-value">${pd.club_goals||0}</div><div class="modal-stat-label">俱乐部进球</div></div>`;
+    html += `<div class="modal-stat"><div class="modal-stat-value">${pd.club_apps||0}</div><div class="modal-stat-label">俱乐部出场</div></div>`;
+    html += `<div class="modal-stat"><div class="modal-stat-value">${pd.intl_goals||0}</div><div class="modal-stat-label">国家队进球</div></div>`;
+    html += `<div class="modal-stat"><div class="modal-stat-value">${pd.intl_apps||0}</div><div class="modal-stat-label">国家队出场</div></div>`;
+    html += `<div class="modal-stat"><div class="modal-stat-value">${pd.career_goals||0}</div><div class="modal-stat-label">职业生涯进球</div></div>`;
+    html += `<div class="modal-stat"><div class="modal-stat-value">${pd.career_apps||0}</div><div class="modal-stat-label">职业生涯出场</div></div>`;
+    html += '</div>';
+  }
+
+  content.innerHTML = html;
+  document.getElementById('playerModal').classList.add('active');
+}
+
+function closePlayerModal() {
+  document.getElementById('playerModal').classList.remove('active');
 }
 
 function switchTab(name) {
