@@ -93,6 +93,7 @@ body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:#0f172
   <div class="tab active" onclick="switchTab('standings')"><span data-i18n="tab.standings">📊 积分榜 / Standings</span></div>
   <div class="tab" onclick="switchTab('matches')"><span data-i18n="tab.matches">📅 比赛 / Matches</span></div>
   <div class="tab" onclick="switchTab('live')"><span data-i18n="tab.live">🔴 直播 / Live</span></div>
+  <div class="tab" onclick="switchTab('teams')"><span data-i18n="tab.teams">👥 球队 / Teams</span></div>
   <div class="tab" onclick="switchTab('bracket')"><span data-i18n="tab.bracket">🏆 淘汰赛 / Bracket</span></div>
 </div>
 
@@ -108,6 +109,10 @@ body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:#0f172
   <div class="matches-grid" id="liveMatches"></div>
 </div>
 
+<div class="tab-content" id="tab-teams">
+  <div id="teamsContainer"></div>
+</div>
+
 <div class="tab-content" id="tab-bracket">
   <div class="bracket-container" id="bracketView"></div>
 </div>
@@ -121,6 +126,7 @@ const I18N = {
     'tab.standings': '📊 积分榜',
     'tab.matches': '📅 比赛日程',
     'tab.live': '🔴 直播中',
+    'tab.teams': '👥 球队信息',
     'tab.bracket': '🏆 淘汰赛对阵',
     'banner.live': '比赛进行中 · 实时比分',
     'lastUpdate': '最后更新',
@@ -152,11 +158,24 @@ const I18N = {
     'bracket.final': '🏆 决赛',
     'bracket.venue.miami': '@ 迈阿密',
     'bracket.venue.ny': '@ 纽约/新泽西',
+    'team.coach': '主教练',
+    'team.stadium': '主场',
+    'team.ranking': 'FIFA排名',
+    'team.apps': '世界杯参赛',
+    'team.best': '最佳战绩',
+    'team.first': '首次参赛',
+    'team.players': '球员名单',
+    'team.number': '号码',
+    'team.position': '位置',
+    'team.club': '效力俱乐部',
+    'team.birth': '出生',
+    'team.noPlayers': '暂无球员数据',
   },
   en: {
     'tab.standings': '📊 Standings',
     'tab.matches': '📅 Matches',
     'tab.live': '🔴 Live',
+    'tab.teams': '👥 Teams',
     'tab.bracket': '🏆 Bracket',
     'banner.live': 'LIVE MATCHES IN PROGRESS',
     'lastUpdate': 'Last updated',
@@ -188,6 +207,18 @@ const I18N = {
     'bracket.final': '🏆 FINAL',
     'bracket.venue.miami': '@ Miami',
     'bracket.venue.ny': '@ New York/New Jersey',
+    'team.coach': 'Coach',
+    'team.stadium': 'Stadium',
+    'team.ranking': 'FIFA Rank',
+    'team.apps': 'WC Apps',
+    'team.best': 'Best Finish',
+    'team.first': 'First WC',
+    'team.players': 'Squad',
+    'team.number': '#',
+    'team.position': 'Pos',
+    'team.club': 'Club',
+    'team.birth': 'Born',
+    'team.noPlayers': 'No player data available',
   }
 };
 
@@ -217,6 +248,7 @@ function setLang(lang) {
 let matchData = [];
 let standings = {};
 let teamNamesCN = {};
+let teamsData = {};
 
 function teamName(en) {
   const cn = teamNamesCN[en] || '';
@@ -227,14 +259,17 @@ function teamName(en) {
 
 async function loadData() {
   try {
-    const [mRes, sRes, tRes] = await Promise.all([
+    const [mRes, sRes, tRes, tmRes] = await Promise.all([
       fetch('match_data.json'),
       fetch('standings.json'),
-      fetch('team_names.json')
+      fetch('team_names.json'),
+      fetch('teams.json').catch(() => null)  // teams.json may not exist yet
     ]);
     matchData = await mRes.json();
     standings = await sRes.json();
     teamNamesCN = await tRes.json();
+    if (tmRes) teamsData = await tmRes.json();
+    else teamsData = {};
     renderAll();
     let updateText;
     if (currentLang === 'cn') updateText = t('lastUpdate') + ': ' + new Date().toLocaleString('zh-CN');
@@ -250,6 +285,7 @@ function renderAll() {
   renderStandings();
   renderMatches();
   renderLive();
+  renderTeams();
   renderBracket();
 }
 
@@ -361,6 +397,84 @@ function renderLive() {
   }
 }
 
+function renderTeams() {
+  const container = document.getElementById('teamsContainer');
+  if (!teamsData || Object.keys(teamsData).length === 0) {
+    container.innerHTML = `<div style="text-align:center;color:#64748b;padding:40px;">
+      <p style="font-size:1.2em;">${t('team.noPlayers')}</p>
+      <p style="margin-top:8px;">Team data is being collected from TheSportsDB API...</p>
+    </div>`;
+    return;
+  }
+
+  const order = 'ABCDEFGHIJKL'.split('');
+  let html = '<div class="groups-grid">';
+
+  for (const g of order) {
+    // Find teams in this group
+    const groupTeams = Object.values(teamsData).filter(t => t.group === g);
+    if (groupTeams.length === 0) continue;
+
+    html += `<div class="group-card" style="grid-column: span 2;">
+      <div class="group-header">👥 ${g}${t('group')} · ${g} ${t('group')}</div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:10px;padding:10px;">`;
+
+    for (const team of groupTeams) {
+      const cnName = team.name_cn || team.name_en;
+      const displayName = currentLang === 'cn' ? cnName :
+                         currentLang === 'dual' ? `${cnName} ${team.name_en}` :
+                         team.name_en;
+      const history = team.history || {};
+      const players = team.players || [];
+
+      html += `<div style="background:#0f1724;border-radius:8px;padding:12px;border:1px solid #334155;">
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;">
+          ${team.badge ? `<img src="${team.badge}" style="width:36px;height:36px;object-fit:contain;" onerror="this.style.display='none'" alt="">` : ''}
+          <div>
+            <div style="font-weight:bold;font-size:1em;color:#e2b04a;">${displayName}</div>
+            <div style="font-size:.75em;color:#64748b;">
+              ${history.apps ? `${t('team.apps')}: ${history.apps}` : ''}${history.best ? ` · ${t('team.best')}: ${history.best}` : ''}
+            </div>
+          </div>
+        </div>
+        <div style="font-size:.75em;color:#94a3b8;margin-bottom:8px;">
+          ${team.coach ? `🧑‍🏫 ${t('team.coach')}: ${team.coach} · ` : ''}${team.stadium ? `🏟 ${team.stadium}` : ''}
+        </div>`;
+
+      // Players table
+      if (players.length > 0) {
+        html += `<div style="font-size:.7em;color:#e2b04a;margin-bottom:4px;">${t('team.players')} (${players.length})</div>`;
+        html += `<table style="width:100%;border-collapse:collapse;font-size:.75em;">
+          <tr style="color:#64748b;border-bottom:1px solid #334155;">
+            <th style="padding:2px 4px;text-align:center;">${t('team.number')}</th>
+            <th style="padding:2px 4px;text-align:left;">${t('table.team')}</th>
+            <th style="padding:2px 4px;">${t('team.position')}</th>
+            <th style="padding:2px 4px;text-align:left;">${t('team.club')}</th>
+          </tr>`;
+        for (const p of players.slice(0, 12)) {  // Show up to 12 players
+          html += `<tr style="border-bottom:1px solid #1e293b;">
+            <td style="padding:2px 4px;text-align:center;color:#e2b04a;">${p.number||'-'}</td>
+            <td style="padding:2px 4px;">${p.name}</td>
+            <td style="padding:2px 4px;color:#94a3b8;text-align:center;font-size:.85em;">${p.position||''}</td>
+            <td style="padding:2px 4px;color:#94a3b8;font-size:.85em;">${p.club||''}</td>
+          </tr>`;
+        }
+        if (players.length > 12) {
+          html += `<tr><td colspan="4" style="padding:2px 4px;text-align:center;color:#64748b;font-size:.7em;">+ ${players.length - 12} more players / 更多球员</td></tr>`;
+        }
+        html += '</table>';
+      }
+
+      html += '</div>';
+    }
+
+    html += '</div></div>';
+  }
+
+  html += '</div>';
+  container.innerHTML = html;
+}
+
 function renderBracket() {
   const container = document.getElementById('bracketView');
   container.innerHTML = `
@@ -378,7 +492,7 @@ function renderBracket() {
 }
 
 function switchTab(name) {
-  const tabOrder = {standings:1, matches:2, live:3, bracket:4};
+  const tabOrder = {standings:1, matches:2, live:3, teams:4, bracket:5};
   document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
   document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
   document.querySelector(`.tab:nth-child(${tabOrder[name]})`).classList.add('active');
