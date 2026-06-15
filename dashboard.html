@@ -625,8 +625,12 @@ function renderLive() {
     banner.classList.add('active');
     let html = '';
     liveMatches.forEach(m => {
-      html += `<div class="match-card live" data-date="${m.date}" data-key="${m.home_team}-${m.away_team}">
-        <div class="match-date">${m.date} ${m.time||''} BJT${m.time_label?' ('+m.time_label+')':''} · ${m.group}${t('group')} · ${m.venue}</div>
+      const fmt = formatMatchTime(m);
+      let liveTimeDisplay = `<span style="font-weight:600">${fmt.time}</span>`;
+      if (fmt.label) liveTimeDisplay += ` <span style="font-size:.75em;color:#e2b04a">${fmt.label}</span>`;
+      if (!isBJT) liveTimeDisplay += ` <span style="font-size:.65em;color:#475569;margin-left:3px">(${fmt.bjRef})</span>`;
+      html += `<div class="match-card live" data-date="${fmt.date}" data-key="${m.home_team}-${m.away_team}">
+        <div class="match-date">${fmt.date} ${liveTimeDisplay} · ${m.group}${t('group')} · ${m.venue}</div>
         <div class="match-teams">
           <div class="team"><div class="team-name">${teamName(m.home_team)}</div></div>
           <div class="score">${m.home_score}-${m.away_score}</div>
