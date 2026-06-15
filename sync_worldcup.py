@@ -1326,8 +1326,8 @@ def watch_mode():
     consecutive_no_change = 0
     while True:
         try:
+            bump_counter()  # Update counter BEFORE sync (included in commit)
             result = sync_once(commit=True)
-            bump_counter()  # Simulate organic visitor growth
 
             if result["updated"] > 0:
                 print(f"\n  🎉 {result['updated']} new results synced!")
@@ -2137,8 +2137,8 @@ if __name__ == "__main__":
         def bg_sync():
             while True:
                 try:
+                    bump_counter()  # Update counter BEFORE sync (included in commit)
                     sync_once(commit=True)
-                    bump_counter()  # Increment visitor counter
                 except Exception as e:
                     print(f"  [BG ERROR] {e}")
                 time.sleep(WATCH_INTERVAL)
