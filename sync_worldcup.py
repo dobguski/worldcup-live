@@ -40,6 +40,7 @@ FINALS_TXT = REPO_DIR / "2026--usa" / "cup_finals.txt"
 DATA_JSON = REPO_DIR / "match_data.json"
 STANDINGS_JSON = REPO_DIR / "standings.json"
 TEAM_NAMES_JSON = REPO_DIR / "team_names.json"
+TEAMS_JSON = REPO_DIR / "teams.json"
 
 ESPN_API = "https://site.api.espn.com/apis/site/v2/sports/soccer/fifa.world/scoreboard"
 TSDB_API = "https://www.thesportsdb.com/api/v1/json/3/eventsseason.php?id=4429&s=2026"
@@ -291,6 +292,170 @@ def find_group(team: str) -> str | None:
             if team_norm.lower() in t.lower() or t.lower() in team_norm.lower():
                 return g
     return None
+
+
+# ============================================================
+# HISTORICAL WORLD CUP RECORDS (static reference data)
+# ============================================================
+WC_HISTORY = {
+    "Mexico":            {"apps": 18, "best": "Quarter-finals (1970, 1986)", "first": 1930},
+    "South Africa":      {"apps": 4,  "best": "Group stage (1998, 2002, 2010)", "first": 1998},
+    "South Korea":       {"apps": 12, "best": "Semi-finals (2002)", "first": 1954},
+    "Czech Republic":    {"apps": 10, "best": "Runners-up (1934, 1962 as CZE)", "first": 1934},
+    "Canada":            {"apps": 3,  "best": "Group stage (1986, 2022, 2026)", "first": 1986},
+    "Bosnia & Herzegovina": {"apps": 2, "best": "Group stage (2014)", "first": 2014},
+    "Qatar":             {"apps": 2,  "best": "Group stage (2022, 2026)", "first": 2022},
+    "Switzerland":       {"apps": 13, "best": "Quarter-finals (1934, 1938, 1954)", "first": 1934},
+    "Brazil":            {"apps": 23, "best": "Winners (1958, 1962, 1970, 1994, 2002)", "first": 1930},
+    "Morocco":           {"apps": 7,  "best": "Semi-finals (2022)", "first": 1970},
+    "Haiti":             {"apps": 2,  "best": "Group stage (1974)", "first": 1974},
+    "Scotland":          {"apps": 9,  "best": "Group stage (8 times)", "first": 1954},
+    "USA":               {"apps": 13, "best": "Semi-finals (1930)", "first": 1930},
+    "Paraguay":          {"apps": 9,  "best": "Quarter-finals (2010)", "first": 1930},
+    "Australia":         {"apps": 7,  "best": "Round of 16 (2006, 2022)", "first": 1974},
+    "Turkey":            {"apps": 3,  "best": "Third place (2002)", "first": 1954},
+    "Germany":           {"apps": 21, "best": "Winners (1954, 1974, 1990, 2014)", "first": 1934},
+    "Curaçao":           {"apps": 1,  "best": "Debut (2026)", "first": 2026},
+    "Ivory Coast":       {"apps": 4,  "best": "Group stage (2006, 2010, 2014)", "first": 2006},
+    "Ecuador":           {"apps": 5,  "best": "Round of 16 (2006)", "first": 2002},
+    "Netherlands":       {"apps": 12, "best": "Runners-up (1974, 1978, 2010)", "first": 1934},
+    "Japan":             {"apps": 8,  "best": "Round of 16 (2002, 2010, 2018, 2022)", "first": 1998},
+    "Sweden":            {"apps": 13, "best": "Runners-up (1958)", "first": 1934},
+    "Tunisia":           {"apps": 7,  "best": "Group stage (6 times)", "first": 1978},
+    "Belgium":           {"apps": 15, "best": "Third place (2018)", "first": 1930},
+    "Egypt":             {"apps": 4,  "best": "Group stage (1934, 1990, 2018)", "first": 1934},
+    "Iran":              {"apps": 7,  "best": "Group stage (6 times)", "first": 1978},
+    "New Zealand":       {"apps": 3,  "best": "Group stage (1982, 2010)", "first": 1982},
+    "Spain":             {"apps": 17, "best": "Winners (2010)", "first": 1934},
+    "Cape Verde":        {"apps": 1,  "best": "Debut (2026)", "first": 2026},
+    "Saudi Arabia":      {"apps": 7,  "best": "Round of 16 (1994)", "first": 1994},
+    "Uruguay":           {"apps": 15, "best": "Winners (1930, 1950)", "first": 1930},
+    "France":            {"apps": 17, "best": "Winners (1998, 2018)", "first": 1930},
+    "Senegal":           {"apps": 4,  "best": "Quarter-finals (2002)", "first": 2002},
+    "Iraq":              {"apps": 2,  "best": "Group stage (1986)", "first": 1986},
+    "Norway":            {"apps": 4,  "best": "Round of 16 (1938, 1998)", "first": 1938},
+    "Argentina":         {"apps": 19, "best": "Winners (1978, 1986, 2022)", "first": 1930},
+    "Algeria":           {"apps": 5,  "best": "Round of 16 (2014)", "first": 1982},
+    "Austria":           {"apps": 8,  "best": "Third place (1954)", "first": 1934},
+    "Jordan":            {"apps": 1,  "best": "Debut (2026)", "first": 2026},
+    "Portugal":          {"apps": 9,  "best": "Third place (1966)", "first": 1966},
+    "DR Congo":          {"apps": 2,  "best": "Group stage (1974 as Zaire)", "first": 1974},
+    "Uzbekistan":        {"apps": 1,  "best": "Debut (2026)", "first": 2026},
+    "Colombia":          {"apps": 7,  "best": "Quarter-finals (2014)", "first": 1962},
+    "England":           {"apps": 17, "best": "Winners (1966)", "first": 1950},
+    "Croatia":           {"apps": 7,  "best": "Runners-up (2018)", "first": 1998},
+    "Ghana":             {"apps": 5,  "best": "Quarter-finals (2010)", "first": 2006},
+    "Panama":            {"apps": 2,  "best": "Group stage (2018)", "first": 2018},
+}
+
+
+# ============================================================
+# TEAM DATA BUILDER
+# ============================================================
+def build_teams_data(force_refresh: bool = False) -> dict:
+    """Fetch team profiles and player data from TheSportsDB for all 48 teams.
+    Cached to teams.json. Use force_refresh to re-fetch.
+    """
+    if not force_refresh and TEAMS_JSON.exists():
+        try:
+            return json.loads(TEAMS_JSON.read_text(encoding="utf-8"))
+        except Exception:
+            pass
+
+    print("  Building team data (this may take ~2 min for first run)...")
+
+    # Step 1: Collect team IDs from events + search
+    team_ids = {}
+    # From events
+    events_data = fetch_json(TSDB_API)
+    if events_data:
+        for e in events_data.get("events", []):
+            for name, key in [(e.get("strHomeTeam"), "idHomeTeam"), (e.get("strAwayTeam"), "idAwayTeam")]:
+                tid = e.get(key)
+                if name and tid:
+                    team_ids[normalize_name(name)] = tid
+    # Search for remaining
+    all_teams = []
+    for group_teams in GROUPS.values():
+        all_teams.extend(group_teams)
+
+    for team in all_teams:
+        if team in team_ids:
+            continue
+        # Search by name
+        import urllib.parse
+        search_url = f"https://www.thesportsdb.com/api/v1/json/3/searchteams.php?t={urllib.parse.quote(team)}"
+        data = fetch_json(search_url)
+        if data and data.get("teams"):
+            for t in data["teams"]:
+                if t.get("strSport") == "Soccer":
+                    team_ids[team] = t["idTeam"]
+                    break
+        time.sleep(0.3)  # Rate limit
+
+    print(f"  Found {len(team_ids)}/{len(all_teams)} team IDs")
+
+    # Step 2: Fetch team info + players for each team
+    teams_data = {}
+    for team in all_teams:
+        tid = team_ids.get(team)
+        cn = team_cn(team)
+        group = find_group(team) or "?"
+        history = WC_HISTORY.get(team, {"apps": "?", "best": "?", "first": "?"})
+
+        team_entry = {
+            "name_en": team,
+            "name_cn": cn,
+            "group": group,
+            "id": tid,
+            "badge": "",
+            "stadium": "",
+            "coach": "",
+            "fifa_ranking": "",
+            "history": history,
+            "players": [],
+        }
+
+        if tid:
+            # Fetch team info
+            team_info = fetch_json(f"https://www.thesportsdb.com/api/v1/json/3/lookupteam.php?id={tid}")
+            if team_info and team_info.get("teams"):
+                t = team_info["teams"][0]
+                team_entry["badge"] = t.get("strBadge", "")
+                team_entry["stadium"] = t.get("strStadium", "")
+                team_entry["coach"] = t.get("strManager", "")
+                team_entry["description"] = (t.get("strDescriptionEN") or "")[:500]
+
+            time.sleep(0.3)
+
+            # Fetch players
+            player_data = fetch_json(f"https://www.thesportsdb.com/api/v1/json/3/lookup_all_players.php?id={tid}")
+            if player_data and player_data.get("player"):
+                for p in player_data["player"]:
+                    player_entry = {
+                        "name": p.get("strPlayer", ""),
+                        "nationality": p.get("strNationality", ""),
+                        "position": p.get("strPosition", ""),
+                        "number": p.get("strNumber", ""),
+                        "club": p.get("strTeam", ""),  # Current club
+                        "birth_date": p.get("dateBorn", ""),
+                        "birth_place": p.get("strBirthLocation", ""),
+                        "height": p.get("strHeight", ""),
+                        "weight": p.get("strWeight", ""),
+                        "thumb": p.get("strThumb", ""),
+                    }
+                    team_entry["players"].append(player_entry)
+
+            time.sleep(0.3)
+
+        teams_data[team] = team_entry
+        if len(team_entry["players"]) > 0:
+            print(f"    {cn} {team}: {len(team_entry['players'])} players")
+
+    # Save
+    TEAMS_JSON.write_text(json.dumps(teams_data, ensure_ascii=False, indent=2), encoding="utf-8")
+    print(f"  Saved: {TEAMS_JSON.name} ({len(teams_data)} teams)")
+    return teams_data
 
 
 # ============================================================
@@ -580,7 +745,7 @@ def git_commit_and_push(message: str = "Auto-sync: update match results") -> boo
     import subprocess
     try:
         subprocess.run(["git", "add", "2026--usa/cup.txt", "match_data.json",
-                        "standings.json", "team_names.json", "dashboard.html",
+                        "standings.json", "team_names.json", "teams.json", "dashboard.html",
                         "index.html", "sync_worldcup.py"],
                        cwd=REPO_DIR, capture_output=True, check=False)
         subprocess.run(["git", "commit", "-m", message],
