@@ -23,6 +23,8 @@ _site/
 
 sandbox/
 tmp/
+.db_snapshots/
+__pycache__/
 
 
 ##
