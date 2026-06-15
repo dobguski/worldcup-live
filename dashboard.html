@@ -215,6 +215,10 @@ const I18N = {
     'team.club': '效力俱乐部',
     'team.birth': '出生',
     'team.noPlayers': '暂无球员数据',
+    'poll.home': '胜',
+    'poll.draw': '平',
+    'poll.away': '负',
+    'poll.votes': '票',
   },
   en: {
     'tab.standings': '📊 Standings',
@@ -264,6 +268,10 @@ const I18N = {
     'team.club': 'Club',
     'team.birth': 'Born',
     'team.noPlayers': 'No player data available',
+    'poll.home': 'Home',
+    'poll.draw': 'Draw',
+    'poll.away': 'Away',
+    'poll.votes': 'votes',
   }
 };
 
@@ -313,17 +321,21 @@ function teamName(en) {
 
 async function loadData() {
   try {
-    const [mRes, sRes, tRes, tmRes] = await Promise.all([
+    const [mRes, sRes, tRes, tmRes, pmRes] = await Promise.all([
       fetch('match_data.json'),
       fetch('standings.json'),
       fetch('team_names.json'),
-      fetch('teams.json').catch(() => null)  // teams.json may not exist yet
+      fetch('teams.json').catch(() => null),
+      fetch('polymarket.json').catch(() => null)
     ]);
     matchData = await mRes.json();
     standings = await sRes.json();
     teamNamesCN = await tRes.json();
     if (tmRes) teamsData = await tmRes.json();
     else teamsData = {};
+    if (pmRes) pmData = await pmRes.json();
+    else pmData = {};
+    loadVotes();
     renderAll();
     let updateText;
     if (currentLang === 'cn') updateText = t('lastUpdate') + ': ' + new Date().toLocaleString('zh-CN');
@@ -416,6 +428,8 @@ function renderMatches() {
           <div class="team"><div class="team-name">${teamName(match.away_team)}</div></div>
         </div>
         <div class="match-info"><span class="match-status ${statusCls}">${statusLabel}</span></div>
+        ${buildPollRow(match)}
+        ${buildPMRow(match)}
       </div>`;
     });
     html += '</div>';
@@ -569,6 +583,86 @@ function renderBracket() {
         <tr><td style="padding:8px;color:#e2b04a;font-size:1.2em;">${t('bracket.final')}</td><td style="padding:8px;font-size:1.1em;">Jul 19 ${t('bracket.venue.ny')}</td><td style="padding:8px;color:#e2b04a;font-weight:bold;">1 ${t('matches')}</td></tr>
       </table>
     </div>`;
+}
+
+// ==================== PREDICTION POLL ====================
+function voteMatch(match, choice) {
+  const key = `${match.home_team}_vs_${match.away_team}`;
+  const current = userVotes[key] || {home:0,draw:0,away:0};
+  if (userVotes['_voted_' + key]) return; // Already voted
+  current[choice] = (current[choice] || 0) + 1;
+  userVotes[key] = current;
+  userVotes['_voted_' + key] = choice;
+  saveVotes();
+  renderMatches();
+}
+
+function buildPollRow(match) {
+  const key = `${match.home_team}_vs_${match.away_team}`;
+  const votes = userVotes[key] || {home:0,draw:0,away:0};
+  const total = (votes.home||0) + (votes.draw||0) + (votes.away||0);
+  const myVote = userVotes['_voted_' + key];
+  const homePct = total > 0 ? Math.round((votes.home||0)/total*100) : 0;
+  const drawPct = total > 0 ? Math.round((votes.draw||0)/total*100) : 0;
+  const awayPct = total > 0 ? Math.round((votes.away||0)/total*100) : 0;
+
+  let html = '<div class="poll-row">';
+  html += `<button class="poll-btn home ${myVote==='home'?'voted':''}" onclick="voteMatch(match,'home')" ${myVote?'disabled':''}>${t('poll.home')}</button>`;
+  html += `<button class="poll-btn draw ${myVote==='draw'?'voted':''}" onclick="voteMatch(match,'draw')" ${myVote?'disabled':''}>${t('poll.draw')}</button>`;
+  html += `<button class="poll-btn away ${myVote==='away'?'voted':''}" onclick="voteMatch(match,'away')" ${myVote?'disabled':''}>${t('poll.away')}</button>`;
+  html += '</div>';
+
+  if (total > 0) {
+    html += '<div style="display:flex;gap:6px;margin-top:2px;">';
+    html += `<div style="flex:${Math.max(homePct,1)}"><div class="poll-bar home" style="width:100%"></div></div>`;
+    html += `<div style="flex:${Math.max(drawPct,1)}"><div class="poll-bar draw" style="width:100%"></div></div>`;
+    html += `<div style="flex:${Math.max(awayPct,1)}"><div class="poll-bar away" style="width:100%"></div></div>`;
+    html += '</div>';
+    html += `<div class="poll-stats">${homePct}% / ${drawPct}% / ${awayPct}% (${total} ${t('poll.votes')})</div>`;
+  }
+
+  return html;
+}
+
+// ==================== POLYMARKET PREDICTION ====================
+function findPMMatch(match) {
+  if (!pmData || !pmData.matches) return null;
+  // Try direct key match
+  const key1 = `${match.home_team} vs ${match.away_team}`;
+  const key2 = `${match.away_team} vs ${match.home_team}`;
+  // Also try with & instead of "and"
+  return pmData.matches[key1] || pmData.matches[key2] || null;
+}
+
+function buildPMRow(match) {
+  const pm = findPMMatch(match);
+  if (!pm) return '';
+
+  const isDone = match.is_result;
+  let html = '<div class="pm-row">';
+
+  // Show probabilities
+  html += '<div class="pm-probs">';
+  const hCls = pm.home_prob > 0.5 ? 'high' : (pm.home_prob > 0.25 ? 'mid' : 'low');
+  const dCls = pm.draw_prob > 0.25 ? 'mid' : 'low';
+  const aCls = pm.away_prob > 0.5 ? 'high' : (pm.away_prob > 0.25 ? 'mid' : 'low');
+  html += `<span class="pm-prob ${hCls}">${t('poll.home')} ${Math.round(pm.home_prob*100)}%</span>`;
+  html += `<span class="pm-prob ${dCls}">${t('poll.draw')} ${Math.round(pm.draw_prob*100)}%</span>`;
+  html += `<span class="pm-prob ${aCls}">${t('poll.away')} ${Math.round(pm.away_prob*100)}%</span>`;
+  html += '</div>';
+
+  // For completed matches: show verdict
+  if (isDone && pm.correct !== undefined) {
+    const actual = match.home_score > match.away_score ? 'home' : (match.home_score < match.away_score ? 'away' : 'draw');
+    const pred = pm.predicted;
+    const ok = pm.correct;
+    html += `<span class="pm-verdict ${ok?'correct':'wrong'}">${ok ? '✅' : '❌'} PM:${pred==='home'?t('poll.home'):pred==='away'?t('poll.away'):t('poll.draw')}→${actual==='home'?t('poll.home'):actual==='away'?t('poll.away'):t('poll.draw')}</span>`;
+  } else {
+    html += '<span class="pm-volume">PM</span>';
+  }
+
+  html += '</div>';
+  return html;
 }
 
 function switchTab(name) {

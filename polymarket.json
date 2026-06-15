@@ -1,0 +1,93 @@
+{
+  "source": "Polymarket/Kalshi/Gate.com 公开市场数据 + 体育媒体交叉验证",
+  "updated": "2026-06-15",
+  "total_volume_champion_market": "$23.25亿",
+  "matches": {
+    "Mexico vs South Africa": {
+      "home_team": "Mexico", "away_team": "South Africa",
+      "home_prob": 0.70, "draw_prob": 0.21, "away_prob": 0.09,
+      "volume": "$186万",
+      "predicted": "home", "correct": true,
+      "note": "揭幕战最热市场, 3张红牌创纪录"
+    },
+    "South Korea vs Czech Republic": {
+      "home_team": "South Korea", "away_team": "Czech Republic",
+      "home_prob": 0.38, "draw_prob": 0.32, "away_prob": 0.33,
+      "volume": "$107万",
+      "predicted": "home", "correct": true,
+      "note": "三项结果价差仅5美分, 微弱优势验证"
+    },
+    "Canada vs Bosnia & Herzegovina": {
+      "home_team": "Canada", "away_team": "Bosnia & Herzegovina",
+      "home_prob": 0.54, "draw_prob": 0.23, "away_prob": 0.23,
+      "volume": "N/A",
+      "predicted": "home", "correct": false,
+      "note": "东道主温和热门未能取胜, Larin扳平"
+    },
+    "USA vs Paraguay": {
+      "home_team": "USA", "away_team": "Paraguay",
+      "home_prob": 0.50, "draw_prob": 0.28, "away_prob": 0.23,
+      "volume": "$60.6万",
+      "predicted": "home", "correct": true,
+      "note": "Balogun梅开二度, Under 2.5被错估(定价59%实际5球)"
+    },
+    "Qatar vs Switzerland": {
+      "home_team": "Qatar", "away_team": "Switzerland",
+      "home_prob": 0.07, "draw_prob": 0.14, "away_prob": 0.79,
+      "volume": "N/A",
+      "predicted": "away", "correct": false,
+      "note": "🔥最大冷门! 瑞士79%热门, 卡塔尔94分钟绝平"
+    },
+    "Brazil vs Morocco": {
+      "home_team": "Brazil", "away_team": "Morocco",
+      "home_prob": 0.84, "draw_prob": 0.10, "away_prob": 0.06,
+      "volume": "N/A",
+      "predicted": "home", "correct": false,
+      "note": "🔥超级冷门! 巴西84%超级热门被逼平, Saibari先破门"
+    },
+    "Haiti vs Scotland": {
+      "home_team": "Haiti", "away_team": "Scotland",
+      "home_prob": 0.17, "draw_prob": 0.24, "away_prob": 0.64,
+      "volume": "N/A",
+      "predicted": "away", "correct": true,
+      "note": "苏格兰稳健取胜"
+    },
+    "Australia vs Turkey": {
+      "home_team": "Australia", "away_team": "Turkey",
+      "home_prob": 0.19, "draw_prob": 0.26, "away_prob": 0.57,
+      "volume": "N/A",
+      "predicted": "away", "correct": false,
+      "note": "🔥冷门! 土耳其57%热门直接被零封"
+    },
+    "Germany vs Curaçao": {
+      "home_team": "Germany", "away_team": "Curaçao",
+      "home_prob": 0.94, "draw_prob": 0.04, "away_prob": 0.02,
+      "volume": "N/A",
+      "predicted": "home", "correct": true,
+      "note": "碾压级94%热门, 7-1最大分差"
+    },
+    "Netherlands vs Japan": {
+      "home_team": "Netherlands", "away_team": "Japan",
+      "home_prob": 0.48, "draw_prob": 0.26, "away_prob": 0.26,
+      "volume": "$230万",
+      "predicted": "home", "correct": false,
+      "note": "接近抛硬币, 日本两度落后两度扳平, 市场保守判断正确"
+    }
+  },
+  "champion_odds": {
+    "Spain": 0.17, "France": 0.16, "Argentina": 0.09,
+    "Brazil": 0.07, "Germany": 0.08, "England": 0.06,
+    "Portugal": 0.05, "Netherlands": 0.04, "USA": 0.03,
+    "Australia": 0.01, "Uruguay": 0.02, "Belgium": 0.02,
+    "Mexico": 0.02, "Japan": 0.01, "Croatia": 0.01,
+    "Norway": 0.02, "Colombia": 0.01, "Morocco": 0.02
+  },
+  "accuracy_stats": {
+    "total_matches": 10,
+    "favorite_won": 5,
+    "favorite_lost": 5,
+    "favorite_win_rate": 0.50,
+    "super_favorite_rate": 0.50,
+    "super_favorite_note": ">75%热门实际胜率仅50%, 巴西/瑞士均被逼平"
+  }
+}
