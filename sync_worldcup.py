@@ -843,6 +843,12 @@ def sync_once(commit: bool = True) -> dict:
     print(f"  Saved: {STANDINGS_JSON.name} ({len(standings)} groups)")
     print(f"  Saved: {TEAM_NAMES_JSON.name} ({len(TEAM_CN)} teams)")
 
+    # Build team profiles (cached - only fetches on first run or if missing)
+    if not TEAMS_JSON.exists():
+        build_teams_data()
+    else:
+        print(f"  Teams data: {TEAMS_JSON.name} (cached)")
+
     # Print standings summary
     print(f"\n  📊 GROUP STANDINGS:")
     for g in sorted(standings.keys()):
