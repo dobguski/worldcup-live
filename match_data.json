@@ -1,10 +1,8 @@
 [
   {
-    "date": "2026-06-12",
-    "time": "03:00",
-    "tz": "UTC+8",
-    "time_label": "次日",
-    "venue_tz": "UTC-6",
+    "date": "2026-06-11",
+    "time": "13:00",
+    "tz": "UTC-6",
     "home_team": "Mexico",
     "home_team_cn": "墨西哥",
     "away_team": "South Africa",
@@ -17,11 +15,9 @@
     "is_result": true
   },
   {
-    "date": "2026-06-12",
-    "time": "10:00",
-    "tz": "UTC+8",
-    "time_label": "次日",
-    "venue_tz": "UTC-6",
+    "date": "2026-06-11",
+    "time": "20:00",
+    "tz": "UTC-6",
     "home_team": "South Korea",
     "home_team_cn": "韩国",
     "away_team": "Czech Republic",
@@ -34,11 +30,9 @@
     "is_result": true
   },
   {
-    "date": "2026-06-19",
-    "time": "00:00",
-    "tz": "UTC+8",
-    "time_label": "次日",
-    "venue_tz": "UTC-4",
+    "date": "2026-06-18",
+    "time": "12:00",
+    "tz": "UTC-4",
     "home_team": "Czech Republic",
     "home_team_cn": "捷克",
     "away_team": "South Africa",
@@ -51,11 +45,9 @@
     "is_result": false
   },
   {
-    "date": "2026-06-19",
-    "time": "09:00",
-    "tz": "UTC+8",
-    "time_label": "次日",
-    "venue_tz": "UTC-6",
+    "date": "2026-06-18",
+    "time": "19:00",
+    "tz": "UTC-6",
     "home_team": "Mexico",
     "home_team_cn": "墨西哥",
     "away_team": "South Korea",
@@ -68,11 +60,9 @@
     "is_result": false
   },
   {
-    "date": "2026-06-25",
-    "time": "09:00",
-    "tz": "UTC+8",
-    "time_label": "次日",
-    "venue_tz": "UTC-6",
+    "date": "2026-06-24",
+    "time": "19:00",
+    "tz": "UTC-6",
     "home_team": "Czech Republic",
     "home_team_cn": "捷克",
     "away_team": "Mexico",
@@ -85,11 +75,9 @@
     "is_result": false
   },
   {
-    "date": "2026-06-25",
-    "time": "09:00",
-    "tz": "UTC+8",
-    "time_label": "次日",
-    "venue_tz": "UTC-6",
+    "date": "2026-06-24",
+    "time": "19:00",
+    "tz": "UTC-6",
     "home_team": "South Africa",
     "home_team_cn": "南非",
     "away_team": "South Korea",
@@ -102,11 +90,9 @@
     "is_result": false
   },
   {
-    "date": "2026-06-13",
-    "time": "03:00",
-    "tz": "UTC+8",
-    "time_label": "次日",
-    "venue_tz": "UTC-4",
+    "date": "2026-06-12",
+    "time": "15:00",
+    "tz": "UTC-4",
     "home_team": "Canada",
     "home_team_cn": "加拿大",
     "away_team": "Bosnia & Herzegovina",
@@ -119,11 +105,9 @@
     "is_result": true
   },
   {
-    "date": "2026-06-14",
-    "time": "03:00",
-    "tz": "UTC+8",
-    "time_label": "次日",
-    "venue_tz": "UTC-7",
+    "date": "2026-06-13",
+    "time": "12:00",
+    "tz": "UTC-7",
     "home_team": "Qatar",
     "home_team_cn": "卡塔尔",
     "away_team": "Switzerland",
@@ -136,11 +120,9 @@
     "is_result": true
   },
   {
-    "date": "2026-06-19",
-    "time": "03:00",
-    "tz": "UTC+8",
-    "time_label": "次日",
-    "venue_tz": "UTC-7",
+    "date": "2026-06-18",
+    "time": "12:00",
+    "tz": "UTC-7",
     "home_team": "Switzerland",
     "home_team_cn": "瑞士",
     "away_team": "Bosnia & Herzegovina",
@@ -153,11 +135,9 @@
     "is_result": false
   },
   {
-    "date": "2026-06-19",
-    "time": "06:00",
-    "tz": "UTC+8",
-    "time_label": "次日",
-    "venue_tz": "UTC-7",
+    "date": "2026-06-18",
+    "time": "15:00",
+    "tz": "UTC-7",
     "home_team": "Canada",
     "home_team_cn": "加拿大",
     "away_team": "Qatar",
@@ -170,11 +150,9 @@
     "is_result": false
   },
   {
-    "date": "2026-06-25",
-    "time": "03:00",
-    "tz": "UTC+8",
-    "time_label": "次日",
-    "venue_tz": "UTC-7",
+    "date": "2026-06-24",
+    "time": "12:00",
+    "tz": "UTC-7",
     "home_team": "Switzerland",
     "home_team_cn": "瑞士",
     "away_team": "Canada",
@@ -187,11 +165,9 @@
     "is_result": false
   },
   {
-    "date": "2026-06-25",
-    "time": "03:00",
-    "tz": "UTC+8",
-    "time_label": "次日",
-    "venue_tz": "UTC-7",
+    "date": "2026-06-24",
+    "time": "12:00",
+    "tz": "UTC-7",
     "home_team": "Bosnia & Herzegovina",
     "home_team_cn": "波黑",
     "away_team": "Qatar",
@@ -204,11 +180,9 @@
     "is_result": false
   },
   {
-    "date": "2026-06-14",
-    "time": "06:00",
-    "tz": "UTC+8",
-    "time_label": "次日",
-    "venue_tz": "UTC-4",
+    "date": "2026-06-13",
+    "time": "18:00",
+    "tz": "UTC-4",
     "home_team": "Brazil",
     "home_team_cn": "巴西",
     "away_team": "Morocco",
@@ -221,11 +195,9 @@
     "is_result": true
   },
   {
-    "date": "2026-06-14",
-    "time": "09:00",
-    "tz": "UTC+8",
-    "time_label": "次日",
-    "venue_tz": "UTC-4",
+    "date": "2026-06-13",
+    "time": "21:00",
+    "tz": "UTC-4",
     "home_team": "Haiti",
     "home_team_cn": "海地",
     "away_team": "Scotland",
@@ -238,11 +210,9 @@
     "is_result": true
   },
   {
-    "date": "2026-06-20",
-    "time": "06:00",
-    "tz": "UTC+8",
-    "time_label": "次日",
-    "venue_tz": "UTC-4",
+    "date": "2026-06-19",
+    "time": "18:00",
+    "tz": "UTC-4",
     "home_team": "Scotland",
     "home_team_cn": "苏格兰",
     "away_team": "Morocco",
@@ -255,11 +225,9 @@
     "is_result": false
   },
   {
-    "date": "2026-06-20",
-    "time": "08:30",
-    "tz": "UTC+8",
-    "time_label": "次日",
-    "venue_tz": "UTC-4",
+    "date": "2026-06-19",
+    "time": "20:30",
+    "tz": "UTC-4",
     "home_team": "Brazil",
     "home_team_cn": "巴西",
     "away_team": "Haiti",
@@ -272,11 +240,9 @@
     "is_result": false
   },
   {
-    "date": "2026-06-25",
-    "time": "06:00",
-    "tz": "UTC+8",
-    "time_label": "次日",
-    "venue_tz": "UTC-4",
+    "date": "2026-06-24",
+    "time": "18:00",
+    "tz": "UTC-4",
     "home_team": "Scotland",
     "home_team_cn": "苏格兰",
     "away_team": "Brazil",
@@ -289,11 +255,9 @@
     "is_result": false
   },
   {
-    "date": "2026-06-25",
-    "time": "06:00",
-    "tz": "UTC+8",
-    "time_label": "次日",
-    "venue_tz": "UTC-4",
+    "date": "2026-06-24",
+    "time": "18:00",
+    "tz": "UTC-4",
     "home_team": "Morocco",
     "home_team_cn": "摩洛哥",
     "away_team": "Haiti",
@@ -306,11 +270,9 @@
     "is_result": false
   },
   {
-    "date": "2026-06-13",
-    "time": "09:00",
-    "tz": "UTC+8",
-    "time_label": "次日",
-    "venue_tz": "UTC-7",
+    "date": "2026-06-12",
+    "time": "18:00",
+    "tz": "UTC-7",
     "home_team": "USA",
     "home_team_cn": "美国",
     "away_team": "Paraguay",
@@ -323,11 +285,9 @@
     "is_result": true
   },
   {
-    "date": "2026-06-14",
-    "time": "12:00",
-    "tz": "UTC+8",
-    "time_label": "次日",
-    "venue_tz": "UTC-7",
+    "date": "2026-06-13",
+    "time": "21:00",
+    "tz": "UTC-7",
     "home_team": "Australia",
     "home_team_cn": "澳大利亚",
     "away_team": "Turkey",
@@ -340,11 +300,9 @@
     "is_result": true
   },
   {
-    "date": "2026-06-20",
-    "time": "03:00",
-    "tz": "UTC+8",
-    "time_label": "次日",
-    "venue_tz": "UTC-7",
+    "date": "2026-06-19",
+    "time": "12:00",
+    "tz": "UTC-7",
     "home_team": "USA",
     "home_team_cn": "美国",
     "away_team": "Australia",
@@ -357,11 +315,9 @@
     "is_result": false
   },
   {
-    "date": "2026-06-20",
-    "time": "11:00",
-    "tz": "UTC+8",
-    "time_label": "次日",
-    "venue_tz": "UTC-7",
+    "date": "2026-06-19",
+    "time": "20:00",
+    "tz": "UTC-7",
     "home_team": "Turkey",
     "home_team_cn": "土耳其",
     "away_team": "Paraguay",
@@ -374,11 +330,9 @@
     "is_result": false
   },
   {
-    "date": "2026-06-26",
-    "time": "10:00",
-    "tz": "UTC+8",
-    "time_label": "次日",
-    "venue_tz": "UTC-7",
+    "date": "2026-06-25",
+    "time": "19:00",
+    "tz": "UTC-7",
     "home_team": "Turkey",
     "home_team_cn": "土耳其",
     "away_team": "USA",
@@ -391,11 +345,9 @@
     "is_result": false
   },
   {
-    "date": "2026-06-26",
-    "time": "10:00",
-    "tz": "UTC+8",
-    "time_label": "次日",
-    "venue_tz": "UTC-7",
+    "date": "2026-06-25",
+    "time": "19:00",
+    "tz": "UTC-7",
     "home_team": "Paraguay",
     "home_team_cn": "巴拉圭",
     "away_team": "Australia",
@@ -408,11 +360,9 @@
     "is_result": false
   },
   {
-    "date": "2026-06-15",
-    "time": "01:00",
-    "tz": "UTC+8",
-    "time_label": "次日",
-    "venue_tz": "UTC-5",
+    "date": "2026-06-14",
+    "time": "12:00",
+    "tz": "UTC-5",
     "home_team": "Germany",
     "home_team_cn": "德国",
     "away_team": "Curaçao",
@@ -425,11 +375,9 @@
     "is_result": true
   },
   {
-    "date": "2026-06-15",
-    "time": "07:00",
-    "tz": "UTC+8",
-    "time_label": "次日",
-    "venue_tz": "UTC-4",
+    "date": "2026-06-14",
+    "time": "19:00",
+    "tz": "UTC-4",
     "home_team": "Ivory Coast",
     "home_team_cn": "科特迪瓦",
     "away_team": "Ecuador",
@@ -442,11 +390,9 @@
     "is_result": true
   },
   {
-    "date": "2026-06-21",
-    "time": "04:00",
-    "tz": "UTC+8",
-    "time_label": "次日",
-    "venue_tz": "UTC-4",
+    "date": "2026-06-20",
+    "time": "16:00",
+    "tz": "UTC-4",
     "home_team": "Germany",
     "home_team_cn": "德国",
     "away_team": "Ivory Coast",
@@ -459,11 +405,9 @@
     "is_result": false
   },
   {
-    "date": "2026-06-21",
-    "time": "08:00",
-    "tz": "UTC+8",
-    "time_label": "次日",
-    "venue_tz": "UTC-5",
+    "date": "2026-06-20",
+    "time": "19:00",
+    "tz": "UTC-5",
     "home_team": "Ecuador",
     "home_team_cn": "厄瓜多尔",
     "away_team": "Curaçao",
@@ -476,11 +420,9 @@
     "is_result": false
   },
   {
-    "date": "2026-06-26",
-    "time": "04:00",
-    "tz": "UTC+8",
-    "time_label": "次日",
-    "venue_tz": "UTC-4",
+    "date": "2026-06-25",
+    "time": "16:00",
+    "tz": "UTC-4",
     "home_team": "Curaçao",
     "home_team_cn": "库拉索",
     "away_team": "Ivory Coast",
@@ -493,11 +435,9 @@
     "is_result": false
   },
   {
-    "date": "2026-06-26",
-    "time": "04:00",
-    "tz": "UTC+8",
-    "time_label": "次日",
-    "venue_tz": "UTC-4",
+    "date": "2026-06-25",
+    "time": "16:00",
+    "tz": "UTC-4",
     "home_team": "Ecuador",
     "home_team_cn": "厄瓜多尔",
     "away_team": "Germany",
@@ -510,11 +450,9 @@
     "is_result": false
   },
   {
-    "date": "2026-06-15",
-    "time": "04:00",
-    "tz": "UTC+8",
-    "time_label": "次日",
-    "venue_tz": "UTC-5",
+    "date": "2026-06-14",
+    "time": "15:00",
+    "tz": "UTC-5",
     "home_team": "Netherlands",
     "home_team_cn": "荷兰",
     "away_team": "Japan",
@@ -527,11 +465,9 @@
     "is_result": true
   },
   {
-    "date": "2026-06-15",
-    "time": "10:00",
-    "tz": "UTC+8",
-    "time_label": "次日",
-    "venue_tz": "UTC-6",
+    "date": "2026-06-14",
+    "time": "20:00",
+    "tz": "UTC-6",
     "home_team": "Sweden",
     "home_team_cn": "瑞典",
     "away_team": "Tunisia",
@@ -544,11 +480,9 @@
     "is_result": false
   },
   {
-    "date": "2026-06-21",
-    "time": "01:00",
-    "tz": "UTC+8",
-    "time_label": "次日",
-    "venue_tz": "UTC-5",
+    "date": "2026-06-20",
+    "time": "12:00",
+    "tz": "UTC-5",
     "home_team": "Netherlands",
     "home_team_cn": "荷兰",
     "away_team": "Sweden",
@@ -561,11 +495,9 @@
     "is_result": false
   },
   {
-    "date": "2026-06-21",
-    "time": "12:00",
-    "tz": "UTC+8",
-    "time_label": "次日",
-    "venue_tz": "UTC-6",
+    "date": "2026-06-20",
+    "time": "22:00",
+    "tz": "UTC-6",
     "home_team": "Tunisia",
     "home_team_cn": "突尼斯",
     "away_team": "Japan",
@@ -578,11 +510,9 @@
     "is_result": false
   },
   {
-    "date": "2026-06-26",
-    "time": "07:00",
-    "tz": "UTC+8",
-    "time_label": "次日",
-    "venue_tz": "UTC-5",
+    "date": "2026-06-25",
+    "time": "18:00",
+    "tz": "UTC-5",
     "home_team": "Japan",
     "home_team_cn": "日本",
     "away_team": "Sweden",
@@ -595,11 +525,9 @@
     "is_result": false
   },
   {
-    "date": "2026-06-26",
-    "time": "07:00",
-    "tz": "UTC+8",
-    "time_label": "次日",
-    "venue_tz": "UTC-5",
+    "date": "2026-06-25",
+    "time": "18:00",
+    "tz": "UTC-5",
     "home_team": "Tunisia",
     "home_team_cn": "突尼斯",
     "away_team": "Netherlands",
@@ -612,11 +540,9 @@
     "is_result": false
   },
   {
-    "date": "2026-06-16",
-    "time": "03:00",
-    "tz": "UTC+8",
-    "time_label": "次日",
-    "venue_tz": "UTC-7",
+    "date": "2026-06-15",
+    "time": "12:00",
+    "tz": "UTC-7",
     "home_team": "Belgium",
     "home_team_cn": "比利时",
     "away_team": "Egypt",
@@ -629,11 +555,9 @@
     "is_result": true
   },
   {
-    "date": "2026-06-16",
-    "time": "09:00",
-    "tz": "UTC+8",
-    "time_label": "次日",
-    "venue_tz": "UTC-7",
+    "date": "2026-06-15",
+    "time": "18:00",
+    "tz": "UTC-7",
     "home_team": "Iran",
     "home_team_cn": "伊朗",
     "away_team": "New Zealand",
@@ -646,11 +570,9 @@
     "is_result": false
   },
   {
-    "date": "2026-06-22",
-    "time": "03:00",
-    "tz": "UTC+8",
-    "time_label": "次日",
-    "venue_tz": "UTC-7",
+    "date": "2026-06-21",
+    "time": "12:00",
+    "tz": "UTC-7",
     "home_team": "Belgium",
     "home_team_cn": "比利时",
     "away_team": "Iran",
@@ -663,11 +585,9 @@
     "is_result": false
   },
   {
-    "date": "2026-06-22",
-    "time": "09:00",
-    "tz": "UTC+8",
-    "time_label": "次日",
-    "venue_tz": "UTC-7",
+    "date": "2026-06-21",
+    "time": "18:00",
+    "tz": "UTC-7",
     "home_team": "New Zealand",
     "home_team_cn": "新西兰",
     "away_team": "Egypt",
@@ -680,11 +600,9 @@
     "is_result": false
   },
   {
-    "date": "2026-06-27",
-    "time": "11:00",
-    "tz": "UTC+8",
-    "time_label": "次日",
-    "venue_tz": "UTC-7",
+    "date": "2026-06-26",
+    "time": "20:00",
+    "tz": "UTC-7",
     "home_team": "Egypt",
     "home_team_cn": "埃及",
     "away_team": "Iran",
@@ -697,11 +615,9 @@
     "is_result": false
   },
   {
-    "date": "2026-06-27",
-    "time": "11:00",
-    "tz": "UTC+8",
-    "time_label": "次日",
-    "venue_tz": "UTC-7",
+    "date": "2026-06-26",
+    "time": "20:00",
+    "tz": "UTC-7",
     "home_team": "New Zealand",
     "home_team_cn": "新西兰",
     "away_team": "Belgium",
@@ -714,11 +630,9 @@
     "is_result": false
   },
   {
-    "date": "2026-06-16",
-    "time": "00:00",
-    "tz": "UTC+8",
-    "time_label": "次日",
-    "venue_tz": "UTC-4",
+    "date": "2026-06-15",
+    "time": "12:00",
+    "tz": "UTC-4",
     "home_team": "Spain",
     "home_team_cn": "西班牙",
     "away_team": "Cape Verde",
@@ -731,11 +645,9 @@
     "is_result": true
   },
   {
-    "date": "2026-06-16",
-    "time": "06:00",
-    "tz": "UTC+8",
-    "time_label": "次日",
-    "venue_tz": "UTC-4",
+    "date": "2026-06-15",
+    "time": "18:00",
+    "tz": "UTC-4",
     "home_team": "Saudi Arabia",
     "home_team_cn": "沙特阿拉伯",
     "away_team": "Uruguay",
@@ -748,11 +660,9 @@
     "is_result": false
   },
   {
-    "date": "2026-06-22",
-    "time": "00:00",
-    "tz": "UTC+8",
-    "time_label": "次日",
-    "venue_tz": "UTC-4",
+    "date": "2026-06-21",
+    "time": "12:00",
+    "tz": "UTC-4",
     "home_team": "Spain",
     "home_team_cn": "西班牙",
     "away_team": "Saudi Arabia",
@@ -765,11 +675,9 @@
     "is_result": false
   },
   {
-    "date": "2026-06-27",
-    "time": "08:00",
-    "tz": "UTC+8",
-    "time_label": "次日",
-    "venue_tz": "UTC-5",
+    "date": "2026-06-26",
+    "time": "19:00",
+    "tz": "UTC-5",
     "home_team": "Cape Verde",
     "home_team_cn": "佛得角",
     "away_team": "Saudi Arabia",
@@ -782,11 +690,9 @@
     "is_result": false
   },
   {
-    "date": "2026-06-27",
-    "time": "08:00",
-    "tz": "UTC+8",
-    "time_label": "次日",
-    "venue_tz": "UTC-6",
+    "date": "2026-06-26",
+    "time": "18:00",
+    "tz": "UTC-6",
     "home_team": "Uruguay",
     "home_team_cn": "乌拉圭",
     "away_team": "Spain",
@@ -799,11 +705,9 @@
     "is_result": false
   },
   {
-    "date": "2026-06-17",
-    "time": "03:00",
-    "tz": "UTC+8",
-    "time_label": "次日",
-    "venue_tz": "UTC-4",
+    "date": "2026-06-16",
+    "time": "15:00",
+    "tz": "UTC-4",
     "home_team": "France",
     "home_team_cn": "法国",
     "away_team": "Senegal",
@@ -816,11 +720,9 @@
     "is_result": false
   },
   {
-    "date": "2026-06-17",
-    "time": "06:00",
-    "tz": "UTC+8",
-    "time_label": "次日",
-    "venue_tz": "UTC-4",
+    "date": "2026-06-16",
+    "time": "18:00",
+    "tz": "UTC-4",
     "home_team": "Iraq",
     "home_team_cn": "伊拉克",
     "away_team": "Norway",
@@ -833,11 +735,9 @@
     "is_result": false
   },
   {
-    "date": "2026-06-23",
-    "time": "05:00",
-    "tz": "UTC+8",
-    "time_label": "次日",
-    "venue_tz": "UTC-4",
+    "date": "2026-06-22",
+    "time": "17:00",
+    "tz": "UTC-4",
     "home_team": "France",
     "home_team_cn": "法国",
     "away_team": "Iraq",
@@ -850,11 +750,9 @@
     "is_result": false
   },
   {
-    "date": "2026-06-23",
-    "time": "08:00",
-    "tz": "UTC+8",
-    "time_label": "次日",
-    "venue_tz": "UTC-4",
+    "date": "2026-06-22",
+    "time": "20:00",
+    "tz": "UTC-4",
     "home_team": "Norway",
     "home_team_cn": "挪威",
     "away_team": "Senegal",
@@ -867,11 +765,9 @@
     "is_result": false
   },
   {
-    "date": "2026-06-27",
-    "time": "03:00",
-    "tz": "UTC+8",
-    "time_label": "次日",
-    "venue_tz": "UTC-4",
+    "date": "2026-06-26",
+    "time": "15:00",
+    "tz": "UTC-4",
     "home_team": "Norway",
     "home_team_cn": "挪威",
     "away_team": "France",
@@ -884,11 +780,9 @@
     "is_result": false
   },
   {
-    "date": "2026-06-27",
-    "time": "03:00",
-    "tz": "UTC+8",
-    "time_label": "次日",
-    "venue_tz": "UTC-4",
+    "date": "2026-06-26",
+    "time": "15:00",
+    "tz": "UTC-4",
     "home_team": "Senegal",
     "home_team_cn": "塞内加尔",
     "away_team": "Iraq",
@@ -901,11 +795,9 @@
     "is_result": false
   },
   {
-    "date": "2026-06-17",
-    "time": "09:00",
-    "tz": "UTC+8",
-    "time_label": "次日",
-    "venue_tz": "UTC-5",
+    "date": "2026-06-16",
+    "time": "20:00",
+    "tz": "UTC-5",
     "home_team": "Argentina",
     "home_team_cn": "阿根廷",
     "away_team": "Algeria",
@@ -918,11 +810,9 @@
     "is_result": false
   },
   {
-    "date": "2026-06-17",
-    "time": "12:00",
-    "tz": "UTC+8",
-    "time_label": "次日",
-    "venue_tz": "UTC-7",
+    "date": "2026-06-16",
+    "time": "21:00",
+    "tz": "UTC-7",
     "home_team": "Austria",
     "home_team_cn": "奥地利",
     "away_team": "Jordan",
@@ -935,11 +825,9 @@
     "is_result": false
   },
   {
-    "date": "2026-06-23",
-    "time": "01:00",
-    "tz": "UTC+8",
-    "time_label": "次日",
-    "venue_tz": "UTC-5",
+    "date": "2026-06-22",
+    "time": "12:00",
+    "tz": "UTC-5",
     "home_team": "Argentina",
     "home_team_cn": "阿根廷",
     "away_team": "Austria",
@@ -952,11 +840,9 @@
     "is_result": false
   },
   {
-    "date": "2026-06-23",
-    "time": "11:00",
-    "tz": "UTC+8",
-    "time_label": "次日",
-    "venue_tz": "UTC-7",
+    "date": "2026-06-22",
+    "time": "20:00",
+    "tz": "UTC-7",
     "home_team": "Jordan",
     "home_team_cn": "约旦",
     "away_team": "Algeria",
@@ -969,11 +855,9 @@
     "is_result": false
   },
   {
-    "date": "2026-06-28",
-    "time": "10:00",
-    "tz": "UTC+8",
-    "time_label": "次日",
-    "venue_tz": "UTC-5",
+    "date": "2026-06-27",
+    "time": "21:00",
+    "tz": "UTC-5",
     "home_team": "Algeria",
     "home_team_cn": "阿尔及利亚",
     "away_team": "Austria",
@@ -986,11 +870,9 @@
     "is_result": false
   },
   {
-    "date": "2026-06-28",
-    "time": "10:00",
-    "tz": "UTC+8",
-    "time_label": "次日",
-    "venue_tz": "UTC-5",
+    "date": "2026-06-27",
+    "time": "21:00",
+    "tz": "UTC-5",
     "home_team": "Jordan",
     "home_team_cn": "约旦",
     "away_team": "Argentina",
@@ -1003,11 +885,9 @@
     "is_result": false
   },
   {
-    "date": "2026-06-18",
-    "time": "01:00",
-    "tz": "UTC+8",
-    "time_label": "次日",
-    "venue_tz": "UTC-5",
+    "date": "2026-06-17",
+    "time": "12:00",
+    "tz": "UTC-5",
     "home_team": "Portugal",
     "home_team_cn": "葡萄牙",
     "away_team": "DR Congo",
@@ -1020,11 +900,9 @@
     "is_result": false
   },
   {
-    "date": "2026-06-18",
-    "time": "10:00",
-    "tz": "UTC+8",
-    "time_label": "次日",
-    "venue_tz": "UTC-6",
+    "date": "2026-06-17",
+    "time": "20:00",
+    "tz": "UTC-6",
     "home_team": "Uzbekistan",
     "home_team_cn": "乌兹别克斯坦",
     "away_team": "Colombia",
@@ -1037,11 +915,9 @@
     "is_result": false
   },
   {
-    "date": "2026-06-24",
-    "time": "01:00",
-    "tz": "UTC+8",
-    "time_label": "次日",
-    "venue_tz": "UTC-5",
+    "date": "2026-06-23",
+    "time": "12:00",
+    "tz": "UTC-5",
     "home_team": "Portugal",
     "home_team_cn": "葡萄牙",
     "away_team": "Uzbekistan",
@@ -1054,11 +930,9 @@
     "is_result": false
   },
   {
-    "date": "2026-06-24",
-    "time": "10:00",
-    "tz": "UTC+8",
-    "time_label": "次日",
-    "venue_tz": "UTC-6",
+    "date": "2026-06-23",
+    "time": "20:00",
+    "tz": "UTC-6",
     "home_team": "Colombia",
     "home_team_cn": "哥伦比亚",
     "away_team": "DR Congo",
@@ -1071,11 +945,9 @@
     "is_result": false
   },
   {
-    "date": "2026-06-28",
-    "time": "07:30",
-    "tz": "UTC+8",
-    "time_label": "次日",
-    "venue_tz": "UTC-4",
+    "date": "2026-06-27",
+    "time": "19:30",
+    "tz": "UTC-4",
     "home_team": "Colombia",
     "home_team_cn": "哥伦比亚",
     "away_team": "Portugal",
@@ -1088,11 +960,9 @@
     "is_result": false
   },
   {
-    "date": "2026-06-28",
-    "time": "07:30",
-    "tz": "UTC+8",
-    "time_label": "次日",
-    "venue_tz": "UTC-4",
+    "date": "2026-06-27",
+    "time": "19:30",
+    "tz": "UTC-4",
     "home_team": "DR Congo",
     "home_team_cn": "刚果民主",
     "away_team": "Uzbekistan",
@@ -1105,11 +975,9 @@
     "is_result": false
   },
   {
-    "date": "2026-06-18",
-    "time": "04:00",
-    "tz": "UTC+8",
-    "time_label": "次日",
-    "venue_tz": "UTC-5",
+    "date": "2026-06-17",
+    "time": "15:00",
+    "tz": "UTC-5",
     "home_team": "England",
     "home_team_cn": "英格兰",
     "away_team": "Croatia",
@@ -1122,11 +990,9 @@
     "is_result": false
   },
   {
-    "date": "2026-06-18",
-    "time": "07:00",
-    "tz": "UTC+8",
-    "time_label": "次日",
-    "venue_tz": "UTC-4",
+    "date": "2026-06-17",
+    "time": "19:00",
+    "tz": "UTC-4",
     "home_team": "Ghana",
     "home_team_cn": "加纳",
     "away_team": "Panama",
@@ -1139,11 +1005,9 @@
     "is_result": false
   },
   {
-    "date": "2026-06-24",
-    "time": "04:00",
-    "tz": "UTC+8",
-    "time_label": "次日",
-    "venue_tz": "UTC-4",
+    "date": "2026-06-23",
+    "time": "16:00",
+    "tz": "UTC-4",
     "home_team": "England",
     "home_team_cn": "英格兰",
     "away_team": "Ghana",
@@ -1156,11 +1020,9 @@
     "is_result": false
   },
   {
-    "date": "2026-06-24",
-    "time": "07:00",
-    "tz": "UTC+8",
-    "time_label": "次日",
-    "venue_tz": "UTC-4",
+    "date": "2026-06-23",
+    "time": "19:00",
+    "tz": "UTC-4",
     "home_team": "Panama",
     "home_team_cn": "巴拿马",
     "away_team": "Croatia",
@@ -1173,11 +1035,9 @@
     "is_result": false
   },
   {
-    "date": "2026-06-28",
-    "time": "05:00",
-    "tz": "UTC+8",
-    "time_label": "次日",
-    "venue_tz": "UTC-4",
+    "date": "2026-06-27",
+    "time": "17:00",
+    "tz": "UTC-4",
     "home_team": "Panama",
     "home_team_cn": "巴拿马",
     "away_team": "England",
@@ -1190,11 +1050,9 @@
     "is_result": false
   },
   {
-    "date": "2026-06-28",
-    "time": "05:00",
-    "tz": "UTC+8",
-    "time_label": "次日",
-    "venue_tz": "UTC-4",
+    "date": "2026-06-27",
+    "time": "17:00",
+    "tz": "UTC-4",
     "home_team": "Croatia",
     "home_team_cn": "克罗地亚",
     "away_team": "Ghana",
