@@ -1062,7 +1062,7 @@ def calculate_standings(matches: list[dict]) -> dict:
 # GIT SYNC
 # ============================================================
 def git_commit_and_push(message: str = "Auto-sync: update match results") -> bool:
-    """Commit changes and push to dashboard remote (GitHub Pages)."""
+    """Commit changes and push to private repo (worldcup-live) + public Pages repo (worldcup-pages)."""
     import subprocess
     try:
         subprocess.run(["git", "add", "2026--usa/cup.txt", "match_data.json",
@@ -1071,12 +1071,28 @@ def git_commit_and_push(message: str = "Auto-sync: update match results") -> boo
                        cwd=REPO_DIR, capture_output=True, check=False)
         subprocess.run(["git", "commit", "-m", message],
                        cwd=REPO_DIR, capture_output=True, check=False)
-        # Push to dashboard remote (GitHub Pages), fallback to origin
+        # Push to private repo (origin/dashboard)
         for remote in ["dashboard", "origin"]:
             result = subprocess.run(["git", "push", remote],
                                     cwd=REPO_DIR, capture_output=True, check=False)
             if result.returncode == 0:
                 break
+
+        # Sync web files to public Pages repo (worldcup-pages)
+        WEB_FILES = ["dashboard.html", "index.html", "CNAME", "robots.txt",
+                     "match_data.json", "standings.json", "teams.json",
+                     "team_names.json", "player_details.json", "polymarket.json",
+                     "verify_report.json", "wiki_squads.json"]
+        pages_dir = REPO_DIR.parent / "pages_deploy"
+        if pages_dir.exists():
+            for f in WEB_FILES:
+                src = REPO_DIR / f
+                dst = pages_dir / f
+                if src.exists():
+                    dst.write_bytes(src.read_bytes())
+            subprocess.run(["git", "add"] + WEB_FILES, cwd=pages_dir, capture_output=True, check=False)
+            subprocess.run(["git", "commit", "-m", message], cwd=pages_dir, capture_output=True, check=False)
+            subprocess.run(["git", "push", "origin", "master"], cwd=pages_dir, capture_output=True, check=False)
         return True
     except Exception as e:
         print(f"  [WARN] Git sync failed: {e}")
