@@ -67,16 +67,29 @@ body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:#0f172
 .poll-bar.draw{background:#e2b04a}
 .poll-bar.away{background:#dc2626}
 .poll-stats{font-size:.65em;color:#64748b;text-align:center;margin-top:2px}
-/* PM prediction */
-.pm-row{margin-top:6px;padding:6px 8px;background:#0f1724;border-radius:6px;font-size:.7em;display:flex;align-items:center;justify-content:space-between;gap:6px}
-.pm-probs{display:flex;gap:6px}
-.pm-prob{padding:2px 6px;border-radius:4px;font-weight:bold;font-size:.85em}
-.pm-prob.high{background:#1a3a2a;color:#4ade80}
-.pm-prob.mid{background:#3a3510;color:#facc15}
-.pm-prob.low{background:#1e293b;color:#94a3b8}
-.pm-verdict{font-size:.85em;font-weight:bold}
-.pm-verdict.correct{color:#4ade80}
-.pm-verdict.wrong{color:#f87171}
+/* PM prediction — redesigned */
+.pm-card{margin-top:8px;padding:10px 12px;background:#0a0f1a;border-radius:8px;border:1px solid #1e293b;font-size:.72em}
+.pm-card-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+.pm-card-title{color:#64748b;font-size:.85em;font-weight:bold;text-transform:uppercase;letter-spacing:.5px}
+.pm-card-source{font-size:.75em;color:#475569;padding:1px 6px;border-radius:3px;background:#1e293b}
+.pm-card-source.real{color:#4ade80;border:1px solid #1a3a2a}
+.pm-bar-row{display:flex;align-items:center;gap:8px;margin:4px 0}
+.pm-bar-label{width:32px;text-align:right;font-weight:bold;font-size:.9em;color:#e2e8f0}
+.pm-bar-label.fav{color:#4ade80}
+.pm-bar-track{flex:1;height:16px;background:#1e293b;border-radius:8px;overflow:hidden;position:relative}
+.pm-bar-fill{height:100%;border-radius:8px;transition:width .3s;min-width:2px}
+.pm-bar-fill.fav{background:linear-gradient(90deg,#166534,#22c55e)}
+.pm-bar-fill.mid{background:linear-gradient(90deg,#713f12,#eab308)}
+.pm-bar-fill.dog{background:linear-gradient(90deg,#7f1d1d,#ef4444)}
+.pm-bar-pct{width:38px;text-align:left;font-weight:bold;font-size:.85em;color:#94a3b8}
+.pm-prediction{margin-top:6px;padding:6px 8px;border-radius:6px;font-weight:bold;text-align:center;font-size:.85em}
+.pm-prediction.fav{background:#1a3a2a;color:#4ade80}
+.pm-prediction.dog{background:#3a1a1a;color:#f87171}
+.pm-prediction.even{background:#3a3010;color:#facc15}
+.pm-compare{margin-top:6px;padding:6px 8px;background:#0f1724;border-radius:6px;font-size:.85em;text-align:center}
+.pm-compare.correct{border-left:3px solid #22c55e;color:#4ade80}
+.pm-compare.wrong{border-left:3px solid #ef4444;color:#f87171}
+.pm-note{font-size:.8em;color:#64748b;margin-top:4px;font-style:italic}
 /* Data quality badge */
 .quality-badge{display:inline-flex;align-items:center;gap:4px;padding:4px 10px;border-radius:12px;font-size:.7em;font-weight:bold}
 .quality-badge.OK{background:#1a3a2a;color:#4ade80}
@@ -646,13 +659,11 @@ function buildPollRow(match) {
   return html;
 }
 
-// ==================== POLYMARKET PREDICTION ====================
+// ==================== POLYMARKET PREDICTION (REDESIGNED) ====================
 function findPMMatch(match) {
   if (!pmData || !pmData.matches) return null;
-  // Try direct key match
-  const key1 = `${match.home_team} vs ${match.away_team}`;
-  const key2 = `${match.away_team} vs ${match.home_team}`;
-  // Also try with & instead of "and"
+  const key1 = match.home_team + ' vs ' + match.away_team;
+  const key2 = match.away_team + ' vs ' + match.home_team;
   return pmData.matches[key1] || pmData.matches[key2] || null;
 }
 
@@ -661,26 +672,71 @@ function buildPMRow(match) {
   if (!pm) return '';
 
   const isDone = match.is_result;
-  let html = '<div class="pm-row">';
+  const hp = Math.round(pm.home_prob * 100);
+  const dp = Math.round(pm.draw_prob * 100);
+  const ap = Math.round(pm.away_prob * 100);
+  const isReal = !pm.source || pm.source !== 'estimated_from_team_strength';
 
-  // Show probabilities
-  html += '<div class="pm-probs">';
-  const hCls = pm.home_prob > 0.5 ? 'high' : (pm.home_prob > 0.25 ? 'mid' : 'low');
-  const dCls = pm.draw_prob > 0.25 ? 'mid' : 'low';
-  const aCls = pm.away_prob > 0.5 ? 'high' : (pm.away_prob > 0.25 ? 'mid' : 'low');
-  html += `<span class="pm-prob ${hCls}">${t('poll.home')} ${Math.round(pm.home_prob*100)}%</span>`;
-  html += `<span class="pm-prob ${dCls}">${t('poll.draw')} ${Math.round(pm.draw_prob*100)}%</span>`;
-  html += `<span class="pm-prob ${aCls}">${t('poll.away')} ${Math.round(pm.away_prob*100)}%</span>`;
+  // Determine which outcome is favored
+  let fav = 'home'; let favPct = hp;
+  if (dp > favPct) { fav = 'draw'; favPct = dp; }
+  if (ap > favPct) { fav = 'away'; favPct = ap; }
+
+  let html = '<div class="pm-card">';
+
+  // Header
+  html += '<div class="pm-card-header">';
+  html += `<span class="pm-card-title">📊 Polymarket ${isReal ? '盘口' : '推算'}</span>`;
+  html += `<span class="pm-card-source ${isReal?'real':''}">${isReal ? '真实盘口' : '冠军赔率推算'}</span>`;
   html += '</div>';
 
-  // For completed matches: show verdict
-  if (isDone && pm.correct !== undefined) {
+  // Probability bar: Home
+  html += '<div class="pm-bar-row">';
+  html += `<span class="pm-bar-label ${fav==='home'?'fav':''}">${t('poll.home')}</span>`;
+  html += `<div class="pm-bar-track"><div class="pm-bar-fill ${fav==='home'?'fav':(hp>dp&&hp>ap?'mid':'dog')}" style="width:${Math.max(hp,2)}%"></div></div>`;
+  html += `<span class="pm-bar-pct">${hp}%</span>`;
+  html += '</div>';
+
+  // Probability bar: Draw
+  html += '<div class="pm-bar-row">';
+  html += `<span class="pm-bar-label ${fav==='draw'?'fav':''}">${t('poll.draw')}</span>`;
+  html += `<div class="pm-bar-track"><div class="pm-bar-fill ${fav==='draw'?'fav':'mid'}" style="width:${Math.max(dp,2)}%"></div></div>`;
+  html += `<span class="pm-bar-pct">${dp}%</span>`;
+  html += '</div>';
+
+  // Probability bar: Away
+  html += '<div class="pm-bar-row">';
+  html += `<span class="pm-bar-label ${fav==='away'?'fav':''}">${t('poll.away')}</span>`;
+  html += `<div class="pm-bar-track"><div class="pm-bar-fill ${fav==='away'?'fav':(ap>hp&&ap>dp?'mid':'dog')}" style="width:${Math.max(ap,2)}%"></div></div>`;
+  html += `<span class="pm-bar-pct">${ap}%</span>`;
+  html += '</div>';
+
+  // Prediction direction
+  if (!isDone) {
+    const predTeam = fav === 'home' ? teamName(match.home_team) : (fav === 'away' ? teamName(match.away_team) : '');
+    const predLabel = fav === 'draw' ? '倾向平局' : (predTeam ? `${predTeam} 更被看好` : '');
+    const favClass = favPct > 60 ? 'fav' : (favPct < 45 ? 'dog' : 'even');
+    html += `<div class="pm-prediction ${favClass}">📈 市场预测: ${predLabel} (${favPct}%概率)</div>`;
+  }
+
+  // For completed matches: comparison
+  if (isDone) {
     const actual = match.home_score > match.away_score ? 'home' : (match.home_score < match.away_score ? 'away' : 'draw');
-    const pred = pm.predicted;
-    const ok = pm.correct;
-    html += `<span class="pm-verdict ${ok?'correct':'wrong'}">${ok ? '✅' : '❌'} PM:${pred==='home'?t('poll.home'):pred==='away'?t('poll.away'):t('poll.draw')}→${actual==='home'?t('poll.home'):actual==='away'?t('poll.away'):t('poll.draw')}</span>`;
-  } else {
-    html += '<span class="pm-volume">PM</span>';
+    const actualLabel = actual === 'home' ? t('poll.home') : (actual === 'away' ? t('poll.away') : t('poll.draw'));
+    const predLabel = pm.predicted === 'home' ? t('poll.home') : (pm.predicted === 'away' ? t('poll.away') : t('poll.draw'));
+    const ok = (pm.predicted === actual);
+    const okText = ok ? '✅ 预测正确' : '❌ 预测失败';
+    html += `<div class="pm-compare ${ok?'correct':'wrong'}">${okText}: PM预测${predLabel}(${favPct}%) → 实际${actualLabel}(${match.home_score}-${match.away_score})</div>`;
+  }
+
+  // Note/context
+  if (pm.note) {
+    html += `<div class="pm-note">💡 ${pm.note}</div>`;
+  }
+
+  // Volume
+  if (pm.volume && pm.volume !== 'N/A' && pm.volume !== 'est.') {
+    html += `<div class="pm-note">💰 交易量: ${pm.volume}</div>`;
   }
 
   html += '</div>';
