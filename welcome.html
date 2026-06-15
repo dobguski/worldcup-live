@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dob Guski 的世界杯小站 | FIFA World Cup 2026</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:#0f1724;color:#e2e8f0;min-height:100vh;display:flex;justify-content:center;align-items:center;text-align:center}
+.bg{position:fixed;top:0;left:0;right:0;bottom:0;background:radial-gradient(ellipse at center,#1a2332 0%,#0f1724 60%,#0a0f1a 100%);z-index:-1}
+.container{max-width:600px;padding:40px 30px}
+.trionda{width:120px;height:120px;object-fit:contain;filter:drop-shadow(0 0 30px rgba(255,255,255,.2)) drop-shadow(0 4px 12px rgba(0,0,0,.6));animation:float 4s ease-in-out infinite;margin-bottom:20px}
+@keyframes float{0%,100%{transform:translateY(0) rotate(0deg)}50%{transform:translateY(-8px) rotate(3deg)}}
+h1{font-size:2em;color:#e2b04a;margin-bottom:10px;font-weight:bold}
+.subtitle{color:#94a3b8;font-size:1.1em;margin-bottom:30px;line-height:1.6}
+.visitor-box{display:inline-block;background:linear-gradient(135deg,#1e3a5f,#1a2a4a);border:1px solid #3b82f6;border-radius:16px;padding:20px 30px;margin:20px 0}
+.visitor-label{font-size:.8em;color:#64748b;text-transform:uppercase;letter-spacing:2px;margin-bottom:6px}
+.visitor-count{font-size:3em;font-weight:bold;color:#e2b04a;text-shadow:0 0 20px rgba(226,176,74,.3)}
+.visitor-sub{font-size:.75em;color:#64748b;margin-top:4px}
+.enter-btn{display:inline-block;margin-top:30px;padding:14px 48px;background:linear-gradient(135deg,#e2b04a,#c99520);color:#0f1724;border-radius:30px;font-size:1.1em;font-weight:bold;text-decoration:none;transition:all .3s;box-shadow:0 4px 20px rgba(226,176,74,.3)}
+.enter-btn:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(226,176,74,.5)}
+.footer{position:fixed;bottom:20px;left:0;right:0;text-align:center;color:#475569;font-size:.75em}
+.footer a{color:#64748b;text-decoration:none}
+.footer a:hover{color:#e2b04a}
+.stars{position:fixed;top:0;left:0;right:0;bottom:0;pointer-events:none;z-index:-2}
+.star{position:absolute;background:#fff;border-radius:50%;animation:twinkle 2s ease-in-out infinite alternate}
+@keyframes twinkle{0%{opacity:.3}100%{opacity:.8}}
+</style>
+</head>
+<body>
+<div class="bg"></div>
+<div id="stars" class="stars"></div>
+
+<div class="container">
+  <img src="assets/trionda.png" alt="TRIONDA" class="trionda" onerror="this.style.display='none'">
+  <h1>Dob Guski 的世界杯小站</h1>
+  <div class="subtitle">
+    ⚽ 2026 FIFA World Cup<br>
+    🇨🇦 Canada · 🇺🇸 USA · 🇲🇽 Mexico<br>
+    <span style="font-size:.85em;color:#64748b">48支球队 · 104场比赛 · 一座奖杯</span>
+  </div>
+
+  <div class="visitor-box">
+    <div class="visitor-label">您是第</div>
+    <div class="visitor-count" id="visitCount">...</div>
+    <div class="visitor-sub">位来客</div>
+  </div>
+
+  <div style="font-size:.75em;color:#64748b;margin:8px 0">
+    今日浏览 <span id="todayCount" style="color:#94a3b8">0</span> 次 ·
+    累计浏览 <span id="totalViews" style="color:#94a3b8">0</span> 次
+  </div>
+
+  <a href="dashboard.html" class="enter-btn">🏟 进入看板</a>
+</div>
+
+<div class="footer">
+  如有建议，请 email：<a href="mailto:dobgusiki@gmail.com">dobgusiki@gmail.com</a>
+</div>
+
+<script>
+// ── Counter engine ──
+function getStats() {
+  try {
+    const raw = localStorage.getItem('wc_site_stats');
+    return raw ? JSON.parse(raw) : { uv: 0, pv: 0, today: 0, lastVisit: '', firstVisit: new Date().toISOString() };
+  } catch(e) { return { uv: 0, pv: 0, today: 0, lastVisit: '', firstVisit: new Date().toISOString() }; }
+}
+function saveStats(s) { localStorage.setItem('wc_site_stats', JSON.stringify(s)); }
+
+let stats = getStats();
+const today = new Date().toISOString().slice(0, 10);
+
+// UV: first visit ever OR first visit today
+const isNewVisitor = !stats.firstVisit || stats.firstVisit === new Date().toISOString();
+const isNewToday = stats.lastVisit !== today;
+
+if (isNewVisitor) {
+  stats.uv += 1;
+  stats.firstVisit = new Date().toISOString();
+}
+if (isNewToday) {
+  stats.today = 1;
+} else {
+  stats.today += 1;
+}
+stats.pv += 1;
+stats.lastVisit = today;
+saveStats(stats);
+
+document.getElementById('visitCount').textContent = stats.uv;
+document.getElementById('todayCount').textContent = stats.today;
+document.getElementById('totalViews').textContent = stats.pv;
+
+// ── Stars ──
+const starsEl = document.getElementById('stars');
+for (let i = 0; i < 60; i++) {
+  const star = document.createElement('div');
+  star.className = 'star';
+  const size = Math.random() * 2.5 + 1;
+  star.style.cssText = `
+    width:${size}px;height:${size}px;
+    top:${Math.random()*100}%;left:${Math.random()*100}%;
+    animation-delay:${Math.random()*3}s;animation-duration:${Math.random()*2+1.5}s;
+  `;
+  starsEl.appendChild(star);
+}
+</script>
+</body>
+</html>
