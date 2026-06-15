@@ -165,7 +165,7 @@ Thu June 25
 
 ▪ Group G
 Mon June 15
-  12:00 UTC-7    Belgium  v Egypt        @ Seattle
+  12:00 UTC-7     Belgium  1-1 (0-0)  Egypt    @ Seattle
   18:00 UTC-7    Iran       v New Zealand  @ Los Angeles (Inglewood)
 Sun June 21
   12:00 UTC-7    Belgium      v Iran    @ Los Angeles (Inglewood)
@@ -177,7 +177,7 @@ Fri June 26
 
 ▪ Group H
 Mon June 15
-  12:00 UTC-4   Spain  v Cape Verde   @ Atlanta
+  12:00 UTC-4     Spain  0-0 (0-0)  Cape Verde    @ Atlanta
   18:00 UTC-4   Saudi Arabia   v Uruguay  @ Miami (Miami Gardens)
 Sun June 21
   12:00 UTC-4    Spain   v Saudi Arabia   @ Atlanta
