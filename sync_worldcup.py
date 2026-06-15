@@ -74,18 +74,27 @@ WATCH_INTERVAL = 120  # seconds between full sync cycles
 # ============================================================
 # API FETCHERS
 # ============================================================
-def fetch_json(url: str) -> dict | None:
-    """Fetch JSON from URL with retries."""
-    for attempt in range(3):
+def fetch_json(url: str, retries: int = 3, backoff: float = 2.0) -> dict | None:
+    """Fetch JSON from URL with retries and exponential backoff."""
+    for attempt in range(retries):
         try:
             req = urllib.request.Request(url, headers={"User-Agent": "WorldCupSync/1.0"})
-            with urllib.request.urlopen(req, timeout=15) as resp:
+            with urllib.request.urlopen(req, timeout=30) as resp:
                 return json.loads(resp.read().decode())
-        except Exception as e:
-            if attempt < 2:
-                time.sleep(2)
+        except urllib.error.HTTPError as e:
+            if e.code == 429 and attempt < retries - 1:
+                wait = backoff * (2 ** attempt)
+                time.sleep(wait)
+                continue
+            if attempt < retries - 1:
+                time.sleep(backoff)
             else:
-                print(f"  [WARN] Failed to fetch {url[:80]}... : {e}")
+                print(f"  [WARN] HTTP {e.code} on {url[:60]}...")
+        except Exception as e:
+            if attempt < retries - 1:
+                time.sleep(backoff)
+            else:
+                print(f"  [WARN] Failed to fetch {url[:60]}... : {e}")
     return None
 
 
@@ -409,7 +418,7 @@ def build_teams_data(force_refresh: bool = False) -> dict:
                 team_entry["stadium"] = t.get("strStadium", "")
                 team_entry["coach"] = t.get("strManager", "")
 
-            time.sleep(1.0)  # Respect rate limit
+            time.sleep(2.0)  # Respect free tier rate limit
 
             # Fetch players
             player_data = fetch_json(f"https://www.thesportsdb.com/api/v1/json/3/lookup_all_players.php?id={tid}")
@@ -428,7 +437,7 @@ def build_teams_data(force_refresh: bool = False) -> dict:
                         "thumb": p.get("strThumb", ""),
                     })
 
-            time.sleep(1.0)  # Respect rate limit
+            time.sleep(2.0)  # Respect free tier rate limit
 
         teams_data[team] = team_entry
         if (idx + 1) % 8 == 0:
