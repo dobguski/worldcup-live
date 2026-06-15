@@ -1642,7 +1642,10 @@ def text_mode():
 if __name__ == "__main__":
     ensure_dashboard()
 
-    if "--text" in sys.argv:
+    if "--teams" in sys.argv:
+        build_teams_data(force_refresh=True)
+        print("\n✅ Teams data built. Run --text or --serve to view.")
+    elif "--text" in sys.argv:
         text_mode()
     elif "--tui" in sys.argv or "-t" in sys.argv:
         tui_mode()
