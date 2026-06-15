@@ -159,22 +159,51 @@ h1{font-size:1.7em;color:#e2b04a;margin-bottom:6px;font-weight:800;letter-spacin
 <div class="copied-toast" id="copiedToast">✅ 链接已复制！</div>
 
 <script>
-// ── Counter engine ──
-function getStats() {
-  try { const r = localStorage.getItem('wc_site_stats'); return r ? JSON.parse(r) : {uv:0,pv:0,today:0,lastVisit:''}; }
-  catch(e) { return {uv:0,pv:0,today:0,lastVisit:''}; }
-}
-function saveStats(s) { localStorage.setItem('wc_site_stats', JSON.stringify(s)); }
+// ── Counter engine v2 (global counter.json + localStorage dedup) ──
+(function(){
+  const today = new Date().toISOString().slice(0,10);
 
-let stats = getStats();
-const today = new Date().toISOString().slice(0,10);
-const hasVisited = localStorage.getItem('wc_uv_flag');
-if (!hasVisited) { stats.uv += 1; localStorage.setItem('wc_uv_flag','1'); }
-if (stats.lastVisit !== today) { stats.today = 1; } else { stats.today += 1; }
-stats.pv += 1; stats.lastVisit = today; saveStats(stats);
-document.getElementById('visitCount').textContent = stats.uv;
-document.getElementById('todayCount').textContent = stats.today;
-document.getElementById('totalViews').textContent = stats.pv;
+  // Local per-browser tracking
+  function localStats() {
+    try { const r = localStorage.getItem('wc_site_stats'); return r ? JSON.parse(r) : {uv:0,pv:0,today:0,lastVisit:''}; }
+    catch(e) { return {uv:0,pv:0,today:0,lastVisit:''}; }
+  }
+  function saveLocal(s) { localStorage.setItem('wc_site_stats', JSON.stringify(s)); }
+
+  let local = localStats();
+  const hasVisited = localStorage.getItem('wc_uv_flag');
+  const isNewUV = !hasVisited;
+  if (isNewUV) {
+    local.uv += 1;
+    localStorage.setItem('wc_uv_flag', '1');
+  }
+  if (local.lastVisit !== today) { local.today = 1; } else { local.today += 1; }
+  local.pv += 1;
+  local.lastVisit = today;
+  saveLocal(local);
+
+  // Fetch global counter.json (with cache-bust for freshness)
+  fetch('counter.json?t=' + Date.now())
+    .then(r => r.json())
+    .then(global => {
+      // Display global count (all visitors see same number)
+      document.getElementById('visitCount').textContent = global.uv;
+      document.getElementById('todayCount').textContent = global.today + local.today - 1;
+      document.getElementById('totalViews').textContent = global.pv + local.pv - 1;
+    })
+    .catch(() => {
+      // Fallback to localStorage only if counter.json unavailable
+      document.getElementById('visitCount').textContent = local.uv;
+      document.getElementById('todayCount').textContent = local.today;
+      document.getElementById('totalViews').textContent = local.pv;
+    });
+
+  // Sync: notify local server to increment global counter (best-effort)
+  if (isNewUV) {
+    fetch('http://localhost:8888/counter/uv', { mode: 'no-cors' }).catch(() => {});
+  }
+  fetch('http://localhost:8888/counter/pv', { mode: 'no-cors' }).catch(() => {});
+})();
 
 // ── QR Code ──
 const pageUrl = 'https://datamenu.xyz/';

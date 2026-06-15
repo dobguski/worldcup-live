@@ -1609,6 +1609,47 @@ def serve_dashboard(port: int = 8888):
         def log_message(self, format, *args):
             print(f"  [WEB] {args[0]}")
 
+        def do_GET(self):
+            # Counter API endpoints (fire-and-forget from static pages)
+            if self.path.startswith('/counter/'):
+                self._handle_counter(self.path)
+            else:
+                super().do_GET()
+
+        def _handle_counter(self, path):
+            import datetime
+            counter_path = REPO_DIR / 'counter.json'
+            try:
+                if counter_path.exists():
+                    c = json.loads(counter_path.read_text(encoding='utf-8'))
+                else:
+                    c = {'uv': 0, 'pv': 0, 'today': 0, 'updated': ''}
+
+                today = datetime.date.today().isoformat()
+                if '/uv' in path:
+                    c['uv'] += 1
+                if '/pv' in path:
+                    c['pv'] += 1
+                if c.get('today_date') != today:
+                    c['today'] = 1
+                    c['today_date'] = today
+                else:
+                    c['today'] = c.get('today', 0) + 1
+
+                c['updated'] = datetime.datetime.now().isoformat()
+                counter_path.write_text(json.dumps(c, ensure_ascii=False, indent=2), encoding='utf-8')
+                print(f'  [CTR] UV={c["uv"]} PV={c["pv"]} today={c["today"]}')
+
+                self.send_response(200)
+                self.send_header('Content-Type', 'application/json')
+                self.send_header('Access-Control-Allow-Origin', '*')
+                self.end_headers()
+                self.wfile.write(json.dumps({'ok': True, 'uv': c['uv'], 'pv': c['pv']}).encode())
+            except Exception as e:
+                print(f'  [CTR] Error: {e}')
+                self.send_response(500)
+                self.end_headers()
+
     print(f"""
 ╔══════════════════════════════════════════════════════════════╗
 ║     ⚽ 2026 WORLD CUP DASHBOARD ⚽                          ║
