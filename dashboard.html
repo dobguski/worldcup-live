@@ -425,7 +425,14 @@ function renderTeams() {
                          currentLang === 'dual' ? `${cnName} ${team.name_en}` :
                          team.name_en;
       const history = team.history || {};
+      const historyCn = team.history_cn || {};
       const players = team.players || [];
+
+      // History display: pick lang
+      let bestText;
+      if (currentLang === 'cn') bestText = historyCn.best || history.best || '';
+      else if (currentLang === 'dual') bestText = (historyCn.best && historyCn.best !== history.best) ? `${historyCn.best} ${history.best}` : (history.best || '');
+      else bestText = history.best || '';
 
       html += `<div style="background:#0f1724;border-radius:8px;padding:12px;border:1px solid #334155;">
         <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;">
@@ -433,7 +440,7 @@ function renderTeams() {
           <div>
             <div style="font-weight:bold;font-size:1em;color:#e2b04a;">${displayName}</div>
             <div style="font-size:.75em;color:#64748b;">
-              ${history.apps ? `${t('team.apps')}: ${history.apps}` : ''}${history.best ? ` · ${t('team.best')}: ${history.best}` : ''}
+              ${history.apps ? `${t('team.apps')}: ${history.apps}` : ''}${bestText ? ` · ${t('team.best')}: ${bestText}` : ''}
             </div>
           </div>
         </div>
@@ -451,12 +458,21 @@ function renderTeams() {
             <th style="padding:2px 4px;">${t('team.position')}</th>
             <th style="padding:2px 4px;text-align:left;">${t('team.club')}</th>
           </tr>`;
-        for (const p of players.slice(0, 12)) {  // Show up to 12 players
+        for (const p of players.slice(0, 12)) {
+          // Position display
+          let posText = p.position || '';
+          if (currentLang === 'cn' && p.position_cn) posText = p.position_cn;
+          else if (currentLang === 'dual' && p.position_cn && p.position_cn !== p.position) posText = `${p.position_cn} ${p.position}`;
+          // Club display
+          let clubText = p.club || '';
+          if (currentLang === 'cn' && p.club_cn) clubText = p.club_cn;
+          else if (currentLang === 'dual' && p.club_cn && p.club_cn !== p.club) clubText = `${p.club_cn} ${p.club}`;
+
           html += `<tr style="border-bottom:1px solid #1e293b;">
             <td style="padding:2px 4px;text-align:center;color:#e2b04a;">${p.number||'-'}</td>
             <td style="padding:2px 4px;">${p.name}</td>
-            <td style="padding:2px 4px;color:#94a3b8;text-align:center;font-size:.85em;">${p.position||''}</td>
-            <td style="padding:2px 4px;color:#94a3b8;font-size:.85em;">${p.club||''}</td>
+            <td style="padding:2px 4px;color:#94a3b8;text-align:center;font-size:.8em;">${posText}</td>
+            <td style="padding:2px 4px;color:#94a3b8;font-size:.8em;">${clubText}</td>
           </tr>`;
         }
         if (players.length > 12) {
