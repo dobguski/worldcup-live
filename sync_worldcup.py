@@ -1103,25 +1103,30 @@ def git_commit_and_push(message: str = "Auto-sync: update match results") -> boo
 # ============================================================
 # MAIN SYNC LOGIC
 # ============================================================
-def to_beijing_time(date_str: str, time_str: str, tz_str: str) -> tuple[str, str, str]:
+def to_beijing_time(date_str: str, time_str: str, tz_str: str) -> tuple[str, str, str, str]:
     """Convert venue local time to Beijing time (UTC+8).
-    Returns (beijing_date, beijing_time, label) — label is empty or '次日' when date rolls.
+    Returns (beijing_date, beijing_time, label, utc_timestamp_iso).
+    label is empty or '次日' when date rolls.
+    utc_timestamp_iso is an ISO 8601 string in UTC for frontend timezone conversion.
     """
     if not time_str or not tz_str:
-        return date_str, time_str, ""
+        return date_str, time_str, "", ""
     try:
         tz_offset = int(tz_str.replace("UTC", ""))  # "UTC-6" -> -6, "UTC+8" -> 8
     except ValueError:
-        return date_str, time_str, ""
+        return date_str, time_str, "", ""
     venue_dt = datetime.strptime(f"{date_str} {time_str}", "%Y-%m-%d %H:%M")
-    delta = timedelta(hours=8 - tz_offset)  # hours to add to get Beijing time
-    bj_dt = venue_dt + delta
+    # Venue time → UTC
+    utc_dt = venue_dt - timedelta(hours=tz_offset)
+    utc_ts = utc_dt.strftime("%Y-%m-%dT%H:%M:%SZ")  # ISO 8601 UTC
+    # UTC → Beijing (UTC+8)
+    bj_dt = utc_dt + timedelta(hours=8)
     bj_date = bj_dt.strftime("%Y-%m-%d")
     bj_time = bj_dt.strftime("%H:%M")
     label = ""
     if bj_date != date_str:
         label = "次日" if bj_date > date_str else "前日"
-    return bj_date, bj_time, label
+    return bj_date, bj_time, label, utc_ts
 
 
 def sync_once(commit: bool = True) -> dict:
@@ -1180,13 +1185,14 @@ def sync_once(commit: bool = True) -> dict:
     # Save match data JSON (for dashboard) — include Chinese names
     match_data = []
     for m in all_matches:
-        # Convert to Beijing time (UTC+8)
-        bj_date, bj_time, bj_label = to_beijing_time(
+        # Convert to Beijing time (UTC+8) + UTC timestamp for frontend localization
+        bj_date, bj_time, bj_label, utc_ts = to_beijing_time(
             m["date"], m.get("time", ""), m.get("tz", ""))
         match_data.append({
             "date": bj_date,
             "time": bj_time,
             "tz": "UTC+8",
+            "utc_ts": utc_ts,  # ISO 8601 UTC for frontend timezone conversion
             "time_label": bj_label,  # "次日" if date rolled forward, else ""
             "venue_tz": m.get("tz", ""),  # original venue timezone for reference
             "home_team": m["home_team"],
