@@ -729,8 +729,10 @@ def build_teams_data(force_refresh: bool = False) -> dict:
             player_data = fetch_json(f"https://www.thesportsdb.com/api/v1/json/3/lookup_all_players.php?id={tid}")
             if player_data and player_data.get("player"):
                 for p in player_data["player"]:
+                    en_name = p.get("strPlayer", "")
                     team_entry["players"].append({
-                        "name": p.get("strPlayer", ""),
+                        "name": en_name,
+                        "name_cn": player_name_cn(en_name),
                         "nationality": p.get("strNationality", ""),
                         "position": p.get("strPosition", ""),
                         "position_cn": POSITION_CN.get(p.get("strPosition", ""), ""),
