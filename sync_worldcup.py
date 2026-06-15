@@ -2138,6 +2138,7 @@ if __name__ == "__main__":
             while True:
                 try:
                     sync_once(commit=True)
+                    bump_counter()  # Increment visitor counter
                 except Exception as e:
                     print(f"  [BG ERROR] {e}")
                 time.sleep(WATCH_INTERVAL)
