@@ -1,109 +1,210 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh-CN" prefix="og: https://ogp.me/ns#">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Dob Guski 的世界杯小站 | FIFA World Cup 2026</title>
+<title>Dob Guski 的世界杯小站 ⚽ FIFA World Cup 2026 Live</title>
+<meta name="description" content="2026 FIFA世界杯实时数据看板：48支球队、104场比赛、实时比分、球员档案、Polymarket预测赔率、积分榜。TRIONDA官方用球。加拿大·美国·墨西哥联合主办。">
+<meta name="keywords" content="2026世界杯,FIFA World Cup,TRIONDA,足球,实时比分,Polymarket,世界杯看板">
+<meta name="author" content="Dob Guski">
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://datamenu.xyz/">
+<meta property="og:title" content="Dob Guski 的世界杯小站 | 2026 FIFA World Cup Live">
+<meta property="og:description" content="48支球队·104场比赛·实时比分·球员档案·Polymarket预测赔率。扫码或点击进入。">
+<meta property="og:image" content="https://datamenu.xyz/assets/trionda.png">
+<meta property="og:image:width" content="330">
+<meta property="og:image:height" content="335">
+<meta property="og:site_name" content="Dob Guski 世界杯小站">
+<meta property="og:locale" content="zh_CN">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:url" content="https://datamenu.xyz/">
+<meta name="twitter:title" content="Dob Guski 的世界杯小站 | 2026 FIFA World Cup Live">
+<meta name="twitter:description" content="48支球队·104场比赛·实时比分·球员档案·Polymarket预测。扫码进入。">
+<meta name="twitter:image" content="https://datamenu.xyz/assets/trionda.png">
+
+<!-- Canonical -->
+<link rel="canonical" href="https://datamenu.xyz/">
+
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:#0f1724;color:#e2e8f0;min-height:100vh;display:flex;justify-content:center;align-items:center;text-align:center}
-.bg{position:fixed;top:0;left:0;right:0;bottom:0;background:radial-gradient(ellipse at center,#1a2332 0%,#0f1724 60%,#0a0f1a 100%);z-index:-1}
-.container{max-width:600px;padding:40px 30px}
-.trionda{width:120px;height:120px;object-fit:contain;filter:drop-shadow(0 0 30px rgba(255,255,255,.2)) drop-shadow(0 4px 12px rgba(0,0,0,.6));animation:float 4s ease-in-out infinite;margin-bottom:20px}
-@keyframes float{0%,100%{transform:translateY(0) rotate(0deg)}50%{transform:translateY(-8px) rotate(3deg)}}
-h1{font-size:2em;color:#e2b04a;margin-bottom:10px;font-weight:bold}
-.subtitle{color:#94a3b8;font-size:1.1em;margin-bottom:30px;line-height:1.6}
-.visitor-box{display:inline-block;background:linear-gradient(135deg,#1e3a5f,#1a2a4a);border:1px solid #3b82f6;border-radius:16px;padding:20px 30px;margin:20px 0}
-.visitor-label{font-size:.8em;color:#64748b;text-transform:uppercase;letter-spacing:2px;margin-bottom:6px}
-.visitor-count{font-size:3em;font-weight:bold;color:#e2b04a;text-shadow:0 0 20px rgba(226,176,74,.3)}
-.visitor-sub{font-size:.75em;color:#64748b;margin-top:4px}
-.enter-btn{display:inline-block;margin-top:30px;padding:14px 48px;background:linear-gradient(135deg,#e2b04a,#c99520);color:#0f1724;border-radius:30px;font-size:1.1em;font-weight:bold;text-decoration:none;transition:all .3s;box-shadow:0 4px 20px rgba(226,176,74,.3)}
-.enter-btn:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(226,176,74,.5)}
-.footer{position:fixed;bottom:20px;left:0;right:0;text-align:center;color:#475569;font-size:.75em}
+body{font-family:'Segoe UI',system-ui,-apple-system,'PingFang SC','Microsoft YaHei',sans-serif;background:#0f1724;color:#e2e8f0;min-height:100vh;overflow-x:hidden}
+.bg{position:fixed;top:0;left:0;right:0;bottom:0;background:radial-gradient(ellipse at 50% 30%,#1a2a3a 0%,#0f1724 55%,#080c14 100%);z-index:-1}
+.stars{position:fixed;top:0;left:0;right:0;bottom:0;pointer-events:none;z-index:-2}
+.star{position:absolute;background:#fff;border-radius:50%;animation:twinkle 2.5s ease-in-out infinite alternate}
+@keyframes twinkle{0%{opacity:.2}100%{opacity:.9}}
+
+/* Layout */
+.page{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:100vh;padding:30px 20px 80px}
+.container{max-width:520px;width:100%;text-align:center}
+
+/* Ball */
+.trionda{width:100px;height:100px;object-fit:contain;filter:drop-shadow(0 0 28px rgba(255,255,255,.18)) drop-shadow(0 3px 10px rgba(0,0,0,.5));animation:float 4s ease-in-out infinite;margin-bottom:16px}
+@keyframes float{0%,100%{transform:translateY(0) rotate(0deg)}50%{transform:translateY(-6px) rotate(2deg)}}
+
+/* Title */
+h1{font-size:1.7em;color:#e2b04a;margin-bottom:6px;font-weight:800;letter-spacing:.5px;line-height:1.3}
+.tagline{color:#94a3b8;font-size:.95em;margin-bottom:6px}
+.tagline span{color:#64748b;font-size:.82em}
+
+/* Visitor box */
+.visitor-box{display:inline-block;background:linear-gradient(135deg,#1e3a5f,#16223a);border:1px solid #334155;border-radius:14px;padding:16px 28px;margin:16px 0 6px}
+.visitor-label{font-size:.7em;color:#64748b;text-transform:uppercase;letter-spacing:2px;margin-bottom:4px}
+.visitor-count{font-size:2.4em;font-weight:bold;color:#e2b04a;text-shadow:0 0 16px rgba(226,176,74,.25)}
+.visitor-sub{font-size:.7em;color:#64748b;margin-top:2px}
+.visitor-stats{font-size:.7em;color:#475569;margin:4px 0}
+.visitor-stats b{color:#94a3b8}
+
+/* CTA */
+.enter-btn{display:inline-block;margin-top:14px;padding:13px 44px;background:linear-gradient(135deg,#e2b04a,#c99520);color:#0f1724;border-radius:28px;font-size:1.05em;font-weight:bold;text-decoration:none;transition:all .3s;box-shadow:0 4px 18px rgba(226,176,74,.28)}
+.enter-btn:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(226,176,74,.45)}
+
+/* Share section */
+.share-section{margin-top:20px}
+.share-title{font-size:.7em;color:#475569;text-transform:uppercase;letter-spacing:2px;margin-bottom:10px}
+.share-btns{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+.share-btn{display:flex;align-items:center;gap:6px;padding:8px 16px;border-radius:22px;font-size:.75em;font-weight:600;text-decoration:none;transition:all .2s;border:1px solid #334155;background:#1a2433;color:#94a3b8}
+.share-btn:hover{transform:translateY(-1px);border-color:#e2b04a;color:#e2b04a}
+.share-btn.x:hover{background:#1a1a1a;color:#fff;border-color:#555}
+.share-btn.fb:hover{background:#182848;color:#1877f2;border-color:#1877f2}
+.share-btn.wa:hover{background:#1a3020;color:#25d366;border-color:#25d366}
+.share-btn.copy:hover{background:#1a2a3a;color:#60a5fa;border-color:#60a5fa}
+.share-btn svg{width:16px;height:16px;flex-shrink:0}
+.copied-toast{display:none;position:fixed;bottom:30px;left:50%;transform:translateX(-50%);background:#22c55e;color:#fff;padding:8px 24px;border-radius:20px;font-size:.85em;font-weight:bold;z-index:100;animation:fadeInOut 2s}
+@keyframes fadeInOut{0%{opacity:0;transform:translateX(-50%) translateY(10px)}15%{opacity:1;transform:translateX(-50%) translateY(0)}85%{opacity:1}100%{opacity:0}}
+
+/* QR section */
+.qr-section{margin-top:16px}
+.qr-code{width:140px;height:140px;border-radius:12px;border:2px solid #334155;padding:4px;background:#fff}
+.qr-label{font-size:.65em;color:#475569;margin-top:6px}
+
+/* Footer */
+.footer{padding:14px;text-align:center;color:#475569;font-size:.7em;border-top:1px solid #1e293b;width:100%}
 .footer a{color:#64748b;text-decoration:none}
 .footer a:hover{color:#e2b04a}
-.stars{position:fixed;top:0;left:0;right:0;bottom:0;pointer-events:none;z-index:-2}
-.star{position:absolute;background:#fff;border-radius:50%;animation:twinkle 2s ease-in-out infinite alternate}
-@keyframes twinkle{0%{opacity:.3}100%{opacity:.8}}
+
+/* Responsive */
+@media(max-width:480px){
+  h1{font-size:1.3em}
+  .trionda{width:76px;height:76px}
+  .visitor-count{font-size:2em}
+  .visitor-box{padding:14px 20px}
+  .enter-btn{padding:12px 36px;font-size:.95em}
+  .qr-code{width:110px;height:110px}
+}
 </style>
 </head>
 <body>
+
 <div class="bg"></div>
 <div id="stars" class="stars"></div>
 
-<div class="container">
-  <img src="assets/trionda.png" alt="TRIONDA" class="trionda" onerror="this.style.display='none'">
-  <h1>Dob Guski 的世界杯小站</h1>
-  <div class="subtitle">
-    ⚽ 2026 FIFA World Cup<br>
-    🇨🇦 Canada · 🇺🇸 USA · 🇲🇽 Mexico<br>
-    <span style="font-size:.85em;color:#64748b">48支球队 · 104场比赛 · 一座奖杯</span>
+<div class="page">
+  <div class="container">
+    <img src="assets/trionda.png" alt="TRIONDA — 2026 FIFA World Cup Official Match Ball" class="trionda" onerror="this.style.display='none'">
+
+    <h1>Dob Guski 的世界杯小站</h1>
+    <div class="tagline">
+      🏆 2026 FIFA World Cup<br>
+      <span>🇨🇦 Canada · 🇺🇸 USA · 🇲🇽 Mexico</span>
+    </div>
+
+    <div class="visitor-box">
+      <div class="visitor-label">WELCOME · 您是第</div>
+      <div class="visitor-count" id="visitCount">...</div>
+      <div class="visitor-sub">位来客</div>
+    </div>
+    <div class="visitor-stats">
+      今日 <b id="todayCount">0</b> 次 · 累计 <b id="totalViews">0</b> 次浏览
+    </div>
+
+    <a href="dashboard.html" class="enter-btn">🏟 进入实时看板</a>
+
+    <!-- QR Code -->
+    <div class="qr-section">
+      <img class="qr-code" id="qrCode" src="" alt="扫码访问 datamenu.xyz" onerror="this.style.display='none'">
+      <div class="qr-label">📱 扫码访问 datamenu.xyz</div>
+    </div>
+
+    <!-- Share buttons -->
+    <div class="share-section">
+      <div class="share-title">分享给朋友</div>
+      <div class="share-btns">
+        <a class="share-btn x" id="shareX" href="#" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+          推特
+        </a>
+        <a class="share-btn fb" id="shareFB" href="#" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+          Facebook
+        </a>
+        <a class="share-btn wa" id="shareWA" href="#" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          WhatsApp
+        </a>
+        <button class="share-btn copy" onclick="copyLink()">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+          复制链接
+        </button>
+      </div>
+    </div>
   </div>
 
-  <div class="visitor-box">
-    <div class="visitor-label">您是第</div>
-    <div class="visitor-count" id="visitCount">...</div>
-    <div class="visitor-sub">位来客</div>
+  <div class="footer">
+    ⚽ TRIONDA · 2026 FIFA World Cup<br>
+    📧 <a href="mailto:dobgusiki@gmail.com">dobgusiki@gmail.com</a>
   </div>
-
-  <div style="font-size:.75em;color:#64748b;margin:8px 0">
-    今日浏览 <span id="todayCount" style="color:#94a3b8">0</span> 次 ·
-    累计浏览 <span id="totalViews" style="color:#94a3b8">0</span> 次
-  </div>
-
-  <a href="dashboard.html" class="enter-btn">🏟 进入看板</a>
 </div>
 
-<div class="footer">
-  如有建议，请 email：<a href="mailto:dobgusiki@gmail.com">dobgusiki@gmail.com</a>
-</div>
+<div class="copied-toast" id="copiedToast">✅ 链接已复制！</div>
 
 <script>
 // ── Counter engine ──
 function getStats() {
-  try {
-    const raw = localStorage.getItem('wc_site_stats');
-    return raw ? JSON.parse(raw) : { uv: 0, pv: 0, today: 0, lastVisit: '' };
-  } catch(e) { return { uv: 0, pv: 0, today: 0, lastVisit: '' }; }
+  try { const r = localStorage.getItem('wc_site_stats'); return r ? JSON.parse(r) : {uv:0,pv:0,today:0,lastVisit:''}; }
+  catch(e) { return {uv:0,pv:0,today:0,lastVisit:''}; }
 }
 function saveStats(s) { localStorage.setItem('wc_site_stats', JSON.stringify(s)); }
 
 let stats = getStats();
-const today = new Date().toISOString().slice(0, 10);
-
-// UV: first time this browser ever visits (flag stored separately)
+const today = new Date().toISOString().slice(0,10);
 const hasVisited = localStorage.getItem('wc_uv_flag');
-if (!hasVisited) {
-  stats.uv += 1;
-  localStorage.setItem('wc_uv_flag', '1');
-}
-
-// Today counter: reset if new day
-if (stats.lastVisit !== today) {
-  stats.today = 1;
-} else {
-  stats.today += 1;
-}
-stats.pv += 1;
-stats.lastVisit = today;
-saveStats(stats);
-
+if (!hasVisited) { stats.uv += 1; localStorage.setItem('wc_uv_flag','1'); }
+if (stats.lastVisit !== today) { stats.today = 1; } else { stats.today += 1; }
+stats.pv += 1; stats.lastVisit = today; saveStats(stats);
 document.getElementById('visitCount').textContent = stats.uv;
 document.getElementById('todayCount').textContent = stats.today;
 document.getElementById('totalViews').textContent = stats.pv;
 
+// ── QR Code ──
+const pageUrl = 'https://datamenu.xyz/';
+document.getElementById('qrCode').src = 'https://api.qrserver.com/v1/create-qr-code/?size=150x150&bgcolor=ffffff&data=' + encodeURIComponent(pageUrl);
+
+// ── Share buttons ──
+const shareText = encodeURIComponent('🏆 Dob Guski 的世界杯小站 | 2026 FIFA World Cup Live — 实时比分·球员档案·Polymarket预测');
+const shareUrl = encodeURIComponent(pageUrl);
+document.getElementById('shareX').href = 'https://twitter.com/intent/tweet?text=' + shareText + '&url=' + shareUrl;
+document.getElementById('shareFB').href = 'https://www.facebook.com/sharer/sharer.php?u=' + shareUrl;
+document.getElementById('shareWA').href = 'https://wa.me/?text=' + shareText + '%20' + shareUrl;
+
+function copyLink() {
+  navigator.clipboard.writeText(pageUrl).then(() => {
+    const t = document.getElementById('copiedToast');
+    t.style.display = 'block';
+    setTimeout(() => t.style.display = 'none', 2000);
+  });
+}
+
 // ── Stars ──
 const starsEl = document.getElementById('stars');
-for (let i = 0; i < 60; i++) {
-  const star = document.createElement('div');
-  star.className = 'star';
-  const size = Math.random() * 2.5 + 1;
-  star.style.cssText = `
-    width:${size}px;height:${size}px;
-    top:${Math.random()*100}%;left:${Math.random()*100}%;
-    animation-delay:${Math.random()*3}s;animation-duration:${Math.random()*2+1.5}s;
-  `;
-  starsEl.appendChild(star);
+for (let i=0;i<50;i++) {
+  const s = document.createElement('div'); s.className='star';
+  const sz = Math.random()*2.2+1;
+  s.style.cssText = 'width:'+sz+'px;height:'+sz+'px;top:'+Math.random()*100+'%;left:'+Math.random()*100+'%;animation-delay:'+Math.random()*3+'s;animation-duration:'+(Math.random()*2+1.5)+'s';
+  starsEl.appendChild(s);
 }
 </script>
 </body>
