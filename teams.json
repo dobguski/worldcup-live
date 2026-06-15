@@ -20,6 +20,7 @@
     "players": [
       {
         "name": "Alexis Vega",
+        "name_cn": "亚历克西斯·维加",
         "nationality": "Mexico",
         "position": "Left Wing",
         "position_cn": "左边锋",
@@ -34,6 +35,7 @@
       },
       {
         "name": "Álvaro Fidalgo",
+        "name_cn": "álv阿尔o 菲d阿尔戈",
         "nationality": "Mexico",
         "position": "Central Midfield",
         "position_cn": "中前卫",
@@ -48,6 +50,7 @@
       },
       {
         "name": "Armando González",
+        "name_cn": "冈萨雷斯",
         "nationality": "Mexico",
         "position": "Centre-Forward",
         "position_cn": "中锋",
@@ -62,6 +65,7 @@
       },
       {
         "name": "Brian Gutiérrez",
+        "name_cn": "布莱恩",
         "nationality": "Mexico",
         "position": "Attacking Midfield",
         "position_cn": "攻击中场",
@@ -76,6 +80,7 @@
       },
       {
         "name": "Carlos Acevedo",
+        "name_cn": "卡洛斯",
         "nationality": "Mexico",
         "position": "Goalkeeper",
         "position_cn": "门将",
@@ -90,6 +95,7 @@
       },
       {
         "name": "César Huerta",
+        "name_cn": "塞萨尔",
         "nationality": "Mexico",
         "position": "Left Wing",
         "position_cn": "左边锋",
@@ -104,6 +110,7 @@
       },
       {
         "name": "César Montes",
+        "name_cn": "塞萨尔",
         "nationality": "Mexico",
         "position": "Centre-Back",
         "position_cn": "中后卫",
@@ -118,6 +125,7 @@
       },
       {
         "name": "Edson Álvarez",
+        "name_cn": "阿尔瓦雷斯",
         "nationality": "Mexico",
         "position": "Defensive Midfield",
         "position_cn": "防守中场",
@@ -132,6 +140,7 @@
       },
       {
         "name": "Érik Lira",
+        "name_cn": "é里k l伊尔a",
         "nationality": "Mexico",
         "position": "Defensive Midfield",
         "position_cn": "防守中场",
@@ -146,6 +155,7 @@
       },
       {
         "name": "Gilberto Mora",
+        "name_cn": "吉l贝r托 莫拉",
         "nationality": "Mexico",
         "position": "Attacking Midfield",
         "position_cn": "攻击中场",
@@ -181,6 +191,7 @@
     "players": [
       {
         "name": "Aubrey Modiba",
+        "name_cn": "au布ey 莫迪巴",
         "nationality": "South Africa",
         "position": "Left-Back",
         "position_cn": "左后卫",
@@ -195,6 +206,7 @@
       },
       {
         "name": "Bradley Cross",
+        "name_cn": "布拉德利",
         "nationality": "South Africa",
         "position": "Left-Back",
         "position_cn": "左后卫",
@@ -209,6 +221,7 @@
       },
       {
         "name": "Evidence Makgopa",
+        "name_cn": "e维德n塞 马k戈帕",
         "nationality": "South Africa",
         "position": "Centre-Forward",
         "position_cn": "中锋",
@@ -223,6 +236,7 @@
       },
       {
         "name": "Hugo Broos",
+        "name_cn": "乌戈",
         "nationality": "Belgium",
         "position": "Manager",
         "position_cn": "主教练",
@@ -237,6 +251,7 @@
       },
       {
         "name": "Ime Okon",
+        "name_cn": "伊姆e o科n",
         "nationality": "South Africa",
         "position": "Centre-Back",
         "position_cn": "中后卫",
@@ -251,6 +266,7 @@
       },
       {
         "name": "Iqraam Rayners",
+        "name_cn": "iq拉am 拉yn尔s",
         "nationality": "South Africa",
         "position": "Centre-Forward",
         "position_cn": "中锋",
@@ -265,6 +281,7 @@
       },
       {
         "name": "Jayden Adams",
+        "name_cn": "亚当斯",
         "nationality": "South Africa",
         "position": "Attacking Midfield",
         "position_cn": "攻击中场",
@@ -279,6 +296,7 @@
       },
       {
         "name": "Kamogelo Sebelebele",
+        "name_cn": "卡莫g埃尔o 塞贝莱贝莱",
         "nationality": "South Africa",
         "position": "Right-Back",
         "position_cn": "右后卫",
@@ -293,6 +311,7 @@
       },
       {
         "name": "Khuliso Mudau",
+        "name_cn": "k胡l伊斯o 穆达u",
         "nationality": "South Africa",
         "position": "Right-Back",
         "position_cn": "右后卫",
@@ -307,6 +326,7 @@
       },
       {
         "name": "Khulumani Ndamane",
+        "name_cn": "k胡卢m安i n达m安e",
         "nationality": "South Africa",
         "position": "Centre-Back",
         "position_cn": "中后卫",
@@ -342,6 +362,7 @@
     "players": [
       {
         "name": "Bum-keun Song",
+        "name_cn": "b乌姆-凯温 s昂g",
         "nationality": "South Korea",
         "position": "Goalkeeper",
         "position_cn": "门将",
@@ -356,6 +377,7 @@
       },
       {
         "name": "Dong-gyeong Lee",
+        "name_cn": "李",
         "nationality": "South Korea",
         "position": "Attacking Midfield",
         "position_cn": "攻击中场",
@@ -370,6 +392,7 @@
       },
       {
         "name": "Gi-hyuk Lee",
+        "name_cn": "李",
         "nationality": "South Korea",
         "position": "Centre-Back",
         "position_cn": "中后卫",
@@ -384,6 +407,7 @@
       },
       {
         "name": "Gue-sung Cho",
+        "name_cn": "赵",
         "nationality": "South Korea",
         "position": "Centre-Forward",
         "position_cn": "中锋",
@@ -398,6 +422,7 @@
       },
       {
         "name": "Han-beom Lee",
+        "name_cn": "李",
         "nationality": "South Korea",
         "position": "Centre-Back",
         "position_cn": "中后卫",
@@ -412,6 +437,7 @@
       },
       {
         "name": "Hee-chan Hwang",
+        "name_cn": "黄",
         "nationality": "South Korea",
         "position": "Centre-Forward",
         "position_cn": "中锋",
@@ -426,6 +452,7 @@
       },
       {
         "name": "Heung-min Son",
+        "name_cn": "孙",
         "nationality": "South Korea",
         "position": "Left Wing",
         "position_cn": "左边锋",
@@ -440,6 +467,7 @@
       },
       {
         "name": "Hyeon-gyu Oh",
+        "name_cn": "h耶昂-g尤 oh",
         "nationality": "South Korea",
         "position": "Centre-Forward",
         "position_cn": "中锋",
@@ -454,6 +482,7 @@
       },
       {
         "name": "Hyeon-woo Jo",
+        "name_cn": "h耶昂-沃o 乔",
         "nationality": "South Korea",
         "position": "Goalkeeper",
         "position_cn": "门将",
@@ -468,6 +497,7 @@
       },
       {
         "name": "Hyun-jun Yang",
+        "name_cn": "hy温-朱n y安g",
         "nationality": "South Korea",
         "position": "Right Winger",
         "position_cn": "右边锋",
@@ -503,6 +533,7 @@
     "players": [
       {
         "name": "Adam Hložek",
+        "name_cn": "亚当",
         "nationality": "Czechia",
         "position": "Centre-Forward",
         "position_cn": "中锋",
@@ -517,6 +548,7 @@
       },
       {
         "name": "Alexandr Sojka",
+        "name_cn": "阿尔ex安dr 索j卡",
         "nationality": "Czechia",
         "position": "Central Midfield",
         "position_cn": "中前卫",
@@ -531,6 +563,7 @@
       },
       {
         "name": "David Douděra",
+        "name_cn": "大卫",
         "nationality": "Czechia",
         "position": "Right Midfield",
         "position_cn": "右中场",
@@ -545,6 +578,7 @@
       },
       {
         "name": "David Jurásek",
+        "name_cn": "大卫",
         "nationality": "Czechia",
         "position": "Left-Back",
         "position_cn": "左后卫",
@@ -559,6 +593,7 @@
       },
       {
         "name": "David Zima",
+        "name_cn": "大卫",
         "nationality": "Czechia",
         "position": "Centre-Back",
         "position_cn": "中后卫",
@@ -573,6 +608,7 @@
       },
       {
         "name": "Denis Višinský",
+        "name_cn": "德n伊斯 维š因ský",
         "nationality": "Czechia",
         "position": "Attacking Midfield",
         "position_cn": "攻击中场",
@@ -587,6 +623,7 @@
       },
       {
         "name": "Hugo Sochůrek",
+        "name_cn": "乌戈",
         "nationality": "Czechia",
         "position": "Central Midfield",
         "position_cn": "中前卫",
@@ -601,6 +638,7 @@
       },
       {
         "name": "Jan Kuchta",
+        "name_cn": "扬",
         "nationality": "Czechia",
         "position": "Centre-Forward",
         "position_cn": "中锋",
@@ -615,6 +653,7 @@
       },
       {
         "name": "Jaroslav Zelený",
+        "name_cn": "j阿尔奥斯拉v z埃尔恩ý",
         "nationality": "Czechia",
         "position": "Left-Back",
         "position_cn": "左后卫",
@@ -629,6 +668,7 @@
       },
       {
         "name": "Jindřich Staněk",
+        "name_cn": "j因dři奇 st安ěk",
         "nationality": "Czechia",
         "position": "Goalkeeper",
         "position_cn": "门将",
@@ -664,6 +704,7 @@
     "players": [
       {
         "name": "Alfie Jones",
+        "name_cn": "琼斯",
         "nationality": "Canada",
         "position": "Centre-Back",
         "position_cn": "中后卫",
@@ -678,6 +719,7 @@
       },
       {
         "name": "Ali Ahmed",
+        "name_cn": "阿里",
         "nationality": "Canada",
         "position": "Left Midfield",
         "position_cn": "左中场",
@@ -692,6 +734,7 @@
       },
       {
         "name": "Alistair Johnston",
+        "name_cn": "阿尔伊斯塔伊尔 乔hnst昂",
         "nationality": "Canada",
         "position": "Right-Back",
         "position_cn": "右后卫",
@@ -706,6 +749,7 @@
       },
       {
         "name": "Alphonso Davies",
+        "name_cn": "阿尔p霍n索 达维埃斯",
         "nationality": "Canada",
         "position": "Left-Back",
         "position_cn": "左后卫",
@@ -720,6 +764,7 @@
       },
       {
         "name": "Dayne St. Clair",
+        "name_cn": "达y内 st. c拉伊尔",
         "nationality": "Canada",
         "position": "Goalkeeper",
         "position_cn": "门将",
@@ -734,6 +779,7 @@
       },
       {
         "name": "Derek Cornelius",
+        "name_cn": "德雷k 科rn埃尔i乌斯",
         "nationality": "Canada",
         "position": "Centre-Back",
         "position_cn": "中后卫",
@@ -748,6 +794,7 @@
       },
       {
         "name": "Ismaël Koné",
+        "name_cn": "伊斯马ël 科né",
         "nationality": "Canada",
         "position": "Central Midfield",
         "position_cn": "中前卫",
@@ -762,6 +809,7 @@
       },
       {
         "name": "Jacob Shaffelburg",
+        "name_cn": "雅各布",
         "nationality": "Canada",
         "position": "Left Wing",
         "position_cn": "左边锋",
@@ -776,6 +824,7 @@
       },
       {
         "name": "Jayden Nelson",
+        "name_cn": "哈y德n n埃尔s昂",
         "nationality": "Canada",
         "position": "Left Wing",
         "position_cn": "左边锋",
@@ -790,6 +839,7 @@
       },
       {
         "name": "Jesse Marsch",
+        "name_cn": "j埃斯塞 m阿尔s奇",
         "nationality": "United States",
         "position": "Manager",
         "position_cn": "主教练",
@@ -825,6 +875,7 @@
     "players": [
       {
         "name": "Amar Dedić",
+        "name_cn": "阿马尔",
         "nationality": "Bosnia and Herzegovina",
         "position": "Right-Back",
         "position_cn": "右后卫",
@@ -839,6 +890,7 @@
       },
       {
         "name": "Amar Memić",
+        "name_cn": "阿马尔",
         "nationality": "Bosnia and Herzegovina",
         "position": "Right Midfield",
         "position_cn": "右中场",
@@ -853,6 +905,7 @@
       },
       {
         "name": "Amir Hadžiahmetović",
+        "name_cn": "am伊尔 哈džiah梅托维ć",
         "nationality": "Bosnia and Herzegovina",
         "position": "Midfielder",
         "position_cn": "中场",
@@ -867,6 +920,7 @@
       },
       {
         "name": "Armin Gigović",
+        "name_cn": "阿尔明",
         "nationality": "Bosnia and Herzegovina",
         "position": "Midfielder",
         "position_cn": "中场",
@@ -881,6 +935,7 @@
       },
       {
         "name": "Benjamin Tahirović",
+        "name_cn": "本杰明",
         "nationality": "Bosnia and Herzegovina",
         "position": "Defensive Midfield",
         "position_cn": "防守中场",
@@ -895,6 +950,7 @@
       },
       {
         "name": "Dennis Hadžikadunić",
+        "name_cn": "德nn伊斯 哈dži卡杜尼ć",
         "nationality": "Bosnia and Herzegovina",
         "position": "Centre-Back",
         "position_cn": "中后卫",
@@ -909,6 +965,7 @@
       },
       {
         "name": "Dženis Burnić",
+        "name_cn": "dž恩伊斯 b乌尔尼ć",
         "nationality": "Bosnia and Herzegovina",
         "position": "Defensive Midfield",
         "position_cn": "防守中场",
@@ -923,6 +980,7 @@
       },
       {
         "name": "Edin Džeko",
+        "name_cn": "e迪n dže科",
         "nationality": "Bosnia and Herzegovina",
         "position": "Centre-Forward",
         "position_cn": "中锋",
@@ -937,6 +995,7 @@
       },
       {
         "name": "Ermedin Demirović",
+        "name_cn": "尔梅迪n 德m伊尔o维ć",
         "nationality": "Bosnia and Herzegovina",
         "position": "Forward",
         "position_cn": "前锋",
@@ -951,6 +1010,7 @@
       },
       {
         "name": "Ermin Mahmić",
+        "name_cn": "尔m因 马h米ć",
         "nationality": "Bosnia and Herzegovina",
         "position": "Attacking Midfield",
         "position_cn": "攻击中场",
@@ -1006,6 +1066,7 @@
     "players": [
       {
         "name": "Adam Buksa",
+        "name_cn": "亚当",
         "nationality": "Poland",
         "position": "Centre-Forward",
         "position_cn": "中锋",
@@ -1020,6 +1081,7 @@
       },
       {
         "name": "Bartosz Bereszyński",
+        "name_cn": "b阿尔t奥斯z 贝r埃斯zyńs基",
         "nationality": "Poland",
         "position": "Defender",
         "position_cn": "后卫",
@@ -1034,6 +1096,7 @@
       },
       {
         "name": "Bartosz Salamon",
+        "name_cn": "b阿尔t奥斯z s阿尔a莫n",
         "nationality": "Poland",
         "position": "Centre-Back",
         "position_cn": "中后卫",
@@ -1048,6 +1111,7 @@
       },
       {
         "name": "Bartosz Slisz",
+        "name_cn": "b阿尔t奥斯z sl伊斯z",
         "nationality": "Poland",
         "position": "Defensive Midfield",
         "position_cn": "防守中场",
@@ -1062,6 +1126,7 @@
       },
       {
         "name": "Damian Szymański",
+        "name_cn": "达米安 szy马ńs基",
         "nationality": "Poland",
         "position": "Defensive Midfield",
         "position_cn": "防守中场",
@@ -1076,6 +1141,7 @@
       },
       {
         "name": "Filip Rózga",
+        "name_cn": "菲利p róz加",
         "nationality": "Poland",
         "position": "Midfielder",
         "position_cn": "中场",
@@ -1090,6 +1156,7 @@
       },
       {
         "name": "Jakub Kiwior",
+        "name_cn": "雅各布",
         "nationality": "Poland",
         "position": "Centre-Back",
         "position_cn": "中后卫",
@@ -1104,6 +1171,7 @@
       },
       {
         "name": "Jakub Moder",
+        "name_cn": "雅各布",
         "nationality": "Poland",
         "position": "Central Midfield",
         "position_cn": "中前卫",
@@ -1118,6 +1186,7 @@
       },
       {
         "name": "Jakub Piotrowski",
+        "name_cn": "雅各布",
         "nationality": "Poland",
         "position": "Midfielder",
         "position_cn": "中场",
@@ -1132,6 +1201,7 @@
       },
       {
         "name": "Jan Bednarek",
+        "name_cn": "扬",
         "nationality": "Poland",
         "position": "Centre-Back",
         "position_cn": "中后卫",
@@ -1167,6 +1237,7 @@
     "players": [
       {
         "name": "Alex Sandro",
+        "name_cn": "亚历克斯",
         "nationality": "Brazil",
         "position": "Left-Back",
         "position_cn": "左后卫",
@@ -1181,6 +1252,7 @@
       },
       {
         "name": "Alisson Becker",
+        "name_cn": "贝克尔",
         "nationality": "Brazil",
         "position": "Goalkeeper",
         "position_cn": "门将",
@@ -1195,6 +1267,7 @@
       },
       {
         "name": "Bremer",
+        "name_cn": "",
         "nationality": "Brazil",
         "position": "Centre-Back",
         "position_cn": "中后卫",
@@ -1209,6 +1282,7 @@
       },
       {
         "name": "Bruno Guimarães",
+        "name_cn": "布鲁诺",
         "nationality": "Brazil",
         "position": "Defensive Midfield",
         "position_cn": "防守中场",
@@ -1223,6 +1297,7 @@
       },
       {
         "name": "Carlo Ancelotti",
+        "name_cn": "c阿尔洛 安塞洛t蒂",
         "nationality": "Italy",
         "position": "Manager",
         "position_cn": "主教练",
@@ -1237,6 +1312,7 @@
       },
       {
         "name": "Casemiro",
+        "name_cn": "",
         "nationality": "Brazil",
         "position": "Defensive Midfield",
         "position_cn": "防守中场",
@@ -1251,6 +1327,7 @@
       },
       {
         "name": "Danilo",
+        "name_cn": "达尼洛",
         "nationality": "Brazil",
         "position": "Centre-Back",
         "position_cn": "中后卫",
@@ -1265,6 +1342,7 @@
       },
       {
         "name": "Danilo Santos",
+        "name_cn": "达尼洛·桑托斯",
         "nationality": "Brazil",
         "position": "Central Midfield",
         "position_cn": "中前卫",
@@ -1279,6 +1357,7 @@
       },
       {
         "name": "Douglas Santos",
+        "name_cn": "桑托斯",
         "nationality": "Brazil",
         "position": "Left-Back",
         "position_cn": "左后卫",
@@ -1293,6 +1372,7 @@
       },
       {
         "name": "Ederson",
+        "name_cn": "",
         "nationality": "Brazil",
         "position": "Goalkeeper",
         "position_cn": "门将",
@@ -1328,6 +1408,7 @@
     "players": [
       {
         "name": "Abde Ezzalzouli",
+        "name_cn": "ab德 ezz阿尔佐u利",
         "nationality": "Morocco",
         "position": "Left Wing",
         "position_cn": "左边锋",
@@ -1342,6 +1423,7 @@
       },
       {
         "name": "Achraf Hakimi",
+        "name_cn": "阿什拉夫",
         "nationality": "Morocco",
         "position": "Right-Back",
         "position_cn": "右后卫",
@@ -1356,6 +1438,7 @@
       },
       {
         "name": "Ahmed Reda Tagnaouti",
+        "name_cn": "艾哈迈德",
         "nationality": "Morocco",
         "position": "Goalkeeper",
         "position_cn": "门将",
@@ -1370,6 +1453,7 @@
       },
       {
         "name": "Anass Salah-Eddine",
+        "name_cn": "安阿斯s s阿尔ah-ed迪内",
         "nationality": "Morocco",
         "position": "Left-Back",
         "position_cn": "左后卫",
@@ -1384,6 +1468,7 @@
       },
       {
         "name": "Ayoub El Kaabi",
+        "name_cn": "a约ub 埃尔 卡a比",
         "nationality": "Morocco",
         "position": "Centre-Forward",
         "position_cn": "中锋",
@@ -1398,6 +1483,7 @@
       },
       {
         "name": "Ayoube Amaimouni",
+        "name_cn": "a约u贝 a马伊姆ou尼",
         "nationality": "Morocco",
         "position": "Right Winger",
         "position_cn": "右边锋",
@@ -1412,6 +1498,7 @@
       },
       {
         "name": "Ayyoub Bouaddi",
+        "name_cn": "ay约ub 博uad迪",
         "nationality": "Morocco",
         "position": "Central Midfield",
         "position_cn": "中前卫",
@@ -1426,6 +1513,7 @@
       },
       {
         "name": "Azzedine Ounahi",
+        "name_cn": "az泽迪内 ou纳希",
         "nationality": "Morocco",
         "position": "Central Midfield",
         "position_cn": "中前卫",
@@ -1440,6 +1528,7 @@
       },
       {
         "name": "Bilal El Khannous",
+        "name_cn": "比l阿尔 埃尔 kh安诺乌斯",
         "nationality": "Morocco",
         "position": "Midfielder",
         "position_cn": "中场",
@@ -1454,6 +1543,7 @@
       },
       {
         "name": "Bono",
+        "name_cn": "",
         "nationality": "Morocco",
         "position": "Goalkeeper",
         "position_cn": "门将",
@@ -1509,6 +1599,7 @@
     "players": [
       {
         "name": "Aleksandr Golovin",
+        "name_cn": "阿尔eks安dr 戈洛v因",
         "nationality": "Russia",
         "position": "Midfielder",
         "position_cn": "中场",
@@ -1523,6 +1614,7 @@
       },
       {
         "name": "Aleksandr Sobolev",
+        "name_cn": "阿尔eks安dr 索博莱v",
         "nationality": "Russia",
         "position": "Centre-Forward",
         "position_cn": "中锋",
@@ -1537,6 +1629,7 @@
       },
       {
         "name": "Aleksei Miranchuk",
+        "name_cn": "阿尔ek塞i m伊尔安奇uk",
         "nationality": "Russia",
         "position": "Midfielder",
         "position_cn": "中场",
@@ -1551,6 +1644,7 @@
       },
       {
         "name": "Alexei Ionov",
+        "name_cn": "阿尔exei io诺v",
         "nationality": "Russia",
         "position": "Right Winger",
         "position_cn": "右边锋",
@@ -1565,6 +1659,7 @@
       },
       {
         "name": "Andrey Lunev",
+        "name_cn": "安d雷y 卢内v",
         "nationality": "Russia",
         "position": "Goalkeeper",
         "position_cn": "门将",
@@ -1579,6 +1674,7 @@
       },
       {
         "name": "Anton Shunin",
+        "name_cn": "安t昂 s胡n因",
         "nationality": "Russia",
         "position": "Goalkeeper",
         "position_cn": "门将",
@@ -1593,6 +1689,7 @@
       },
       {
         "name": "Anton Zabolotny",
+        "name_cn": "安t昂 扎博洛tny",
         "nationality": "Russia",
         "position": "Centre-Forward",
         "position_cn": "中锋",
@@ -1607,6 +1704,7 @@
       },
       {
         "name": "Artem Dzyuba",
+        "name_cn": "阿尔乔姆",
         "nationality": "Russia",
         "position": "Centre-Forward",
         "position_cn": "中锋",
@@ -1621,6 +1719,7 @@
       },
       {
         "name": "Daler Kuzyayev",
+        "name_cn": "d阿尔尔 库z亚耶v",
         "nationality": "Russia",
         "position": "Central Midfield",
         "position_cn": "中前卫",
@@ -1635,6 +1734,7 @@
       },
       {
         "name": "Daniil Fomin",
+        "name_cn": "d安i伊尔 福m因",
         "nationality": "Russia",
         "position": "Defensive Midfield",
         "position_cn": "防守中场",
@@ -1670,6 +1770,7 @@
     "players": [
       {
         "name": "Alejandro Zendejas",
+        "name_cn": "阿尔ej安d罗 z恩德j阿斯",
         "nationality": "United States",
         "position": "Right Winger",
         "position_cn": "右边锋",
@@ -1684,6 +1785,7 @@
       },
       {
         "name": "Alex Freeman",
+        "name_cn": "亚历克斯",
         "nationality": "United States",
         "position": "Right-Back",
         "position_cn": "右后卫",
@@ -1698,6 +1800,7 @@
       },
       {
         "name": "Antonee Robinson",
+        "name_cn": "安托内e 罗比ns昂",
         "nationality": "United States",
         "position": "Left-Back",
         "position_cn": "左后卫",
@@ -1712,6 +1815,7 @@
       },
       {
         "name": "Auston Trusty",
+        "name_cn": "a乌斯t昂 t鲁sty",
         "nationality": "United States",
         "position": "Centre-Back",
         "position_cn": "中后卫",
@@ -1726,6 +1830,7 @@
       },
       {
         "name": "Brenden Aaronson",
+        "name_cn": "布恩德n a阿尔昂s昂",
         "nationality": "United States",
         "position": "Attacking Midfield",
         "position_cn": "攻击中场",
@@ -1740,6 +1845,7 @@
       },
       {
         "name": "Chris Brady",
+        "name_cn": "奇r伊斯 布ady",
         "nationality": "United States",
         "position": "Goalkeeper",
         "position_cn": "门将",
@@ -1754,6 +1860,7 @@
       },
       {
         "name": "Chris Richards",
+        "name_cn": "奇r伊斯 里奇阿尔ds",
         "nationality": "United States",
         "position": "Centre-Back",
         "position_cn": "中后卫",
@@ -1768,6 +1875,7 @@
       },
       {
         "name": "Christian Pulisic",
+        "name_cn": "克里斯蒂安",
         "nationality": "United States",
         "position": "Right Winger",
         "position_cn": "右边锋",
@@ -1782,6 +1890,7 @@
       },
       {
         "name": "Cristian Roldan",
+        "name_cn": "克里斯蒂安",
         "nationality": "United States",
         "position": "Central Midfield",
         "position_cn": "中前卫",
@@ -1796,6 +1905,7 @@
       },
       {
         "name": "Folarin Balogun",
+        "name_cn": "福l阿尔因 b阿尔o古n",
         "nationality": "United States",
         "position": "Centre-Forward",
         "position_cn": "中锋",
@@ -1831,6 +1941,7 @@
     "players": [
       {
         "name": "Álex Arce",
+        "name_cn": "亚历克斯",
         "nationality": "Paraguay",
         "position": "Centre-Forward",
         "position_cn": "中锋",
@@ -1845,6 +1956,7 @@
       },
       {
         "name": "Alexandro Maidana",
+        "name_cn": "阿尔ex安d罗 马id安a",
         "nationality": "Paraguay",
         "position": "Left-Back",
         "position_cn": "左后卫",
@@ -1859,6 +1971,7 @@
       },
       {
         "name": "Andrés Cubas",
+        "name_cn": "安德烈斯",
         "nationality": "Paraguay",
         "position": "Defensive Midfield",
         "position_cn": "防守中场",
@@ -1873,6 +1986,7 @@
       },
       {
         "name": "Antonio Sanabria",
+        "name_cn": "安东尼奥",
         "nationality": "Paraguay",
         "position": "Centre-Forward",
         "position_cn": "中锋",
@@ -1887,6 +2001,7 @@
       },
       {
         "name": "Braian Ojeda",
+        "name_cn": "布ai安 o杰达",
         "nationality": "Paraguay",
         "position": "Defensive Midfield",
         "position_cn": "防守中场",
@@ -1901,6 +2016,7 @@
       },
       {
         "name": "Damián Bobadilla",
+        "name_cn": "达米án 博巴迪l拉",
         "nationality": "Paraguay",
         "position": "Central Midfield",
         "position_cn": "中前卫",
@@ -1915,6 +2031,7 @@
       },
       {
         "name": "Diego Gómez",
+        "name_cn": "迭戈·戈麦斯",
         "nationality": "Paraguay",
         "position": "Central Midfield",
         "position_cn": "中前卫",
@@ -1929,6 +2046,7 @@
       },
       {
         "name": "Fabián Balbuena",
+        "name_cn": "法比án b阿尔bu恩a",
         "nationality": "Paraguay",
         "position": "Centre-Back",
         "position_cn": "中后卫",
@@ -1943,6 +2061,7 @@
       },
       {
         "name": "Gabriel Ávalos",
+        "name_cn": "加布里埃尔",
         "nationality": "Paraguay",
         "position": "Centre-Forward",
         "position_cn": "中锋",
@@ -1957,6 +2076,7 @@
       },
       {
         "name": "Gastón Olveira",
+        "name_cn": "g阿斯tón 奥尔韦伊尔a",
         "nationality": "Paraguay",
         "position": "Goalkeeper",
         "position_cn": "门将",
@@ -1992,6 +2112,7 @@
     "players": [
       {
         "name": "Achref Abada",
+        "name_cn": "a奇雷f a巴达",
         "nationality": "Algeria",
         "position": "Centre-Back",
         "position_cn": "中后卫",
@@ -2006,6 +2127,7 @@
       },
       {
         "name": "Adil Boulbina",
+        "name_cn": "a迪l 博乌尔比纳",
         "nationality": "Algeria",
         "position": "Left Wing",
         "position_cn": "左边锋",
@@ -2020,6 +2142,7 @@
       },
       {
         "name": "Aïssa Mandi",
+        "name_cn": "aïs萨 m安迪",
         "nationality": "Algeria",
         "position": "Centre-Back",
         "position_cn": "中后卫",
@@ -2034,6 +2157,7 @@
       },
       {
         "name": "Amine Gouiri",
+        "name_cn": "阿明",
         "nationality": "Algeria",
         "position": "Centre-Forward",
         "position_cn": "中锋",
@@ -2048,6 +2172,7 @@
       },
       {
         "name": "Anis Hadj Moussa",
+        "name_cn": "安伊斯 哈dj 莫乌斯萨",
         "nationality": "Algeria",
         "position": "Right Winger",
         "position_cn": "右边锋",
@@ -2062,6 +2187,7 @@
       },
       {
         "name": "Farès Chaïbi",
+        "name_cn": "f阿尔ès 奇aï比",
         "nationality": "Algeria",
         "position": "Attacking Midfield",
         "position_cn": "攻击中场",
@@ -2076,6 +2202,7 @@
       },
       {
         "name": "Farès Ghedjemis",
+        "name_cn": "f阿尔ès g赫dj埃姆伊斯",
         "nationality": "Algeria",
         "position": "Right Winger",
         "position_cn": "右边锋",
@@ -2090,6 +2217,7 @@
       },
       {
         "name": "Hicham Boudaoui",
+        "name_cn": "希奇am 博u达oui",
         "nationality": "Algeria",
         "position": "Central Midfield",
         "position_cn": "中前卫",
@@ -2104,6 +2232,7 @@
       },
       {
         "name": "Houssem Aouar",
+        "name_cn": "霍乌斯s埃姆 aou阿尔",
         "nationality": "Algeria",
         "position": "Attacking Midfield",
         "position_cn": "攻击中场",
@@ -2118,6 +2247,7 @@
       },
       {
         "name": "Ibrahim Maza",
+        "name_cn": "i布a希m 马扎",
         "nationality": "Algeria",
         "position": "Attacking Midfield",
         "position_cn": "攻击中场",
@@ -2153,6 +2283,7 @@
     "players": [
       {
         "name": "Andreas Bjelland",
+        "name_cn": "安德烈亚斯",
         "nationality": "Denmark",
         "position": "Centre-Back",
         "position_cn": "中后卫",
@@ -2167,6 +2298,7 @@
       },
       {
         "name": "Baptiste Rolland",
+        "name_cn": "巴pt伊斯特 r奥尔l安d",
         "nationality": "France",
         "position": "Defender",
         "position_cn": "后卫",
@@ -2181,6 +2313,7 @@
       },
       {
         "name": "Brian Hämäläinen",
+        "name_cn": "布莱恩",
         "nationality": "Denmark",
         "position": "Defender",
         "position_cn": "后卫",
@@ -2195,6 +2328,7 @@
       },
       {
         "name": "Bror Blume-Jensen",
+        "name_cn": "布奥尔 b卢梅-j恩s恩",
         "nationality": "Denmark",
         "position": "",
         "position_cn": "",
@@ -2209,6 +2343,7 @@
       },
       {
         "name": "Casper Winther",
+        "name_cn": "c阿斯p尔 w因th尔",
         "nationality": "Denmark",
         "position": "Central Midfield",
         "position_cn": "中前卫",
@@ -2223,6 +2358,7 @@
       },
       {
         "name": "Django Warmerdam",
+        "name_cn": "dj安戈 w阿尔m尔达m",
         "nationality": "The Netherlands",
         "position": "Left-Back",
         "position_cn": "左后卫",
@@ -2237,6 +2373,7 @@
       },
       {
         "name": "Frederik Gytkjær",
+        "name_cn": "弗e德里k gytkjær",
         "nationality": "Denmark",
         "position": "Forward",
         "position_cn": "前锋",
@@ -2251,6 +2388,7 @@
       },
       {
         "name": "Freyr Alexandersson",
+        "name_cn": "弗eyr 阿尔ex安德rss昂",
         "nationality": "Iceland",
         "position": "Manager",
         "position_cn": "主教练",
@@ -2265,6 +2403,7 @@
       },
       {
         "name": "Gustav Mortensen",
+        "name_cn": "古s塔v 莫rt恩s恩",
         "nationality": "Denmark",
         "position": "Defender",
         "position_cn": "后卫",
@@ -2279,6 +2418,7 @@
       },
       {
         "name": "Lauge Sandgrav",
+        "name_cn": "拉u热 s安dg拉v",
         "nationality": "Denmark",
         "position": "Midfielder",
         "position_cn": "中场",
@@ -2314,6 +2454,7 @@
     "players": [
       {
         "name": "Aleksandar Pavlović",
+        "name_cn": "亚历山大·帕夫洛维奇",
         "nationality": "Germany",
         "position": "Defensive Midfield",
         "position_cn": "防守中场",
@@ -2328,6 +2469,7 @@
       },
       {
         "name": "Alexander Nübel",
+        "name_cn": "亚历山大",
         "nationality": "Germany",
         "position": "Goalkeeper",
         "position_cn": "门将",
@@ -2342,6 +2484,7 @@
       },
       {
         "name": "Angelo Stiller",
+        "name_cn": "安g埃尔o st伊尔l尔",
         "nationality": "Germany",
         "position": "Defensive Midfield",
         "position_cn": "防守中场",
@@ -2356,6 +2499,7 @@
       },
       {
         "name": "Antonio Rüdiger",
+        "name_cn": "安东尼奥",
         "nationality": "Germany",
         "position": "Centre-Back",
         "position_cn": "中后卫",
@@ -2370,6 +2514,7 @@
       },
       {
         "name": "Assan Ouédraogo",
+        "name_cn": "阿斯s安 ouéd拉o戈",
         "nationality": "Germany",
         "position": "Central Midfield",
         "position_cn": "中前卫",
@@ -2384,6 +2529,7 @@
       },
       {
         "name": "David Raum",
+        "name_cn": "大卫",
         "nationality": "Germany",
         "position": "Left-Back",
         "position_cn": "左后卫",
@@ -2398,6 +2544,7 @@
       },
       {
         "name": "Deniz Undav",
+        "name_cn": "德尼z 温达v",
         "nationality": "Germany",
         "position": "Centre-Forward",
         "position_cn": "中锋",
@@ -2412,6 +2559,7 @@
       },
       {
         "name": "Felix Nmecha",
+        "name_cn": "f埃尔ix n梅奇a",
         "nationality": "Germany",
         "position": "Central Midfield",
         "position_cn": "中前卫",
@@ -2426,6 +2574,7 @@
       },
       {
         "name": "Florian Wirtz",
+        "name_cn": "弗洛里安·维尔茨",
         "nationality": "Germany",
         "position": "Attacking Midfield",
         "position_cn": "攻击中场",
@@ -2440,6 +2589,7 @@
       },
       {
         "name": "Jamal Musiala",
+        "name_cn": "贾马尔·穆西亚拉",
         "nationality": "Germany",
         "position": "Attacking Midfield",
         "position_cn": "攻击中场",
@@ -2475,6 +2625,7 @@
     "players": [
       {
         "name": "Armin Hodžić",
+        "name_cn": "阿尔明",
         "nationality": "Bosnia and Herzegovina",
         "position": "Centre-Forward",
         "position_cn": "中锋",
@@ -2489,6 +2640,7 @@
       },
       {
         "name": "Jean-David Beauguel",
+        "name_cn": "杰安-达维d 贝au古埃尔",
         "nationality": "France",
         "position": "Centre-Forward",
         "position_cn": "中锋",
@@ -2564,6 +2716,7 @@
     "players": [
       {
         "name": "Bart Verbruggen",
+        "name_cn": "b阿尔t v尔布ugg恩",
         "nationality": "The Netherlands",
         "position": "Goalkeeper",
         "position_cn": "门将",
@@ -2578,6 +2731,7 @@
       },
       {
         "name": "Brian Brobbey",
+        "name_cn": "布莱恩",
         "nationality": "The Netherlands",
         "position": "Centre-Forward",
         "position_cn": "中锋",
@@ -2592,6 +2746,7 @@
       },
       {
         "name": "Cody Gakpo",
+        "name_cn": "科dy 加k波",
         "nationality": "The Netherlands",
         "position": "Left Wing",
         "position_cn": "左边锋",
@@ -2606,6 +2761,7 @@
       },
       {
         "name": "Crysencio Summerville",
+        "name_cn": "crys恩西o 苏mm尔v伊尔莱",
         "nationality": "The Netherlands",
         "position": "Right Winger",
         "position_cn": "右边锋",
@@ -2620,6 +2776,7 @@
       },
       {
         "name": "Denzel Dumfries",
+        "name_cn": "德nz埃尔 杜m弗i埃斯",
         "nationality": "The Netherlands",
         "position": "Right Midfield",
         "position_cn": "右中场",
@@ -2634,6 +2791,7 @@
       },
       {
         "name": "Donyell Malen",
+        "name_cn": "多ny埃尔l m阿尔恩",
         "nationality": "The Netherlands",
         "position": "Right Winger",
         "position_cn": "右边锋",
@@ -2648,6 +2806,7 @@
       },
       {
         "name": "Frenkie de Jong",
+        "name_cn": "弗恩基e 德 乔ng",
         "nationality": "The Netherlands",
         "position": "Central Midfield",
         "position_cn": "中前卫",
@@ -2662,6 +2821,7 @@
       },
       {
         "name": "Guus Til",
+        "name_cn": "古乌斯 t伊尔",
         "nationality": "The Netherlands",
         "position": "Attacking Midfield",
         "position_cn": "攻击中场",
@@ -2676,6 +2836,7 @@
       },
       {
         "name": "Jan Paul van Hecke",
+        "name_cn": "扬",
         "nationality": "The Netherlands",
         "position": "Centre-Back",
         "position_cn": "中后卫",
@@ -2690,6 +2851,7 @@
       },
       {
         "name": "Jorrel Hato",
+        "name_cn": "乔rr埃尔 哈托",
         "nationality": "The Netherlands",
         "position": "Left-Back",
         "position_cn": "左后卫",
@@ -2725,6 +2887,7 @@
     "players": [
       {
         "name": "Ao Tanaka",
+        "name_cn": "田中",
         "nationality": "Japan",
         "position": "Central Midfield",
         "position_cn": "中前卫",
@@ -2739,6 +2902,7 @@
       },
       {
         "name": "Ayase Ueda",
+        "name_cn": "ay阿斯e ue达",
         "nationality": "Japan",
         "position": "Centre-Forward",
         "position_cn": "中锋",
@@ -2753,6 +2917,7 @@
       },
       {
         "name": "Ayumu Seko",
+        "name_cn": "a尤穆 塞科",
         "nationality": "Japan",
         "position": "Defensive Midfield",
         "position_cn": "防守中场",
@@ -2767,6 +2932,7 @@
       },
       {
         "name": "Daichi Kamada",
+        "name_cn": "大地",
         "nationality": "Japan",
         "position": "Attacking Midfield",
         "position_cn": "攻击中场",
@@ -2781,6 +2947,7 @@
       },
       {
         "name": "Daizen Maeda",
+        "name_cn": "达iz恩 马e达",
         "nationality": "Japan",
         "position": "Left Wing",
         "position_cn": "左边锋",
@@ -2795,6 +2962,7 @@
       },
       {
         "name": "Hajime Moriyasu",
+        "name_cn": "哈j伊姆e 莫里y阿斯u",
         "nationality": "Japan",
         "position": "Manager",
         "position_cn": "主教练",
@@ -2809,6 +2977,7 @@
       },
       {
         "name": "Hiroki Itō",
+        "name_cn": "希罗基 itō",
         "nationality": "Japan",
         "position": "Centre-Back",
         "position_cn": "中后卫",
@@ -2823,6 +2992,7 @@
       },
       {
         "name": "Junnosuke Suzuki",
+        "name_cn": "铃木",
         "nationality": "Japan",
         "position": "Centre-Back",
         "position_cn": "中后卫",
@@ -2837,6 +3007,7 @@
       },
       {
         "name": "Junya Itō",
+        "name_cn": "朱n亚 itō",
         "nationality": "Japan",
         "position": "Right Winger",
         "position_cn": "右边锋",
@@ -2851,6 +3022,7 @@
       },
       {
         "name": "Kaishū Sano",
+        "name_cn": "卡伊斯hū s安o",
         "nationality": "Japan",
         "position": "Defensive Midfield",
         "position_cn": "防守中场",
@@ -2886,6 +3058,7 @@
     "players": [
       {
         "name": "Andrews Tetteh",
+        "name_cn": "安d雷ws 特t特h",
         "nationality": "Greece",
         "position": "Attacker",
         "position_cn": "前锋",
@@ -2900,6 +3073,7 @@
       },
       {
         "name": "Christos Mouzakitis",
+        "name_cn": "奇r伊斯t奥斯 莫u扎基t伊斯",
         "nationality": "Greece",
         "position": "Midfielder",
         "position_cn": "中场",
@@ -2914,6 +3088,7 @@
       },
       {
         "name": "Christos Tzolis",
+        "name_cn": "奇r伊斯t奥斯 tz奥尔伊斯",
         "nationality": "Greece",
         "position": "Left Wing",
         "position_cn": "左边锋",
@@ -2928,6 +3103,7 @@
       },
       {
         "name": "Christos Zafeiris",
+        "name_cn": "奇r伊斯t奥斯 扎费伊尔伊斯",
         "nationality": "Greece",
         "position": "Central Midfield",
         "position_cn": "中前卫",
@@ -2942,6 +3118,7 @@
       },
       {
         "name": "Dimitrios Kourbelis",
+        "name_cn": "迪米t里奥斯 科乌尔贝l伊斯",
         "nationality": "Greece",
         "position": "Defensive Midfield",
         "position_cn": "防守中场",
@@ -2956,6 +3133,7 @@
       },
       {
         "name": "Dimitrios Pelkas",
+        "name_cn": "迪米t里奥斯 p埃尔k阿斯",
         "nationality": "Greece",
         "position": "Attacking Midfield",
         "position_cn": "攻击中场",
@@ -2970,6 +3148,7 @@
       },
       {
         "name": "Dimitris Giannoulis",
+        "name_cn": "迪米tr伊斯 吉安诺乌尔伊斯",
         "nationality": "Greece",
         "position": "Left-Back",
         "position_cn": "左后卫",
@@ -2984,6 +3163,7 @@
       },
       {
         "name": "Giorgos Masouras",
+        "name_cn": "吉奥尔戈s m阿斯o乌尔阿斯",
         "nationality": "Greece",
         "position": "Left Wing",
         "position_cn": "左边锋",
@@ -2998,6 +3178,7 @@
       },
       {
         "name": "Konstantinos Koulierakis",
+        "name_cn": "科nst安t因奥斯 科u利尔ak伊斯",
         "nationality": "Greece",
         "position": "Centre-Back",
         "position_cn": "中后卫",
@@ -3012,6 +3193,7 @@
       },
       {
         "name": "Konstantinos Mavropanos",
+        "name_cn": "科nst安t因奥斯 马v罗p安奥斯",
         "nationality": "Greece",
         "position": "Centre-Back",
         "position_cn": "中后卫",
@@ -3047,6 +3229,7 @@
     "players": [
       {
         "name": "Abdulaziz Hatem",
+        "name_cn": "ab杜拉齐z 哈t埃姆",
         "nationality": "Qatar",
         "position": "Central Midfield",
         "position_cn": "中前卫",
@@ -3061,6 +3244,7 @@
       },
       {
         "name": "Ahmed Al-Ganehi",
+        "name_cn": "艾哈迈德",
         "nationality": "Qatar",
         "position": "Right Winger",
         "position_cn": "右边锋",
@@ -3075,6 +3259,7 @@
       },
       {
         "name": "Ahmed Alaaeldin",
+        "name_cn": "艾哈迈德",
         "nationality": "Qatar",
         "position": "Centre-Forward",
         "position_cn": "中锋",
@@ -3089,6 +3274,7 @@
       },
       {
         "name": "Ahmed Fathy",
+        "name_cn": "艾哈迈德",
         "nationality": "Qatar",
         "position": "Defensive Midfield",
         "position_cn": "防守中场",
@@ -3103,6 +3289,7 @@
       },
       {
         "name": "Akram Afif",
+        "name_cn": "ak拉m a菲f",
         "nationality": "Qatar",
         "position": "Left Wing",
         "position_cn": "左边锋",
@@ -3117,6 +3304,7 @@
       },
       {
         "name": "Al-Hashmi Al-Hussain",
+        "name_cn": "阿尔-h阿斯h米 阿尔-胡s萨因",
         "nationality": "Qatar",
         "position": "Centre-Back",
         "position_cn": "中后卫",
@@ -3131,6 +3319,7 @@
       },
       {
         "name": "Almoez Ali",
+        "name_cn": "阿尔莫ez 阿尔i",
         "nationality": "Qatar",
         "position": "Centre-Forward",
         "position_cn": "中锋",
@@ -3145,6 +3334,7 @@
       },
       {
         "name": "Assim Madibo",
+        "name_cn": "阿斯s伊姆 马迪博",
         "nationality": "Qatar",
         "position": "Defensive Midfield",
         "position_cn": "防守中场",
@@ -3159,6 +3349,7 @@
       },
       {
         "name": "Ayoub Al-Oui",
+        "name_cn": "a约ub 阿尔-oui",
         "nationality": "Qatar",
         "position": "Right-Back",
         "position_cn": "右后卫",
@@ -3173,6 +3364,7 @@
       },
       {
         "name": "Boualem Khoukhi",
+        "name_cn": "博u阿尔埃姆 k霍uk希",
         "nationality": "Qatar",
         "position": "Centre-Back",
         "position_cn": "中后卫",
@@ -3208,6 +3400,7 @@
     "players": [
       {
         "name": "Alexander Bah",
+        "name_cn": "亚历山大",
         "nationality": "Denmark",
         "position": "Right-Back",
         "position_cn": "右后卫",
@@ -3222,6 +3415,7 @@
       },
       {
         "name": "Andreas Christensen",
+        "name_cn": "安德烈亚斯",
         "nationality": "Denmark",
         "position": "Centre-Back",
         "position_cn": "中后卫",
@@ -3236,6 +3430,7 @@
       },
       {
         "name": "Andreas Skov Olsen",
+        "name_cn": "安德烈亚斯",
         "nationality": "Denmark",
         "position": "Winger",
         "position_cn": "边锋",
@@ -3250,6 +3445,7 @@
       },
       {
         "name": "Brian Riemer",
+        "name_cn": "布莱恩",
         "nationality": "Denmark",
         "position": "Manager",
         "position_cn": "主教练",
@@ -3264,6 +3460,7 @@
       },
       {
         "name": "Christian Eriksen",
+        "name_cn": "克里斯蒂安",
         "nationality": "Denmark",
         "position": "Attacking Midfield",
         "position_cn": "攻击中场",
@@ -3278,6 +3475,7 @@
       },
       {
         "name": "Christian Nørgaard",
+        "name_cn": "克里斯蒂安",
         "nationality": "Denmark",
         "position": "Defensive Midfield",
         "position_cn": "防守中场",
@@ -3292,6 +3490,7 @@
       },
       {
         "name": "Frederik Rønnow",
+        "name_cn": "弗e德里k røn诺w",
         "nationality": "Denmark",
         "position": "Goalkeeper",
         "position_cn": "门将",
@@ -3306,6 +3505,7 @@
       },
       {
         "name": "Jacob Bruun Larsen",
+        "name_cn": "雅各布",
         "nationality": "Denmark",
         "position": "Left Wing",
         "position_cn": "左边锋",
@@ -3320,6 +3520,7 @@
       },
       {
         "name": "Jannik Vestergaard",
+        "name_cn": "j安尼k v埃斯t尔加阿尔d",
         "nationality": "Denmark",
         "position": "Centre-Back",
         "position_cn": "中后卫",
@@ -3334,6 +3535,7 @@
       },
       {
         "name": "Joachim Andersen",
+        "name_cn": "乔a奇伊姆 安德rs恩",
         "nationality": "Denmark",
         "position": "Centre-Back",
         "position_cn": "中后卫",
@@ -3369,6 +3571,7 @@
     "players": [
       {
         "name": "Alexy Vega",
+        "name_cn": "维加",
         "nationality": "Honduras",
         "position": "Forward",
         "position_cn": "前锋",
@@ -3383,6 +3586,7 @@
       },
       {
         "name": "Andy Najar",
+        "name_cn": "安dy 纳j阿尔",
         "nationality": "Honduras",
         "position": "Midfielder",
         "position_cn": "中场",
@@ -3397,6 +3601,7 @@
       },
       {
         "name": "Carlos Mejía",
+        "name_cn": "卡洛斯",
         "nationality": "Honduras",
         "position": "Midfielder",
         "position_cn": "中场",
@@ -3411,6 +3616,7 @@
       },
       {
         "name": "Carlos Pineda",
+        "name_cn": "卡洛斯",
         "nationality": "Honduras",
         "position": "Midfielder",
         "position_cn": "中场",
@@ -3425,6 +3631,7 @@
       },
       {
         "name": "Cristopher Meléndez",
+        "name_cn": "cr伊斯托ph尔 m埃尔én德z",
         "nationality": "Honduras",
         "position": "Defender",
         "position_cn": "后卫",
@@ -3439,6 +3646,7 @@
       },
       {
         "name": "Dereck Moncada",
+        "name_cn": "德雷ck 莫n卡达",
         "nationality": "Honduras",
         "position": "Winger",
         "position_cn": "边锋",
@@ -3453,6 +3661,7 @@
       },
       {
         "name": "Dixon Ramírez",
+        "name_cn": "拉米雷斯",
         "nationality": "Honduras",
         "position": "Winger",
         "position_cn": "边锋",
@@ -3467,6 +3676,7 @@
       },
       {
         "name": "Edrick Menjivar",
+        "name_cn": "ed里ck m恩吉v阿尔",
         "nationality": "Honduras",
         "position": "Goalkeeper",
         "position_cn": "门将",
@@ -3481,6 +3691,7 @@
       },
       {
         "name": "Edwin Rodríguez",
+        "name_cn": "罗德里格斯",
         "nationality": "Honduras",
         "position": "Right Winger",
         "position_cn": "右边锋",
@@ -3495,6 +3706,7 @@
       },
       {
         "name": "Edwin Solano",
+        "name_cn": "edw因 s奥尔安o",
         "nationality": "Honduras",
         "position": "Midfielder",
         "position_cn": "中场",
@@ -3530,6 +3742,7 @@
     "players": [
       {
         "name": "Adalid Terrazas",
+        "name_cn": "ad阿尔id t尔拉z阿斯",
         "nationality": "Bolivia",
         "position": "Attacking Midfield",
         "position_cn": "攻击中场",
@@ -3544,6 +3757,7 @@
       },
       {
         "name": "Adrián Jusino",
+        "name_cn": "ad里án 朱s因o",
         "nationality": "Bolivia",
         "position": "Centre-Back",
         "position_cn": "中后卫",
@@ -3558,6 +3772,7 @@
       },
       {
         "name": "Antônio Carlos Zago",
+        "name_cn": "安tô尼o c阿尔洛s 扎戈",
         "nationality": "Brazil",
         "position": "Manager",
         "position_cn": "主教练",
@@ -3572,6 +3787,7 @@
       },
       {
         "name": "Boris Céspedes",
+        "name_cn": "博r伊斯 cés佩德s",
         "nationality": "Bolivia",
         "position": "Midfielder",
         "position_cn": "中场",
@@ -3586,6 +3802,7 @@
       },
       {
         "name": "Carmelo Algarañaz",
+        "name_cn": "c阿尔m埃尔o 阿尔g阿尔añaz",
         "nationality": "Bolivia",
         "position": "Centre-Forward",
         "position_cn": "中锋",
@@ -3600,6 +3817,7 @@
       },
       {
         "name": "César Menacho",
+        "name_cn": "塞萨尔",
         "nationality": "Bolivia",
         "position": "Forward",
         "position_cn": "前锋",
@@ -3614,6 +3832,7 @@
       },
       {
         "name": "Diego Arroyo",
+        "name_cn": "迭戈",
         "nationality": "Bolivia",
         "position": "Defender",
         "position_cn": "后卫",
@@ -3628,6 +3847,7 @@
       },
       {
         "name": "Diego Medina",
+        "name_cn": "迭戈·梅迪纳",
         "nationality": "Bolivia",
         "position": "Right-Back",
         "position_cn": "右后卫",
@@ -3642,6 +3862,7 @@
       },
       {
         "name": "Efrain Morales",
+        "name_cn": "莫拉莱斯",
         "nationality": "Bolivia",
         "position": "Centre-Back",
         "position_cn": "中后卫",
@@ -3656,6 +3877,7 @@
       },
       {
         "name": "Gabriel Sotomayor",
+        "name_cn": "加布里埃尔",
         "nationality": "Bolivia",
         "position": "Attacker",
         "position_cn": "前锋",
@@ -3691,6 +3913,7 @@
     "players": [
       {
         "name": "Alexis Saelemaekers",
+        "name_cn": "亚历克西斯",
         "nationality": "Belgium",
         "position": "Left Midfield",
         "position_cn": "左中场",
@@ -3705,6 +3928,7 @@
       },
       {
         "name": "Amadou Onana",
+        "name_cn": "a马多u 昂安a",
         "nationality": "Belgium",
         "position": "Defensive Midfield",
         "position_cn": "防守中场",
@@ -3719,6 +3943,7 @@
       },
       {
         "name": "Arthur Theate",
+        "name_cn": "阿图尔",
         "nationality": "Belgium",
         "position": "Centre-Back",
         "position_cn": "中后卫",
@@ -3733,6 +3958,7 @@
       },
       {
         "name": "Axel Witsel",
+        "name_cn": "ax埃尔 威ts埃尔",
         "nationality": "Belgium",
         "position": "Defensive Midfield",
         "position_cn": "防守中场",
@@ -3747,6 +3973,7 @@
       },
       {
         "name": "Brandon Mechele",
+        "name_cn": "布兰登",
         "nationality": "Belgium",
         "position": "Centre-Back",
         "position_cn": "中后卫",
@@ -3761,6 +3988,7 @@
       },
       {
         "name": "Charles De Ketelaere",
+        "name_cn": "查尔斯",
         "nationality": "Belgium",
         "position": "Attacking Midfield",
         "position_cn": "攻击中场",
@@ -3775,6 +4003,7 @@
       },
       {
         "name": "Diego Moreira",
+        "name_cn": "迭戈",
         "nationality": "Belgium",
         "position": "Left Midfield",
         "position_cn": "左中场",
@@ -3789,6 +4018,7 @@
       },
       {
         "name": "Dodi Lukébakio",
+        "name_cn": "多迪 卢ké巴基o",
         "nationality": "Belgium",
         "position": "Right Winger",
         "position_cn": "右边锋",
@@ -3803,6 +4033,7 @@
       },
       {
         "name": "Hans Vanaken",
+        "name_cn": "h安s v安ak恩",
         "nationality": "Belgium",
         "position": "Attacking Midfield",
         "position_cn": "攻击中场",
@@ -3817,6 +4048,7 @@
       },
       {
         "name": "Jérémy Doku",
+        "name_cn": "jérémy 多库",
         "nationality": "Belgium",
         "position": "Left Wing",
         "position_cn": "左边锋",
@@ -3852,6 +4084,7 @@
     "players": [
       {
         "name": "Álex Baena",
+        "name_cn": "亚历克斯",
         "nationality": "Spain",
         "position": "Left Midfield",
         "position_cn": "左中场",
@@ -3866,6 +4099,7 @@
       },
       {
         "name": "Álex Grimaldo",
+        "name_cn": "亚历克斯",
         "nationality": "Spain",
         "position": "Left-Back",
         "position_cn": "左后卫",
@@ -3880,6 +4114,7 @@
       },
       {
         "name": "Aymeric Laporte",
+        "name_cn": "aym尔ic 拉p奥尔特",
         "nationality": "Spain",
         "position": "Centre-Back",
         "position_cn": "中后卫",
@@ -3894,6 +4129,7 @@
       },
       {
         "name": "Borja Iglesias",
+        "name_cn": "博r哈 igl埃斯i阿斯",
         "nationality": "Spain",
         "position": "Centre-Forward",
         "position_cn": "中锋",
@@ -3908,6 +4144,7 @@
       },
       {
         "name": "Dani Olmo",
+        "name_cn": "d安i 奥尔莫",
         "nationality": "Spain",
         "position": "Attacking Midfield",
         "position_cn": "攻击中场",
@@ -3922,6 +4159,7 @@
       },
       {
         "name": "David Raya",
+        "name_cn": "大卫",
         "nationality": "Spain",
         "position": "Goalkeeper",
         "position_cn": "门将",
@@ -3936,6 +4174,7 @@
       },
       {
         "name": "Eric García",
+        "name_cn": "埃里克·加西亚",
         "nationality": "Spain",
         "position": "Centre-Back",
         "position_cn": "中后卫",
@@ -3950,6 +4189,7 @@
       },
       {
         "name": "Fabián Ruiz",
+        "name_cn": "鲁伊斯",
         "nationality": "Spain",
         "position": "Central Midfield",
         "position_cn": "中前卫",
@@ -3964,6 +4204,7 @@
       },
       {
         "name": "Ferran Torres",
+        "name_cn": "托雷斯",
         "nationality": "Spain",
         "position": "Left Wing",
         "position_cn": "左边锋",
@@ -3978,6 +4219,7 @@
       },
       {
         "name": "Gavi",
+        "name_cn": "加维",
         "nationality": "Spain",
         "position": "Central Midfield",
         "position_cn": "中前卫",
@@ -4013,6 +4255,7 @@
     "players": [
       {
         "name": "Alfredo Ábalos",
+        "name_cn": "阿尔弗e多 áb阿尔奥斯",
         "nationality": "Argentina",
         "position": "Attacker",
         "position_cn": "前锋",
@@ -4027,6 +4270,7 @@
       },
       {
         "name": "Alonso Rodríguez",
+        "name_cn": "罗德里格斯",
         "nationality": "Chile",
         "position": "Defensive Midfield",
         "position_cn": "防守中场",
@@ -4041,6 +4285,7 @@
       },
       {
         "name": "Felipe Barrientos",
+        "name_cn": "f埃尔i佩 b阿尔里恩t奥斯",
         "nationality": "Chile",
         "position": "Right Winger",
         "position_cn": "右边锋",
@@ -4055,6 +4300,7 @@
       },
       {
         "name": "Gary Moya Sandoval",
+        "name_cn": "g阿尔y 莫亚 s安多v阿尔",
         "nationality": "Chile",
         "position": "Central Midfield",
         "position_cn": "中前卫",
@@ -4069,6 +4315,7 @@
       },
       {
         "name": "Gastón Rodríguez",
+        "name_cn": "罗德里格斯",
         "nationality": "Uruguay",
         "position": "Goalkeeper",
         "position_cn": "门将",
@@ -4083,6 +4330,7 @@
       },
       {
         "name": "Ian Toro",
+        "name_cn": "i安 t奥尔o",
         "nationality": "Chile",
         "position": "Left-Back",
         "position_cn": "左后卫",
@@ -4097,6 +4345,7 @@
       },
       {
         "name": "Ignacio Caroca Cordero",
+        "name_cn": "ig纳西o c阿尔o卡 科r德罗",
         "nationality": "Chile",
         "position": "Midfielder",
         "position_cn": "中场",
@@ -4111,6 +4360,7 @@
       },
       {
         "name": "Juan Abarca Fuentes",
+        "name_cn": "朱安 ab阿尔卡 fu恩t埃斯",
         "nationality": "Chile",
         "position": "Defender",
         "position_cn": "后卫",
@@ -4125,6 +4375,7 @@
       },
       {
         "name": "Juan Sánchez Sotelo",
+        "name_cn": "朱安 sán奇ez 索t埃尔o",
         "nationality": "Argentina",
         "position": "Centre-Forward",
         "position_cn": "中锋",
@@ -4139,6 +4390,7 @@
       },
       {
         "name": "Manuel Lolas Martínez",
+        "name_cn": "曼努埃尔·马丁内斯",
         "nationality": "Chile",
         "position": "Attacker",
         "position_cn": "前锋",
@@ -4174,6 +4426,7 @@
     "players": [
       {
         "name": "André Calisir",
+        "name_cn": "安dré c阿尔伊斯伊尔",
         "nationality": "Armenia",
         "position": "Centre-Back",
         "position_cn": "中后卫",
@@ -4188,6 +4441,7 @@
       },
       {
         "name": "Arsen Beglaryan",
+        "name_cn": "阿尔s恩 贝gl阿尔y安",
         "nationality": "Armenia",
         "position": "Goalkeeper",
         "position_cn": "门将",
@@ -4202,6 +4456,7 @@
       },
       {
         "name": "Artak Dashyan",
+        "name_cn": "阿尔塔k d阿斯hy安",
         "nationality": "Armenia",
         "position": "Midfielder",
         "position_cn": "中场",
@@ -4216,6 +4471,7 @@
       },
       {
         "name": "Edgar Sevikyan",
+        "name_cn": "edg阿尔 塞维ky安",
         "nationality": "Armenia",
         "position": "Right Winger",
         "position_cn": "右边锋",
@@ -4230,6 +4486,7 @@
       },
       {
         "name": "Eduard Spertsyan",
+        "name_cn": "e杜阿尔d sp尔tsy安",
         "nationality": "Armenia",
         "position": "Attacking Midfield",
         "position_cn": "攻击中场",
@@ -4244,6 +4501,7 @@
       },
       {
         "name": "Georgi Harutyunyan",
+        "name_cn": "热奥尔吉 h阿尔uty温y安",
         "nationality": "Armenia",
         "position": "Centre-Back",
         "position_cn": "中后卫",
@@ -4258,6 +4516,7 @@
       },
       {
         "name": "Grant-Leon Ranos",
+        "name_cn": "gr安t-莱昂 r安奥斯",
         "nationality": "Armenia",
         "position": "Centre-Forward",
         "position_cn": "中锋",
@@ -4272,6 +4531,7 @@
       },
       {
         "name": "Henri Avagyan",
+        "name_cn": "h恩里 a瓦gy安",
         "nationality": "Armenia",
         "position": "Goalkeeper",
         "position_cn": "门将",
@@ -4286,6 +4546,7 @@
       },
       {
         "name": "Hovhannes Harutyunyan",
+        "name_cn": "霍vh安n埃斯 h阿尔uty温y安",
         "nationality": "Armenia",
         "position": "Central Midfield",
         "position_cn": "中前卫",
@@ -4300,6 +4561,7 @@
       },
       {
         "name": "Kamo Hovhannisyan",
+        "name_cn": "卡莫 霍vh安n伊斯y安",
         "nationality": "Armenia",
         "position": "Right-Back",
         "position_cn": "右后卫",
@@ -4335,6 +4597,7 @@
     "players": [
       {
         "name": "André Onana",
+        "name_cn": "安dré 昂安a",
         "nationality": "Cameroon",
         "position": "Goalkeeper",
         "position_cn": "门将",
@@ -4349,6 +4612,7 @@
       },
       {
         "name": "Andre-Frank Zambo Anguissa",
+        "name_cn": "安d雷-弗安k 扎m博 安古伊斯萨",
         "nationality": "Cameroon",
         "position": "Midfielder",
         "position_cn": "中场",
@@ -4363,6 +4627,7 @@
       },
       {
         "name": "Bryan Mbeumo",
+        "name_cn": "布y安 m贝u莫",
         "nationality": "Cameroon",
         "position": "Right Winger",
         "position_cn": "右边锋",
@@ -4377,6 +4642,7 @@
       },
       {
         "name": "Che Malone",
+        "name_cn": "奇e m阿尔o内",
         "nationality": "Cameroon",
         "position": "Defender",
         "position_cn": "后卫",
@@ -4391,6 +4657,7 @@
       },
       {
         "name": "Christian Bassogog",
+        "name_cn": "克里斯蒂安",
         "nationality": "Cameroon",
         "position": "Forward",
         "position_cn": "前锋",
@@ -4405,6 +4672,7 @@
       },
       {
         "name": "Christopher Wooh",
+        "name_cn": "克里斯托弗",
         "nationality": "Cameroon",
         "position": "Defender",
         "position_cn": "后卫",
@@ -4419,6 +4687,7 @@
       },
       {
         "name": "Collins Fai",
+        "name_cn": "科ll因s 法i",
         "nationality": "Cameroon",
         "position": "Defender",
         "position_cn": "后卫",
@@ -4433,6 +4702,7 @@
       },
       {
         "name": "Devis Epassy",
+        "name_cn": "德v伊斯 ep阿斯sy",
         "nationality": "Cameroon",
         "position": "Goalkeeper",
         "position_cn": "门将",
@@ -4447,6 +4717,7 @@
       },
       {
         "name": "Enzo Ebosse",
+        "name_cn": "恩佐 e博s塞",
         "nationality": "Cameroon",
         "position": "Centre-Back",
         "position_cn": "中后卫",
@@ -4461,6 +4732,7 @@
       },
       {
         "name": "Flavien Enzo Boyomo",
+        "name_cn": "f拉维恩 恩佐 博约莫",
         "nationality": "Cameroon",
         "position": "Centre-Back",
         "position_cn": "中后卫",
@@ -4496,6 +4768,7 @@
     "players": [
       {
         "name": "Adrien Rabiot",
+        "name_cn": "阿德里安·拉比奥",
         "nationality": "France",
         "position": "Central Midfield",
         "position_cn": "中前卫",
@@ -4510,6 +4783,7 @@
       },
       {
         "name": "Aurélien Tchouaméni",
+        "name_cn": "a乌尔é利恩 t奇ouamé尼",
         "nationality": "France",
         "position": "Defensive Midfield",
         "position_cn": "防守中场",
@@ -4524,6 +4798,7 @@
       },
       {
         "name": "Bradley Barcola",
+        "name_cn": "布拉德利",
         "nationality": "France",
         "position": "Left Wing",
         "position_cn": "左边锋",
@@ -4538,6 +4813,7 @@
       },
       {
         "name": "Brice Samba",
+        "name_cn": "布i塞 萨m巴",
         "nationality": "France",
         "position": "Goalkeeper",
         "position_cn": "门将",
@@ -4552,6 +4828,7 @@
       },
       {
         "name": "Dayot Upamecano",
+        "name_cn": "达约t u帕梅c安o",
         "nationality": "France",
         "position": "Centre-Back",
         "position_cn": "中后卫",
@@ -4566,6 +4843,7 @@
       },
       {
         "name": "Désiré Doué",
+        "name_cn": "dés伊尔é 多ué",
         "nationality": "France",
         "position": "Left Midfield",
         "position_cn": "左中场",
@@ -4580,6 +4858,7 @@
       },
       {
         "name": "Didier Deschamps",
+        "name_cn": "迪迪尔 德s奇amps",
         "nationality": "France",
         "position": "Manager",
         "position_cn": "主教练",
@@ -4594,6 +4873,7 @@
       },
       {
         "name": "Ibrahima Konaté",
+        "name_cn": "i布a希马 科纳té",
         "nationality": "France",
         "position": "Centre-Back",
         "position_cn": "中后卫",
@@ -4608,6 +4888,7 @@
       },
       {
         "name": "Jean-Philippe Mateta",
+        "name_cn": "杰安-p希利p佩 马特塔",
         "nationality": "France",
         "position": "Centre-Forward",
         "position_cn": "中锋",
@@ -4622,6 +4903,7 @@
       },
       {
         "name": "Jules Koundé",
+        "name_cn": "朱l埃斯 科温dé",
         "nationality": "France",
         "position": "Centre-Back",
         "position_cn": "中后卫",
@@ -4657,6 +4939,7 @@
     "players": [
       {
         "name": "Alexander González",
+        "name_cn": "亚历山大·冈萨雷斯",
         "nationality": "Venezuela",
         "position": "Right Winger",
         "position_cn": "右边锋",
@@ -4671,6 +4954,7 @@
       },
       {
         "name": "Bryant Ortega",
+        "name_cn": "布y安t 奥尔特加",
         "nationality": "Venezuela",
         "position": "Central Midfield",
         "position_cn": "中前卫",
@@ -4685,6 +4969,7 @@
       },
       {
         "name": "Christian Makoun",
+        "name_cn": "克里斯蒂安",
         "nationality": "Venezuela",
         "position": "Centre-Back",
         "position_cn": "中后卫",
@@ -4699,6 +4984,7 @@
       },
       {
         "name": "Cristian Cásseres Jr.",
+        "name_cn": "克里斯蒂安",
         "nationality": "Venezuela",
         "position": "Central Midfield",
         "position_cn": "中前卫",
@@ -4713,6 +4999,7 @@
       },
       {
         "name": "Daniel Pereira",
+        "name_cn": "丹尼尔·佩雷拉",
         "nationality": "Venezuela",
         "position": "Central Midfield",
         "position_cn": "中前卫",
@@ -4727,6 +5014,7 @@
       },
       {
         "name": "Darwin Machís",
+        "name_cn": "d阿尔w因 马奇ís",
         "nationality": "Venezuela",
         "position": "Left Wing",
         "position_cn": "左边锋",
@@ -4741,6 +5029,7 @@
       },
       {
         "name": "Eduard Bello",
+        "name_cn": "e杜阿尔d 贝l洛",
         "nationality": "Venezuela",
         "position": "Second Striker",
         "position_cn": "影子前锋",
@@ -4755,6 +5044,7 @@
       },
       {
         "name": "Eric Ramírez",
+        "name_cn": "埃里克·拉米雷斯",
         "nationality": "Venezuela",
         "position": "Centre-Forward",
         "position_cn": "中锋",
@@ -4769,6 +5059,7 @@
       },
       {
         "name": "Jefferson Savarino",
+        "name_cn": "杰ff尔s昂 萨v阿尔因o",
         "nationality": "Venezuela",
         "position": "Attacking Midfield",
         "position_cn": "攻击中场",
@@ -4783,6 +5074,7 @@
       },
       {
         "name": "Jhon Chancellor",
+        "name_cn": "j霍n 奇安塞l洛r",
         "nationality": "Venezuela",
         "position": "Centre-Back",
         "position_cn": "中后卫",
@@ -4838,6 +5130,7 @@
     "players": [
       {
         "name": "Alessandro Bastoni",
+        "name_cn": "阿尔埃斯s安d罗 b阿斯托尼",
         "nationality": "Italy",
         "position": "Centre-Back",
         "position_cn": "中后卫",
@@ -4852,6 +5145,7 @@
       },
       {
         "name": "Alessandro Buongiorno",
+        "name_cn": "阿尔埃斯s安d罗 bu昂吉奥尔诺",
         "nationality": "Italy",
         "position": "Centre-Back",
         "position_cn": "中后卫",
@@ -4866,6 +5160,7 @@
       },
       {
         "name": "Alex Meret",
+        "name_cn": "亚历克斯",
         "nationality": "Italy",
         "position": "Goalkeeper",
         "position_cn": "门将",
@@ -4880,6 +5175,7 @@
       },
       {
         "name": "Andrea Cambiaso",
+        "name_cn": "安d雷a 卡m比阿斯o",
         "nationality": "Italy",
         "position": "Defender",
         "position_cn": "后卫",
@@ -4894,6 +5190,7 @@
       },
       {
         "name": "Bryan Cristante",
+        "name_cn": "布y安 cr伊斯t安特",
         "nationality": "Italy",
         "position": "Midfielder",
         "position_cn": "中场",
@@ -4908,6 +5205,7 @@
       },
       {
         "name": "Davide Frattesi",
+        "name_cn": "达维德 弗att埃斯i",
         "nationality": "Italy",
         "position": "Central Midfield",
         "position_cn": "中前卫",
@@ -4922,6 +5220,7 @@
       },
       {
         "name": "Federico Chiesa",
+        "name_cn": "费德里科",
         "nationality": "Italy",
         "position": "Left Wing",
         "position_cn": "左边锋",
@@ -4936,6 +5235,7 @@
       },
       {
         "name": "Federico Dimarco",
+        "name_cn": "费德里科",
         "nationality": "Italy",
         "position": "Left-Back",
         "position_cn": "左后卫",
@@ -4950,6 +5250,7 @@
       },
       {
         "name": "Federico Gatti",
+        "name_cn": "费德里科",
         "nationality": "Italy",
         "position": "Defender",
         "position_cn": "后卫",
@@ -4964,6 +5265,7 @@
       },
       {
         "name": "Giacomo Raspadori",
+        "name_cn": "吉a科莫 r阿斯帕多里",
         "nationality": "Italy",
         "position": "Forward",
         "position_cn": "前锋",
@@ -4999,6 +5301,7 @@
     "players": [
       {
         "name": "Alexis Mac Allister",
+        "name_cn": "亚历克西斯·麦卡利斯特",
         "nationality": "Argentina",
         "position": "Central Midfield",
         "position_cn": "中前卫",
@@ -5013,6 +5316,7 @@
       },
       {
         "name": "Cristian Romero",
+        "name_cn": "克里斯蒂安·罗梅罗",
         "nationality": "Argentina",
         "position": "Centre-Back",
         "position_cn": "中后卫",
@@ -5027,6 +5331,7 @@
       },
       {
         "name": "Emiliano Martinez",
+        "name_cn": "埃米利亚诺",
         "nationality": "Argentina",
         "position": "Goalkeeper",
         "position_cn": "门将",
@@ -5041,6 +5346,7 @@
       },
       {
         "name": "Enzo Fernández",
+        "name_cn": "费尔南德斯",
         "nationality": "Argentina",
         "position": "Central Midfield",
         "position_cn": "中前卫",
@@ -5055,6 +5361,7 @@
       },
       {
         "name": "Exequiel Palacios",
+        "name_cn": "exe奎i埃尔 p阿尔a西奥斯",
         "nationality": "Argentina",
         "position": "Central Midfield",
         "position_cn": "中前卫",
@@ -5069,6 +5376,7 @@
       },
       {
         "name": "Facundo Medina",
+        "name_cn": "梅迪纳",
         "nationality": "Argentina",
         "position": "Centre-Back",
         "position_cn": "中后卫",
@@ -5083,6 +5391,7 @@
       },
       {
         "name": "Gerónimo Rulli",
+        "name_cn": "g尔ón伊姆o 鲁l利",
         "nationality": "Argentina",
         "position": "Goalkeeper",
         "position_cn": "门将",
@@ -5097,6 +5406,7 @@
       },
       {
         "name": "Giovani Lo Celso",
+        "name_cn": "吉ov安i 洛 塞l索",
         "nationality": "Argentina",
         "position": "Attacking Midfield",
         "position_cn": "攻击中场",
@@ -5111,6 +5421,7 @@
       },
       {
         "name": "Giuliano Simeone",
+        "name_cn": "吉u利安o s伊姆eo内",
         "nationality": "Argentina",
         "position": "Centre-Forward",
         "position_cn": "中锋",
@@ -5125,6 +5436,7 @@
       },
       {
         "name": "Gonzalo Montiel",
+        "name_cn": "戈nz阿尔o 莫n蒂埃尔",
         "nationality": "Argentina",
         "position": "Right-Back",
         "position_cn": "右后卫",
@@ -5160,6 +5472,7 @@
     "players": [
       {
         "name": "Abdoulaye Touré",
+        "name_cn": "图雷",
         "nationality": "Burkina Faso",
         "position": "Midfielder",
         "position_cn": "中场",
@@ -5174,6 +5487,7 @@
       },
       {
         "name": "Abdul Ayindé",
+        "name_cn": "ab杜l ay因dé",
         "nationality": "Burkina Faso",
         "position": "Defender",
         "position_cn": "后卫",
@@ -5188,6 +5502,7 @@
       },
       {
         "name": "Adolphe Belem",
+        "name_cn": "a多lp赫 贝l埃姆",
         "nationality": "Burkina Faso",
         "position": "Attacker",
         "position_cn": "前锋",
@@ -5202,6 +5517,7 @@
       },
       {
         "name": "Arthur Zagré",
+        "name_cn": "阿图尔",
         "nationality": "Burkina Faso",
         "position": "Defender",
         "position_cn": "后卫",
@@ -5216,6 +5532,7 @@
       },
       {
         "name": "Blati Touré",
+        "name_cn": "图雷",
         "nationality": "Burkina Faso",
         "position": "Midfielder",
         "position_cn": "中场",
@@ -5230,6 +5547,7 @@
       },
       {
         "name": "Cedric Badolo",
+        "name_cn": "塞d里c 巴多洛",
         "nationality": "Burkina Faso",
         "position": "Attacking Midfield",
         "position_cn": "攻击中场",
@@ -5244,6 +5562,7 @@
       },
       {
         "name": "Cheick Ouattara",
+        "name_cn": "奇eick ouatt阿尔a",
         "nationality": "Burkina Faso",
         "position": "Attacker",
         "position_cn": "前锋",
@@ -5258,6 +5577,7 @@
       },
       {
         "name": "Cyriaque Irié",
+        "name_cn": "cy里a奎e 伊尔ié",
         "nationality": "Burkina Faso",
         "position": "Attacker",
         "position_cn": "前锋",
@@ -5272,6 +5592,7 @@
       },
       {
         "name": "Georgi Minoungou",
+        "name_cn": "热奥尔吉 m因o温戈u",
         "nationality": "Burkina Faso",
         "position": "Attacker",
         "position_cn": "前锋",
@@ -5286,6 +5607,7 @@
       },
       {
         "name": "Hamed Ouattara",
+        "name_cn": "哈梅d ouatt阿尔a",
         "nationality": "Burkina Faso",
         "position": "Attacker",
         "position_cn": "前锋",
@@ -5321,6 +5643,7 @@
     "players": [
       {
         "name": "Aiden McGeady",
+        "name_cn": "ai德n mc热ady",
         "nationality": "Ireland",
         "position": "Winger",
         "position_cn": "边锋",
@@ -5335,6 +5658,7 @@
       },
       {
         "name": "Caoimhín Kelleher",
+        "name_cn": "卡o伊姆hín k埃尔莱h尔",
         "nationality": "Ireland",
         "position": "Goalkeeper",
         "position_cn": "门将",
@@ -5349,6 +5673,7 @@
       },
       {
         "name": "Ciaran Clark",
+        "name_cn": "克拉克",
         "nationality": "Ireland",
         "position": "Defender",
         "position_cn": "后卫",
@@ -5363,6 +5688,7 @@
       },
       {
         "name": "Finn Azaz",
+        "name_cn": "菲nn a扎z",
         "nationality": "Ireland",
         "position": "Midfielder",
         "position_cn": "中场",
@@ -5377,6 +5703,7 @@
       },
       {
         "name": "Jack Taylor",
+        "name_cn": "泰勒",
         "nationality": "Ireland",
         "position": "Midfielder",
         "position_cn": "中场",
@@ -5391,6 +5718,7 @@
       },
       {
         "name": "Jaden Umeh",
+        "name_cn": "哈德n u梅h",
         "nationality": "Ireland",
         "position": "Winger",
         "position_cn": "边锋",
@@ -5405,6 +5733,7 @@
       },
       {
         "name": "James Collins",
+        "name_cn": "詹姆斯",
         "nationality": "Ireland",
         "position": "Forward",
         "position_cn": "前锋",
@@ -5419,6 +5748,7 @@
       },
       {
         "name": "Jamie McGrath",
+        "name_cn": "哈米e mcg拉th",
         "nationality": "Ireland",
         "position": "Midfielder",
         "position_cn": "中场",
@@ -5433,6 +5763,7 @@
       },
       {
         "name": "Jason Knight",
+        "name_cn": "杰森",
         "nationality": "Ireland",
         "position": "Midfielder",
         "position_cn": "中场",
@@ -5447,6 +5778,7 @@
       },
       {
         "name": "John Egan",
+        "name_cn": "约翰",
         "nationality": "Ireland",
         "position": "Centre-Back",
         "position_cn": "中后卫",
@@ -5502,6 +5834,7 @@
     "players": [
       {
         "name": "Bernardo Silva",
+        "name_cn": "席尔瓦",
         "nationality": "Portugal",
         "position": "Attacking Midfield",
         "position_cn": "攻击中场",
@@ -5516,6 +5849,7 @@
       },
       {
         "name": "Bruno Fernandes",
+        "name_cn": "布鲁诺",
         "nationality": "Portugal",
         "position": "Central Midfield",
         "position_cn": "中前卫",
@@ -5530,6 +5864,7 @@
       },
       {
         "name": "Cristiano Ronaldo",
+        "name_cn": "克里斯蒂亚诺·罗纳尔多",
         "nationality": "Portugal",
         "position": "Centre-Forward",
         "position_cn": "中锋",
@@ -5544,6 +5879,7 @@
       },
       {
         "name": "Diogo Costa",
+        "name_cn": "科斯塔",
         "nationality": "Portugal",
         "position": "Goalkeeper",
         "position_cn": "门将",
@@ -5558,6 +5894,7 @@
       },
       {
         "name": "Diogo Dalot",
+        "name_cn": "迪o戈 d阿尔ot",
         "nationality": "Portugal",
         "position": "Right-Back",
         "position_cn": "右后卫",
@@ -5572,6 +5909,7 @@
       },
       {
         "name": "Francisco Conceição",
+        "name_cn": "弗朗西斯科",
         "nationality": "Portugal",
         "position": "Right Midfield",
         "position_cn": "右中场",
@@ -5586,6 +5924,7 @@
       },
       {
         "name": "Francisco Trincão",
+        "name_cn": "弗朗西斯科",
         "nationality": "Portugal",
         "position": "Attacking Midfield",
         "position_cn": "攻击中场",
@@ -5600,6 +5939,7 @@
       },
       {
         "name": "Gonçalo Guedes",
+        "name_cn": "贡萨洛",
         "nationality": "Portugal",
         "position": "Left Wing",
         "position_cn": "左边锋",
@@ -5614,6 +5954,7 @@
       },
       {
         "name": "Gonçalo Inácio",
+        "name_cn": "贡萨洛",
         "nationality": "Portugal",
         "position": "Centre-Back",
         "position_cn": "中后卫",
@@ -5628,6 +5969,7 @@
       },
       {
         "name": "Gonçalo Ramos",
+        "name_cn": "贡萨洛",
         "nationality": "Portugal",
         "position": "Centre-Forward",
         "position_cn": "中锋",
@@ -5663,6 +6005,7 @@
     "players": [
       {
         "name": "Aaron Tshibola",
+        "name_cn": "a阿尔昂 ts希博拉",
         "nationality": "DR Congo",
         "position": "Midfielder",
         "position_cn": "中场",
@@ -5677,6 +6020,7 @@
       },
       {
         "name": "Aaron Wan-Bissaka",
+        "name_cn": "a阿尔昂 w安-比s萨卡",
         "nationality": "DR Congo",
         "position": "Right-Back",
         "position_cn": "右后卫",
@@ -5691,6 +6035,7 @@
       },
       {
         "name": "Arthur Masuaku",
+        "name_cn": "阿图尔",
         "nationality": "DR Congo",
         "position": "Left-Back",
         "position_cn": "左后卫",
@@ -5705,6 +6050,7 @@
       },
       {
         "name": "Axel Tuanzebe",
+        "name_cn": "ax埃尔 图安泽贝",
         "nationality": "DR Congo",
         "position": "Centre-Back",
         "position_cn": "中后卫",
@@ -5719,6 +6065,7 @@
       },
       {
         "name": "Brian Cipenga",
+        "name_cn": "布莱恩",
         "nationality": "DR Congo",
         "position": "Left Wing",
         "position_cn": "左边锋",
@@ -5733,6 +6080,7 @@
       },
       {
         "name": "Cédric Bakambu",
+        "name_cn": "céd里c 巴卡mbu",
         "nationality": "DR Congo",
         "position": "Centre-Forward",
         "position_cn": "中锋",
@@ -5747,6 +6095,7 @@
       },
       {
         "name": "Chancel Mbemba",
+        "name_cn": "奇安塞l m贝m巴",
         "nationality": "DR Congo",
         "position": "Centre-Back",
         "position_cn": "中后卫",
@@ -5761,6 +6110,7 @@
       },
       {
         "name": "Charles Pickel",
+        "name_cn": "查尔斯",
         "nationality": "DR Congo",
         "position": "Defensive Midfield",
         "position_cn": "防守中场",
@@ -5775,6 +6125,7 @@
       },
       {
         "name": "Dylan Batubinsika",
+        "name_cn": "dyl安 巴图比n西卡",
         "nationality": "DR Congo",
         "position": "Centre-Back",
         "position_cn": "中后卫",
@@ -5789,6 +6140,7 @@
       },
       {
         "name": "Edo Kayembe",
+        "name_cn": "e多 卡y埃姆贝",
         "nationality": "DR Congo",
         "position": "Defensive Midfield",
         "position_cn": "防守中场",
@@ -5824,6 +6176,7 @@
     "players": [
       {
         "name": "Alex Sutcliffe",
+        "name_cn": "亚历克斯",
         "nationality": "England",
         "position": "Second Row",
         "position_cn": "第二排(橄榄球)",
@@ -5838,6 +6191,7 @@
       },
       {
         "name": "Andre Savelio",
+        "name_cn": "安d雷 萨v埃尔io",
         "nationality": "New Zealand",
         "position": "Second Row",
         "position_cn": "第二排(橄榄球)",
@@ -5852,6 +6206,7 @@
       },
       {
         "name": "Joe Lovodua",
+        "name_cn": "乔e 洛沃杜a",
         "nationality": "Fiji",
         "position": "Hooker",
         "position_cn": "钩球(橄榄球)",
@@ -5866,6 +6221,7 @@
       },
       {
         "name": "Josh Bowden",
+        "name_cn": "乔sh 博w德n",
         "nationality": "United Kingdom",
         "position": "Prop",
         "position_cn": "支柱(橄榄球)",
@@ -5880,6 +6236,7 @@
       },
       {
         "name": "Muizz Mustapha",
+        "name_cn": "穆izz 穆s塔p哈",
         "nationality": "Nigeria",
         "position": "Prop",
         "position_cn": "支柱(橄榄球)",
@@ -5894,6 +6251,7 @@
       },
       {
         "name": "Pauli Pauli",
+        "name_cn": "帕u利 帕u利",
         "nationality": "Australia",
         "position": "Second Row",
         "position_cn": "第二排(橄榄球)",
@@ -5908,6 +6266,7 @@
       },
       {
         "name": "Reece Lyne",
+        "name_cn": "雷e塞 ly内",
         "nationality": "United Kingdom",
         "position": "Winger",
         "position_cn": "边锋",
@@ -5922,6 +6281,7 @@
       },
       {
         "name": "Suaia Matagi",
+        "name_cn": "苏aia 马塔吉",
         "nationality": "New Zealand",
         "position": "Prop",
         "position_cn": "支柱(橄榄球)",
@@ -5977,6 +6337,7 @@
     "players": [
       {
         "name": "Anthony Gordon",
+        "name_cn": "安东尼",
         "nationality": "England",
         "position": "Left Wing",
         "position_cn": "左边锋",
@@ -5991,6 +6352,7 @@
       },
       {
         "name": "Bukayo Saka",
+        "name_cn": "布卡约·萨卡",
         "nationality": "England",
         "position": "Right Winger",
         "position_cn": "右边锋",
@@ -6005,6 +6367,7 @@
       },
       {
         "name": "Dan Burn",
+        "name_cn": "d安 b乌尔n",
         "nationality": "England",
         "position": "Left-Back",
         "position_cn": "左后卫",
@@ -6019,6 +6382,7 @@
       },
       {
         "name": "Dean Henderson",
+        "name_cn": "德安 h恩德rs昂",
         "nationality": "England",
         "position": "Goalkeeper",
         "position_cn": "门将",
@@ -6033,6 +6397,7 @@
       },
       {
         "name": "Declan Rice",
+        "name_cn": "德cl安 里塞",
         "nationality": "England",
         "position": "Defensive Midfield",
         "position_cn": "防守中场",
@@ -6047,6 +6412,7 @@
       },
       {
         "name": "Djed Spence",
+        "name_cn": "d杰d sp恩塞",
         "nationality": "England",
         "position": "Right-Back",
         "position_cn": "右后卫",
@@ -6061,6 +6427,7 @@
       },
       {
         "name": "Eberechi Eze",
+        "name_cn": "e贝雷奇i e泽",
         "nationality": "England",
         "position": "Attacking Midfield",
         "position_cn": "攻击中场",
@@ -6075,6 +6442,7 @@
       },
       {
         "name": "Elliott Anderson",
+        "name_cn": "安德森",
         "nationality": "England",
         "position": "Central Midfield",
         "position_cn": "中前卫",
@@ -6089,6 +6457,7 @@
       },
       {
         "name": "Ezri Konsa",
+        "name_cn": "ez里 科n萨",
         "nationality": "England",
         "position": "Centre-Back",
         "position_cn": "中后卫",
@@ -6103,6 +6472,7 @@
       },
       {
         "name": "Harry Kane",
+        "name_cn": "哈里·凯恩",
         "nationality": "England",
         "position": "Centre-Forward",
         "position_cn": "中锋",
@@ -6138,6 +6508,7 @@
     "players": [
       {
         "name": "Alban Lafont",
+        "name_cn": "阿尔b安 拉福nt",
         "nationality": "Ivory Coast",
         "position": "Goalkeeper",
         "position_cn": "门将",
@@ -6152,6 +6523,7 @@
       },
       {
         "name": "Amad Diallo",
+        "name_cn": "a马d 迪阿尔洛",
         "nationality": "Ivory Coast",
         "position": "Right Winger",
         "position_cn": "右边锋",
@@ -6166,6 +6538,7 @@
       },
       {
         "name": "Ange-Yoan Bonny",
+        "name_cn": "安热-约安 博nny",
         "nationality": "Ivory Coast",
         "position": "Centre-Forward",
         "position_cn": "中锋",
@@ -6180,6 +6553,7 @@
       },
       {
         "name": "Bazoumana Touré",
+        "name_cn": "图雷",
         "nationality": "Ivory Coast",
         "position": "Left Wing",
         "position_cn": "左边锋",
@@ -6194,6 +6568,7 @@
       },
       {
         "name": "Christ Inao Oulaï",
+        "name_cn": "奇r伊斯t 因ao ou拉ï",
         "nationality": "Ivory Coast",
         "position": "Central Midfield",
         "position_cn": "中前卫",
@@ -6208,6 +6583,7 @@
       },
       {
         "name": "Christopher Opéri",
+        "name_cn": "克里斯托弗",
         "nationality": "Ivory Coast",
         "position": "Left-Back",
         "position_cn": "左后卫",
@@ -6222,6 +6598,7 @@
       },
       {
         "name": "Elye Wahi",
+        "name_cn": "埃尔耶 瓦希",
         "nationality": "Ivory Coast",
         "position": "Centre-Forward",
         "position_cn": "中锋",
@@ -6236,6 +6613,7 @@
       },
       {
         "name": "Emerse Faé",
+        "name_cn": "埃姆尔塞 法é",
         "nationality": "France",
         "position": "Manager",
         "position_cn": "主教练",
@@ -6250,6 +6628,7 @@
       },
       {
         "name": "Emmanuel Agbadou",
+        "name_cn": "埃姆m安u埃尔 ag巴多u",
         "nationality": "Ivory Coast",
         "position": "Centre-Back",
         "position_cn": "中后卫",
@@ -6264,6 +6643,7 @@
       },
       {
         "name": "Evan Ndicka",
+        "name_cn": "ev安 n迪c卡",
         "nationality": "Ivory Coast",
         "position": "Centre-Back",
         "position_cn": "中后卫",
@@ -6299,6 +6679,7 @@
     "players": [
       {
         "name": "Avram Grant",
+        "name_cn": "av拉m gr安t",
         "nationality": "Israel",
         "position": "Manager",
         "position_cn": "主教练",
@@ -6313,6 +6694,7 @@
       },
       {
         "name": "Clatous Chama",
+        "name_cn": "c拉托乌斯 奇a马",
         "nationality": "Zambia",
         "position": "Attacking Midfield",
         "position_cn": "攻击中场",
@@ -6327,6 +6709,7 @@
       },
       {
         "name": "David Hamansenya",
+        "name_cn": "大卫",
         "nationality": "Zambia",
         "position": "Left-Back",
         "position_cn": "左后卫",
@@ -6341,6 +6724,7 @@
       },
       {
         "name": "David Simukonda",
+        "name_cn": "大卫",
         "nationality": "Zambia",
         "position": "Midfielder",
         "position_cn": "中场",
@@ -6355,6 +6739,7 @@
       },
       {
         "name": "Dominic Chanda",
+        "name_cn": "多m因ic 奇安达",
         "nationality": "Zambia",
         "position": "Defender",
         "position_cn": "后卫",
@@ -6369,6 +6754,7 @@
       },
       {
         "name": "Eliya Mandanji",
+        "name_cn": "埃尔i亚 m安d安吉",
         "nationality": "Zambia",
         "position": "Centre-Forward",
         "position_cn": "中锋",
@@ -6383,6 +6769,7 @@
       },
       {
         "name": "Francisco Mwepu",
+        "name_cn": "弗朗西斯科",
         "nationality": "Zambia",
         "position": "Centre-Forward",
         "position_cn": "中锋",
@@ -6397,6 +6784,7 @@
       },
       {
         "name": "Gift Prosper Mphande",
+        "name_cn": "吉ft 普奥斯p尔 mph安德",
         "nationality": "Zambia",
         "position": "Centre-Back",
         "position_cn": "中后卫",
@@ -6411,6 +6799,7 @@
       },
       {
         "name": "Joseph Liteta",
+        "name_cn": "约瑟夫",
         "nationality": "Zambia",
         "position": "Central Midfield",
         "position_cn": "中前卫",
@@ -6425,6 +6814,7 @@
       },
       {
         "name": "Joseph Sabobo",
+        "name_cn": "约瑟夫",
         "nationality": "Zambia",
         "position": "Left Wing",
         "position_cn": "左边锋",
