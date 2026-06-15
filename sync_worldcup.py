@@ -524,10 +524,20 @@ def build_teams_data(force_refresh: bool = False) -> dict:
         cn = team_cn(team)
         group = find_group(team) or "?"
         history = WC_HISTORY.get(team, {"apps": "?", "best": "?", "first": "?"})
+        # Translate best result to Chinese
+        best_cn = history.get("best", "")
+        for eng_key, cn_val in HISTORY_BEST_CN.items():
+            best_cn = best_cn.replace(eng_key, cn_val)
+        history_cn = {
+            "apps": history.get("apps", "?"),
+            "best": best_cn,
+            "first": history.get("first", "?"),
+        }
 
         team_entry = {
             "name_en": team, "name_cn": cn, "group": group, "id": tid,
             "badge": "", "stadium": "", "coach": "", "history": history,
+            "history_cn": history_cn,
             "players": [],
         }
 
@@ -550,8 +560,10 @@ def build_teams_data(force_refresh: bool = False) -> dict:
                         "name": p.get("strPlayer", ""),
                         "nationality": p.get("strNationality", ""),
                         "position": p.get("strPosition", ""),
+                        "position_cn": POSITION_CN.get(p.get("strPosition", ""), ""),
                         "number": p.get("strNumber", ""),
                         "club": p.get("strTeam", ""),
+                        "club_cn": CLUB_CN.get(p.get("strTeam", ""), ""),
                         "birth_date": p.get("dateBorn", ""),
                         "birth_place": p.get("strBirthLocation", ""),
                         "height": p.get("strHeight", ""),
