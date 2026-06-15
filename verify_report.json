@@ -1,0 +1,25 @@
+{
+  "timestamp": "2026-06-15T01:56:23.011381+00:00",
+  "layers": {
+    "completeness": {
+      "issues": []
+    },
+    "consistency": {
+      "issues": []
+    },
+    "freshness": {
+      "issues": []
+    },
+    "accuracy": {
+      "issues": []
+    }
+  },
+  "summary": {
+    "total_issues": 0,
+    "critical": 0,
+    "high": 0,
+    "status": "OK",
+    "verdict": "All checks passed"
+  },
+  "quality_score": 100
+}
