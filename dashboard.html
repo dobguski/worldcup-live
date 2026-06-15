@@ -437,6 +437,7 @@ async function loadData() {
     if (pmRes) pmData = await pmRes.json();
     else pmData = {};
     loadVotes();
+    loadPlayerDetails();
     // Load data quality report
     try {
       const vRes = await fetch('verify_report.json');
@@ -660,7 +661,7 @@ function buildTeamCard(team) {
 
       card += `<tr>
         <td class="player-num">${p.number||'-'}</td>
-        <td>${playerDisplay}</td>
+        <td class="player-detail-trigger" onclick="openPlayerModal('${p.name.replace(/'/g,"\\'")}')">${playerDisplay}</td>
         <td class="player-pos">${posText}</td>
         <td class="player-club">${clubText}</td>
       </tr>`;
