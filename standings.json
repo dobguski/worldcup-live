@@ -196,26 +196,26 @@
       "team": "Germany"
     },
     {
-      "pts": 0,
-      "gp": 0,
-      "w": 0,
+      "pts": 3,
+      "gp": 1,
+      "w": 1,
       "d": 0,
       "l": 0,
-      "gf": 0,
+      "gf": 1,
       "ga": 0,
-      "gd": 0,
-      "team": "Ecuador"
+      "gd": 1,
+      "team": "Ivory Coast"
     },
     {
       "pts": 0,
-      "gp": 0,
+      "gp": 1,
       "w": 0,
       "d": 0,
-      "l": 0,
+      "l": 1,
       "gf": 0,
-      "ga": 0,
-      "gd": 0,
-      "team": "Ivory Coast"
+      "ga": 1,
+      "gd": -1,
+      "team": "Ecuador"
     },
     {
       "pts": 0,
