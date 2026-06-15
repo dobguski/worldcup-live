@@ -362,57 +362,41 @@ def build_teams_data(force_refresh: bool = False) -> dict:
         except Exception:
             pass
 
-    print("  Building team data (this may take ~2 min for first run)...")
+    # Static team ID map (from TheSportsDB - rarely changes, avoids search API rate limits)
+    TEAM_IDS = {
+        "Mexico": "134497", "South Africa": "136482", "South Korea": "134517",
+        "Czech Republic": "133904", "Canada": "140073", "Bosnia & Herzegovina": "134510",
+        "Qatar": "134524", "Switzerland": "133901", "Brazil": "134496", "Morocco": "136139",
+        "Haiti": "134518", "Scotland": "133903", "USA": "134514", "Paraguay": "136471",
+        "Australia": "134516", "Turkey": "133900", "Germany": "133907", "Curaçao": "141110",
+        "Ivory Coast": "134493", "Ecuador": "134494", "Netherlands": "133905",
+        "Japan": "134503", "Sweden": "133902", "Tunisia": "136472", "Belgium": "133906",
+        "Egypt": "134508", "Iran": "136470", "New Zealand": "134515", "Spain": "133909",
+        "Cape Verde": "140550", "Saudi Arabia": "136469", "Uruguay": "134498",
+        "France": "133913", "Senegal": "136473", "Iraq": "134523", "Norway": "133910",
+        "Argentina": "134509", "Algeria": "136474", "Austria": "133911",
+        "Jordan": "134525", "Portugal": "133908", "DR Congo": "136475",
+        "Uzbekistan": "140442", "Colombia": "134495", "England": "133914",
+        "Croatia": "134502", "Ghana": "136476", "Panama": "134526",
+    }
 
-    # Step 1: Collect team IDs from events + search
-    team_ids = {}
-    # From events
-    events_data = fetch_json(TSDB_API)
-    if events_data:
-        for e in events_data.get("events", []):
-            for name, key in [(e.get("strHomeTeam"), "idHomeTeam"), (e.get("strAwayTeam"), "idAwayTeam")]:
-                tid = e.get(key)
-                if name and tid:
-                    team_ids[normalize_name(name)] = tid
-    # Search for remaining
     all_teams = []
     for group_teams in GROUPS.values():
         all_teams.extend(group_teams)
 
-    for team in all_teams:
-        if team in team_ids:
-            continue
-        # Search by name
-        import urllib.parse
-        search_url = f"https://www.thesportsdb.com/api/v1/json/3/searchteams.php?t={urllib.parse.quote(team)}"
-        data = fetch_json(search_url)
-        if data and data.get("teams"):
-            for t in data["teams"]:
-                if t.get("strSport") == "Soccer":
-                    team_ids[team] = t["idTeam"]
-                    break
-        time.sleep(0.3)  # Rate limit
+    print(f"  Building team data for {len(all_teams)} teams...")
+    sys.stdout.flush()
 
-    print(f"  Found {len(team_ids)}/{len(all_teams)} team IDs")
-
-    # Step 2: Fetch team info + players for each team
     teams_data = {}
-    for team in all_teams:
-        tid = team_ids.get(team)
+    for idx, team in enumerate(all_teams):
+        tid = TEAM_IDS.get(team, "")
         cn = team_cn(team)
         group = find_group(team) or "?"
         history = WC_HISTORY.get(team, {"apps": "?", "best": "?", "first": "?"})
 
         team_entry = {
-            "name_en": team,
-            "name_cn": cn,
-            "group": group,
-            "id": tid,
-            "badge": "",
-            "stadium": "",
-            "coach": "",
-            "fifa_ranking": "",
-            "history": history,
+            "name_en": team, "name_cn": cn, "group": group, "id": tid,
+            "badge": "", "stadium": "", "coach": "", "history": history,
             "players": [],
         }
 
@@ -424,37 +408,38 @@ def build_teams_data(force_refresh: bool = False) -> dict:
                 team_entry["badge"] = t.get("strBadge", "")
                 team_entry["stadium"] = t.get("strStadium", "")
                 team_entry["coach"] = t.get("strManager", "")
-                team_entry["description"] = (t.get("strDescriptionEN") or "")[:500]
 
-            time.sleep(0.3)
+            time.sleep(1.0)  # Respect rate limit
 
             # Fetch players
             player_data = fetch_json(f"https://www.thesportsdb.com/api/v1/json/3/lookup_all_players.php?id={tid}")
             if player_data and player_data.get("player"):
                 for p in player_data["player"]:
-                    player_entry = {
+                    team_entry["players"].append({
                         "name": p.get("strPlayer", ""),
                         "nationality": p.get("strNationality", ""),
                         "position": p.get("strPosition", ""),
                         "number": p.get("strNumber", ""),
-                        "club": p.get("strTeam", ""),  # Current club
+                        "club": p.get("strTeam", ""),
                         "birth_date": p.get("dateBorn", ""),
                         "birth_place": p.get("strBirthLocation", ""),
                         "height": p.get("strHeight", ""),
                         "weight": p.get("strWeight", ""),
                         "thumb": p.get("strThumb", ""),
-                    }
-                    team_entry["players"].append(player_entry)
+                    })
 
-            time.sleep(0.3)
+            time.sleep(1.0)  # Respect rate limit
 
         teams_data[team] = team_entry
-        if len(team_entry["players"]) > 0:
-            print(f"    {cn} {team}: {len(team_entry['players'])} players")
+        if (idx + 1) % 8 == 0:
+            print(f"    ... {idx+1}/{len(all_teams)} teams processed")
+            sys.stdout.flush()
 
-    # Save
+    # Save partial data even if interrupted
     TEAMS_JSON.write_text(json.dumps(teams_data, ensure_ascii=False, indent=2), encoding="utf-8")
-    print(f"  Saved: {TEAMS_JSON.name} ({len(teams_data)} teams)")
+    total_players = sum(len(t["players"]) for t in teams_data.values())
+    print(f"  Saved: {TEAMS_JSON.name} ({len(teams_data)} teams, {total_players} players)")
+    sys.stdout.flush()
     return teams_data
 
 
