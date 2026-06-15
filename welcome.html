@@ -63,23 +63,23 @@ h1{font-size:2em;color:#e2b04a;margin-bottom:10px;font-weight:bold}
 function getStats() {
   try {
     const raw = localStorage.getItem('wc_site_stats');
-    return raw ? JSON.parse(raw) : { uv: 0, pv: 0, today: 0, lastVisit: '', firstVisit: new Date().toISOString() };
-  } catch(e) { return { uv: 0, pv: 0, today: 0, lastVisit: '', firstVisit: new Date().toISOString() }; }
+    return raw ? JSON.parse(raw) : { uv: 0, pv: 0, today: 0, lastVisit: '' };
+  } catch(e) { return { uv: 0, pv: 0, today: 0, lastVisit: '' }; }
 }
 function saveStats(s) { localStorage.setItem('wc_site_stats', JSON.stringify(s)); }
 
 let stats = getStats();
 const today = new Date().toISOString().slice(0, 10);
 
-// UV: first visit ever OR first visit today
-const isNewVisitor = !stats.firstVisit || stats.firstVisit === new Date().toISOString();
-const isNewToday = stats.lastVisit !== today;
-
-if (isNewVisitor) {
+// UV: first time this browser ever visits (flag stored separately)
+const hasVisited = localStorage.getItem('wc_uv_flag');
+if (!hasVisited) {
   stats.uv += 1;
-  stats.firstVisit = new Date().toISOString();
+  localStorage.setItem('wc_uv_flag', '1');
 }
-if (isNewToday) {
+
+// Today counter: reset if new day
+if (stats.lastVisit !== today) {
   stats.today = 1;
 } else {
   stats.today += 1;
