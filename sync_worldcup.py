@@ -1176,6 +1176,9 @@ def sync_once(commit: bool = True) -> dict:
         teams_str = " | ".join(f"{t['team']} {t['pts']}pts" for t in standings[g][:2])
         print(f"     Group {g}: {teams_str}")
 
+    # Run data quality verification
+    run_verification()
+
     # Commit
     if commit and (new_results or True):  # Always save state
         msg = "Auto-sync: " + (", ".join(new_results) if new_results else "update standings & data")
@@ -1188,6 +1191,32 @@ def sync_once(commit: bool = True) -> dict:
         "live_matches": live,
         "updated": len(updated),
     }
+
+
+# ============================================================
+# DATA QUALITY VERIFICATION
+# ============================================================
+def run_verification() -> dict:
+    """Run verify.py checks and save report."""
+    try:
+        import verify
+        report = verify.run_all_checks()
+        report['quality_score'] = verify.calculate_quality_score(report)
+        # Save report
+        verify_path = REPO_DIR / "verify_report.json"
+        verify_path.write_text(json.dumps(report, ensure_ascii=False, indent=2), encoding="utf-8")
+        status = report['summary']['status']
+        score = report['quality_score']
+        print(f"  Data Quality: {score}/100 [{status}] {report['summary']['verdict']}")
+        if report['summary']['critical'] > 0:
+            for layer_name, layer in report['layers'].items():
+                for issue in layer['issues']:
+                    if issue['severity'] == 'critical':
+                        print(f"    ❌ [{issue['layer']}] {issue.get('issue','?')}")
+        return report
+    except Exception as e:
+        print(f"  [WARN] Verification skipped: {e}")
+        return {'summary': {'status': 'UNKNOWN'}, 'quality_score': 0}
 
 
 # ============================================================
