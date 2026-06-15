@@ -1176,8 +1176,25 @@ def sync_once(commit: bool = True) -> dict:
         teams_str = " | ".join(f"{t['team']} {t['pts']}pts" for t in standings[g][:2])
         print(f"     Group {g}: {teams_str}")
 
+    # Cascade update: match_data → standings → verify
+    if updated:
+        try:
+            from db_maintain import cascade_update
+            cascade_update("match_data.json", verbose=False)
+        except Exception:
+            pass  # Non-critical if db_maintain fails
+
     # Run data quality verification
     run_verification()
+
+    # Create snapshot on new results
+    if updated:
+        try:
+            from db_maintain import create_snapshot
+            msg_short = "_".join(r.replace(" ", "-")[:30] for r in new_results[:2])
+            create_snapshot(f"new_results_{msg_short}"[:80])
+        except Exception:
+            pass
 
     # Commit
     if commit and (new_results or True):  # Always save state
