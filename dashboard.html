@@ -77,6 +77,12 @@ body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:#0f172
 .pm-verdict{font-size:.85em;font-weight:bold}
 .pm-verdict.correct{color:#4ade80}
 .pm-verdict.wrong{color:#f87171}
+/* Data quality badge */
+.quality-badge{display:inline-flex;align-items:center;gap:4px;padding:4px 10px;border-radius:12px;font-size:.7em;font-weight:bold}
+.quality-badge.OK{background:#1a3a2a;color:#4ade80}
+.quality-badge.WARN{background:#3a3510;color:#facc15}
+.quality-badge.FAIL{background:#3a1a1a;color:#f87171}
+.data-sources{font-size:.65em;color:#64748b;margin-top:4px}
 .pm-volume{color:#64748b;font-size:.75em}
 .bracket-container{margin-top:20px;overflow-x:auto}
 /* Waterfall / Masonry layout */
@@ -125,7 +131,10 @@ body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:#0f172
     <button class="lang-btn" onclick="setLang('cn')" id="btn-cn">中文 CN</button>
     <button class="lang-btn" onclick="setLang('en')" id="btn-en">English EN</button>
   </div>
-  <div class="last-update" id="lastUpdate">Loading / 加载中...</div>
+  <div style="display:flex;align-items:center;gap:12px;">
+    <span class="quality-badge" id="qualityBadge">--</span>
+    <div class="last-update" id="lastUpdate">Loading / 加载中...</div>
+  </div>
 </div>
 
 <div class="live-banner" id="liveBanner">
@@ -336,6 +345,19 @@ async function loadData() {
     if (pmRes) pmData = await pmRes.json();
     else pmData = {};
     loadVotes();
+    // Load data quality report
+    try {
+      const vRes = await fetch('verify_report.json');
+      const verify = await vRes.json();
+      const badge = document.getElementById('qualityBadge');
+      const status = verify.summary.status;
+      const score = verify.quality_score || 100;
+      badge.textContent = `📊 ${score}分`;
+      badge.className = `quality-badge ${status}`;
+      badge.title = verify.summary.verdict || '';
+    } catch(e) {
+      document.getElementById('qualityBadge').textContent = '--';
+    }
     renderAll();
     let updateText;
     if (currentLang === 'cn') updateText = t('lastUpdate') + ': ' + new Date().toLocaleString('zh-CN');
