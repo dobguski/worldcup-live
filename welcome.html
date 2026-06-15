@@ -119,7 +119,7 @@ h1{font-size:1.7em;color:#e2b04a;margin-bottom:6px;font-weight:800;letter-spacin
       <div class="visitor-sub">位客人</div>
     </div>
     <div class="visitor-stats">
-      今日 <b id="todayCount">0</b> 次到访 · 累计 <b id="totalViews">0</b> 次浏览
+      累计 <b id="totalViews">0</b> 次浏览
     </div>
 
     <a href="dashboard.html" class="enter-btn">🏟 进入实时看板</a>
@@ -159,14 +159,12 @@ h1{font-size:1.7em;color:#e2b04a;margin-bottom:6px;font-weight:800;letter-spacin
 <div class="copied-toast" id="copiedToast">✅ 链接已复制！</div>
 
 <script>
-// ── Counter engine v2 (global counter.json + localStorage dedup) ──
+// ── Counter engine v2 (global counter.json + localStorage dedup, cumulative only) ──
 (function(){
-  const today = new Date().toISOString().slice(0,10);
-
-  // Local per-browser tracking
+  // Local per-browser tracking (UV + PV only, always cumulative)
   function localStats() {
-    try { const r = localStorage.getItem('wc_site_stats'); return r ? JSON.parse(r) : {uv:0,pv:0,today:0,lastVisit:''}; }
-    catch(e) { return {uv:0,pv:0,today:0,lastVisit:''}; }
+    try { const r = localStorage.getItem('wc_site_stats'); return r ? JSON.parse(r) : {uv:0,pv:0}; }
+    catch(e) { return {uv:0,pv:0}; }
   }
   function saveLocal(s) { localStorage.setItem('wc_site_stats', JSON.stringify(s)); }
 
@@ -177,24 +175,18 @@ h1{font-size:1.7em;color:#e2b04a;margin-bottom:6px;font-weight:800;letter-spacin
     local.uv += 1;
     localStorage.setItem('wc_uv_flag', '1');
   }
-  if (local.lastVisit !== today) { local.today = 1; } else { local.today += 1; }
   local.pv += 1;
-  local.lastVisit = today;
   saveLocal(local);
 
   // Fetch global counter.json (with cache-bust for freshness)
   fetch('counter.json?t=' + Date.now())
     .then(r => r.json())
     .then(global => {
-      // Display global count (all visitors see same number)
       document.getElementById('visitCount').textContent = global.uv;
-      document.getElementById('todayCount').textContent = global.today + local.today - 1;
       document.getElementById('totalViews').textContent = global.pv + local.pv - 1;
     })
     .catch(() => {
-      // Fallback to localStorage only if counter.json unavailable
       document.getElementById('visitCount').textContent = local.uv;
-      document.getElementById('todayCount').textContent = local.today;
       document.getElementById('totalViews').textContent = local.pv;
     });
 
