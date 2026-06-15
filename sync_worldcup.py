@@ -753,6 +753,24 @@ def build_teams_data(force_refresh: bool = False) -> dict:
             print(f"    ... {idx+1}/{len(all_teams)} teams processed")
             sys.stdout.flush()
 
+    # Merge Wikipedia/Chinese-source complete squads
+    wiki_file = REPO_DIR / "wiki_squads.json"
+    if wiki_file.exists():
+        try:
+            wiki_data = json.loads(wiki_file.read_text(encoding="utf-8"))
+            for team_name, wd in wiki_data.items():
+                if team_name in teams_data:
+                    old = len(teams_data[team_name]["players"])
+                    teams_data[team_name]["players"] = wd["players"]
+                    if wd.get("coach"):
+                        teams_data[team_name]["coach"] = wd["coach"]
+                    if wd.get("stadium"):
+                        teams_data[team_name]["stadium"] = wd["stadium"]
+                    if old != len(wd["players"]):
+                        print(f"  Wiki merge: {team_cn(team_name)} {old}->{len(wd['players'])} players")
+        except Exception as e:
+            print(f"  [WARN] Wiki merge failed: {e}")
+
     # Save partial data even if interrupted
     TEAMS_JSON.write_text(json.dumps(teams_data, ensure_ascii=False, indent=2), encoding="utf-8")
     total_players = sum(len(t["players"]) for t in teams_data.values())
