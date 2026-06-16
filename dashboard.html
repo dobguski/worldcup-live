@@ -39,11 +39,11 @@ body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:#0f172
 .groups-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px;margin-top:15px}
 .group-card{background:#1e293b;border-radius:12px;overflow:hidden;border:1px solid #334155}
 .group-header{background:linear-gradient(90deg,#1e40af,#3b82f6);padding:8px 12px;font-weight:bold;font-size:.95em;color:#fff}
-.group-table{width:100%;border-collapse:collapse;table-layout:fixed}
-.group-table th{background:#0f1724;padding:5px 4px;font-size:.65em;text-transform:uppercase;color:#94a3b8;text-align:center;white-space:nowrap}
-.group-table td{padding:5px 4px;border-bottom:1px solid #1e293b;font-size:.78em;text-align:center}
+.group-table{width:100%;border-collapse:collapse}
+.group-table th{background:#0f1724;padding:5px 3px;font-size:.62em;text-transform:uppercase;color:#94a3b8;text-align:center;white-space:nowrap}
+.group-table td{padding:5px 3px;border-bottom:1px solid #1e293b;font-size:.78em;text-align:center}
 .group-table tr:hover{background:#334155}
-.group-table .team-col{text-align:left;font-weight:600;font-size:.8em;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:90px}
+.group-table .team-col{text-align:left;font-weight:600;font-size:.8em;white-space:nowrap}
 .group-table .pts-col{font-weight:bold;color:#e2b04a;font-size:.85em}
 .group-table .gd-col{font-size:.72em}
 .group-table .top1{border-left:3px solid #e2b04a}
@@ -552,10 +552,10 @@ function renderStandings() {
     html += '<div class="group-card">';
     html += `<div class="group-header">🏆 ${g}${t('group')}</div>`;
     html += '<table class="group-table"><thead><tr>';
-    html += '<th>#</th><th class="team-col">' + t('table.team') + '</th>';
-    html += '<th>' + t('table.gp') + '</th><th>' + t('table.w') + '</th>';
-    html += '<th>' + t('table.d') + '</th><th>' + t('table.l') + '</th>';
-    html += '<th>+/-</th><th class="pts-col">' + t('table.pts') + '</th>';
+    html += '<th style="width:16px">#</th><th class="team-col">' + t('table.team') + '</th>';
+    html += '<th style="width:20px">' + t('table.gp') + '</th><th style="width:20px">' + t('table.w') + '</th>';
+    html += '<th style="width:20px">' + t('table.d') + '</th><th style="width:20px">' + t('table.l') + '</th>';
+    html += '<th style="width:40px">+/-</th><th class="pts-col" style="width:28px">' + t('table.pts') + '</th>';
     html += '</tr></thead><tbody>';
     table.forEach((team, i) => {
       const rowClass = i < 2 ? ' top' + (i+1) : '';
