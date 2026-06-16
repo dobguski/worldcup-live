@@ -48,6 +48,7 @@ body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:#0f172
 .group-table .gd-col{font-size:.72em}
 .group-table .top1{border-left:3px solid #e2b04a}
 .group-table .top2{border-left:3px solid #94a3b8}
+.group-table .top3{border-left:3px solid #22c55e}
 .section-title{font-size:1.3em;color:#e2b04a;margin:25px 0 10px;padding-bottom:8px;border-bottom:2px solid #e2b04a}
 .matches-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(350px,1fr));gap:12px}
 .match-card{background:#1e293b;border-radius:10px;padding:15px;border:1px solid #334155;transition:all .2s}
@@ -543,8 +544,21 @@ function scrollToRelevantMatch() {
 }
 
 function renderStandings() {
-  const grid = document.getElementById('groupsGrid');
+  // Mark 8 best third-place teams (advance to Round of 32)
+  const allThirds = [];
   const order = 'ABCDEFGHIJKL'.split('');
+  for (const g of order) {
+    const table = standings[g] || [];
+    if (table.length >= 3) {
+      const third = table[2];
+      third._group = g;
+      allThirds.push(third);
+    }
+  }
+  allThirds.sort((a, b) => b.pts - a.pts || (b.gd||0) - (a.gd||0) || (b.gf||0) - (a.gf||0));
+  allThirds.forEach((t, i) => { if (i < 8) t._bestThird = true; });
+
+  const grid = document.getElementById('groupsGrid');
   let html = '';
   for (const g of order) {
     const table = standings[g] || [];
@@ -552,20 +566,20 @@ function renderStandings() {
     html += '<div class="group-card">';
     html += `<div class="group-header">🏆 ${g}${t('group')}</div>`;
     html += '<table class="group-table"><thead><tr>';
-    html += '<th style="width:16px">#</th><th class="team-col">' + t('table.team') + '</th>';
+    html += '<th class="team-col">' + t('table.team') + '</th>';
     html += '<th style="width:20px">' + t('table.gp') + '</th><th style="width:20px">' + t('table.w') + '</th>';
     html += '<th style="width:20px">' + t('table.d') + '</th><th style="width:20px">' + t('table.l') + '</th>';
     html += '<th style="width:40px">+/-</th><th class="pts-col" style="width:28px">' + t('table.pts') + '</th>';
     html += '</tr></thead><tbody>';
     table.forEach((team, i) => {
-      const rowClass = i < 2 ? ' top' + (i+1) : '';
+      const rowClass = i < 2 ? ' top' + (i+1) : (i === 2 && team._bestThird ? ' top3' : '');
       const gdStr = (team.gd > 0 ? '+' : '') + team.gd;
       const gfga = team.gf + ':' + team.ga;
       const cn = teamNamesCN[team.team] || '';
       const en = team.team || '';
-      const nameHtml = cn ? `<span style="font-size:.82em">${cn}</span><br><span style="font-size:.62em;color:#64748b">${en}</span>` : `<span style="font-size:.82em">${en}</span>`;
+      const thirdBadge = (i === 2 && team._bestThird) ? ' <span style="font-size:.55em;background:#22c55e;color:#fff;padding:1px 3px;border-radius:3px;vertical-align:middle" title="' + (currentLang==='cn'?'最佳小组第三晋级':'Best 3rd advances') + '">✓</span>' : '';
+      const nameHtml = cn ? `<span style="font-size:.82em">${cn}${thirdBadge}</span><br><span style="font-size:.62em;color:#64748b">${en}</span>` : `<span style="font-size:.82em">${en}${thirdBadge}</span>`;
       html += `<tr class="${rowClass}">
-        <td style="color:#64748b;font-size:.7em">${i+1}</td>
         <td class="team-col" title="${cn} ${en}">${nameHtml}</td>
         <td>${team.gp}</td><td>${team.w}</td><td>${team.d}</td><td>${team.l}</td>
         <td><span class="gd-col">${gdStr}</span><br><span style="font-size:.65em;color:#475569">${gfga}</span></td>
