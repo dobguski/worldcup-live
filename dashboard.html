@@ -920,9 +920,9 @@ function renderPM() {
     const awayDisp = `<span style=\"font-size:.85em\">${aCn||m.away_team}</span><br><span style=\"font-size:.62em;color:#64748b\">${m.away_team}</span>`;
     const teamHtml = `<div style=\"display:flex;align-items:center;gap:8px;justify-content:center\">${homeDisp}<span style=\"font-weight:bold;color:#e2b04a;font-size:1.1em\">${m.home_score}-${m.away_score}</span>${awayDisp}</div>`;
     const hp = Math.round(pm.home_prob*100), dp = Math.round(pm.draw_prob*100), ap = Math.round(pm.away_prob*100);
-    const probHtml = `<span style=\"font-size:.7em;color:#94a3b8\">胜</span><br><span>${hp}%</span>` +
-      ` <span style=\"font-size:.7em;color:#94a3b8;margin-left:4px\">平</span><br><span>${dp}%</span>` +
-      ` <span style=\"font-size:.7em;color:#94a3b8;margin-left:4px\">负</span><br><span>${ap}%</span>`;
+    const probHtml = `<div style=\"display:inline-grid;grid-template-columns:repeat(3,1fr);gap:2px 8px;text-align:center\">` +
+      `<span style=\"font-size:.65em;color:#94a3b8\">胜</span><span style=\"font-size:.65em;color:#94a3b8\">平</span><span style=\"font-size:.65em;color:#94a3b8\">负</span>` +
+      `<span style=\"font-weight:600\">${hp}%</span><span style=\"font-weight:600\">${dp}%</span><span style=\"font-weight:600\">${ap}%</span></div>`;
 
     html += `<tr style=\"border-bottom:1px solid #1e293b;${pm.correct ? '' : 'background:rgba(220,38,38,.08)'}\">
       <td style=\"padding:10px 8px;line-height:1.6\">${teamHtml}</td>
