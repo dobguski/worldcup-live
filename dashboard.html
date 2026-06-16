@@ -544,8 +544,9 @@ function scrollToRelevantMatch() {
 }
 
 function renderStandings() {
-  // Mark 8 best third-place teams (advance to Round of 32)
+  // Mark 8 best third-place teams (only after 2+ matchdays per group)
   const allThirds = [];
+  let minGP = 99;
   const order = 'ABCDEFGHIJKL'.split('');
   for (const g of order) {
     const table = standings[g] || [];
@@ -553,10 +554,14 @@ function renderStandings() {
       const third = table[2];
       third._group = g;
       allThirds.push(third);
+      if (third.gp < minGP) minGP = third.gp;
     }
   }
-  allThirds.sort((a, b) => b.pts - a.pts || (b.gd||0) - (a.gd||0) || (b.gf||0) - (a.gf||0));
-  allThirds.forEach((t, i) => { if (i < 8) t._bestThird = true; });
+  const showBestThird = minGP >= 2;  // Only after 2 matches per team
+  if (showBestThird) {
+    allThirds.sort((a, b) => b.pts - a.pts || (b.gd||0) - (a.gd||0) || (b.gf||0) - (a.gf||0));
+    allThirds.forEach((t, i) => { if (i < 8) t._bestThird = true; });
+  }
 
   const grid = document.getElementById('groupsGrid');
   let html = '';
