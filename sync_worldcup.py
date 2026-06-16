@@ -67,8 +67,8 @@ TZ_OFFSETS = {
     "Vancouver": "UTC-7",
 }
 
-POLL_INTERVAL = 60  # seconds between API polls
-WATCH_INTERVAL = 120  # seconds between full sync cycles
+POLL_INTERVAL = 30   # seconds between API polls during live matches
+WATCH_INTERVAL = 90   # seconds between full sync cycles
 
 
 # ============================================================
@@ -1152,6 +1152,25 @@ def bump_counter():
         return False
 
 
+def check_missing_results(matches: list[dict]) -> list[dict]:
+    """Find matches that should be finished but have no score (API lagging)."""
+    from datetime import timezone, timedelta
+    now_utc = datetime.now(timezone.utc)
+    missing = []
+    for m in matches:
+        if m.get('is_result') or not m.get('time') or not m.get('tz'):
+            continue
+        try:
+            tz_offset = int(m['tz'].replace('UTC', ''))
+            mt = datetime.strptime(f"{m['date']} {m['time']}", '%Y-%m-%d %H:%M')
+            match_utc = mt - timedelta(hours=tz_offset)
+            if match_utc + timedelta(hours=2) < now_utc:  # 2+ hours past kickoff
+                missing.append(m)
+        except (ValueError, KeyError):
+            pass
+    return missing
+
+
 def sync_once(commit: bool = True) -> dict:
     """Run one full sync cycle. Returns summary dict."""
     print(f"\n{'='*60}")
@@ -1187,9 +1206,26 @@ def sync_once(commit: bool = True) -> dict:
     total = len(matches)
     print(f"  {scored}/{total} matches have results")
 
-    # 3. Merge new results
+    # 3. Merge new results (aggressive multi-source fetch)
     print("\n[3/4] Merging new results...")
     updated = merge_api_results(matches, all_api)
+
+    # Check for matches that should be finished but APIs haven't returned
+    missing = check_missing_results(matches)
+    if missing and not updated:
+        print(f"  ⚠️ {len(missing)} match(es) missing results — retrying APIs...")
+        time.sleep(5)
+        retry_espn = fetch_espn_matches()
+        retry_tsdb = fetch_thesportsdb_matches()
+        retry_all = retry_espn + retry_tsdb
+        retry_updates = merge_api_results(matches, retry_all)
+        if retry_updates:
+            updated = retry_updates
+            print(f"  Retry found {len(updated)} result(s)!")
+        else:
+            for m in missing:
+                print(f"    ⚠️ Still missing: {m['date']} {m['home_team']} v {m['away_team']} — APIs lagging")
+
     new_results = []
     if updated:
         print(f"  Found {len(updated)} new result(s)!")
