@@ -499,9 +499,11 @@ async function loadData() {
     } catch(e) {
       document.getElementById('qualityBadge').textContent = '--';
     }
+    // Apply live scores from local server (real-time, bypasses git push delay)
+    await applyLiveScores();
     renderAll();
     if (!window._hasAutoScrolled) { scrollToRelevantMatch(); window._hasAutoScrolled = true; }
-    scheduleNextRefresh();  // Adjust refresh rate based on live match status
+    scheduleNextRefresh();
     let updateText;
     if (currentLang === 'cn') updateText = t('lastUpdate') + ': ' + new Date().toLocaleString('zh-CN');
     else if (currentLang === 'en') updateText = t('lastUpdate') + ': ' + new Date().toLocaleString('en-US');
@@ -519,6 +521,32 @@ function renderAll() {
   renderTeams();
   renderBracket();
   renderPM();
+}
+
+// Apply live scores from local server (real-time updates bypassing git push pipeline)
+async function applyLiveScores() {
+  try {
+    const resp = await fetch('http://localhost:8888/live-scores', { signal: AbortSignal.timeout(5000) });
+    const data = await resp.json();
+    const scores = data.scores || {};
+    let applied = 0;
+    matchData.forEach(m => {
+      if (m.is_result) return;
+      const key1 = m.home_team + '|' + m.away_team;
+      const key2 = m.away_team + '|' + m.home_team;
+      const s = scores[key1] || scores[key2];
+      if (s && s.home_score != null && s.away_score != null) {
+        if (m.home_score !== s.home_score || m.away_score !== s.away_score) {
+          m.home_score = s.home_score;
+          m.away_score = s.away_score;
+          m.api_status = s.status;
+          applied++;
+        }
+      }
+    });
+  } catch(e) {
+    // Server not running — silently ignore
+  }
 }
 
 // Auto-scroll to most relevant match after load + switch to right tab

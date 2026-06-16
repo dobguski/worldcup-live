@@ -75,11 +75,16 @@ WATCH_INTERVAL = 60   # seconds between full sync cycles
 # API FETCHERS
 # ============================================================
 def fetch_json(url: str, retries: int = 3, backoff: float = 2.0) -> dict | None:
-    """Fetch JSON from URL with retries and exponential backoff."""
-    for attempt in range(retries):
+    """Fetch JSON from URL with retries, exponential backoff, and SSL fallback."""
+    import ssl
+    ssl_ctx = None  # default
+    for attempt in range(retries + 1):  # +1 for SSL fallback attempt
         try:
             req = urllib.request.Request(url, headers={"User-Agent": "WorldCupSync/1.0"})
-            with urllib.request.urlopen(req, timeout=30) as resp:
+            opener_args = {}
+            if ssl_ctx is not None:
+                opener_args['context'] = ssl_ctx
+            with urllib.request.urlopen(req, timeout=30, **opener_args) as resp:
                 return json.loads(resp.read().decode())
         except urllib.error.HTTPError as e:
             if e.code == 429 and attempt < retries - 1:
@@ -91,6 +96,14 @@ def fetch_json(url: str, retries: int = 3, backoff: float = 2.0) -> dict | None:
             else:
                 print(f"  [WARN] HTTP {e.code} on {url[:60]}...")
         except Exception as e:
+            # On SSL error, retry with unverified context
+            if 'SSL' in str(e).upper() and ssl_ctx is None:
+                ssl_ctx = ssl.create_default_context()
+                ssl_ctx.check_hostname = False
+                ssl_ctx.verify_mode = ssl.CERT_NONE
+                print(f"  [SSL] Retrying with unverified context...")
+                time.sleep(1)
+                continue
             if attempt < retries - 1:
                 time.sleep(backoff)
             else:
@@ -1719,6 +1732,8 @@ def serve_dashboard(port: int = 8888):
                 self._handle_counter(self.path)
             elif self.path.startswith('/visitor'):
                 self._handle_visitor(self.path)
+            elif self.path == '/live-scores':
+                self._handle_live_scores()
             else:
                 super().do_GET()
 
@@ -1762,6 +1777,32 @@ def serve_dashboard(port: int = 8888):
                 self.wfile.write(json.dumps({'ok': True, 'count': v['count']}).encode())
             except Exception as e:
                 print(f'  [VIS] Error: {e}')
+                self.send_response(500)
+                self.end_headers()
+
+        def _handle_live_scores(self):
+            """Return live scores directly from ESPN API (bypasses cup.txt pipeline)."""
+            import datetime
+            try:
+                espn = fetch_espn_matches()
+                tsdb = fetch_thesportsdb_matches()
+                all_scores = {}
+                for m in espn + tsdb:
+                    key = f"{m.get('home_team','')}|{m.get('away_team','')}"
+                    if m.get('home_score') is not None:
+                        all_scores[key] = {
+                            'home_score': m['home_score'],
+                            'away_score': m['away_score'],
+                            'status': m.get('status',''),
+                            'source': m.get('source',''),
+                        }
+                self.send_response(200)
+                self.send_header('Content-Type', 'application/json')
+                self.send_header('Access-Control-Allow-Origin', '*')
+                self.end_headers()
+                self.wfile.write(json.dumps({'updated': datetime.datetime.now().isoformat(), 'scores': all_scores}, ensure_ascii=False).encode())
+            except Exception as e:
+                print(f'  [LIVE] Error: {e}')
                 self.send_response(500)
                 self.end_headers()
 
