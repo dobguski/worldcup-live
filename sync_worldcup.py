@@ -1715,11 +1715,54 @@ def serve_dashboard(port: int = 8888):
             print(f"  [WEB] {args[0]}")
 
         def do_GET(self):
-            # Counter API endpoints (fire-and-forget from static pages)
             if self.path.startswith('/counter/'):
                 self._handle_counter(self.path)
+            elif self.path.startswith('/visitor'):
+                self._handle_visitor(self.path)
             else:
                 super().do_GET()
+
+        def _handle_visitor(self, path):
+            import datetime, urllib.parse
+            visitor_path = REPO_DIR / 'visitors.json'
+            try:
+                if visitor_path.exists():
+                    v = json.loads(visitor_path.read_text(encoding='utf-8'))
+                else:
+                    v = {'count': 0, 'visits': [], 'tz_dist': {}, 'lang_dist': {}}
+
+                # Parse query params: /visitor?tz=Asia/Shanghai&lang=zh-CN
+                parsed = urllib.parse.urlparse(path)
+                params = urllib.parse.parse_qs(parsed.query)
+                tz = params.get('tz', ['Unknown'])[0][:80]
+                lang = params.get('lang', ['Unknown'])[0][:20]
+
+                v['count'] += 1
+                v['visits'].append({
+                    'time': datetime.datetime.now().isoformat()[:19],
+                    'tz': tz,
+                    'lang': lang,
+                })
+                # Keep last 200 entries
+                if len(v['visits']) > 200:
+                    v['visits'] = v['visits'][-200:]
+
+                # Update distributions
+                v['tz_dist'][tz] = v['tz_dist'].get(tz, 0) + 1
+                v['lang_dist'][lang] = v['lang_dist'].get(lang, 0) + 1
+
+                visitor_path.write_text(json.dumps(v, ensure_ascii=False, indent=2), encoding='utf-8')
+                print(f'  [VIS] #{v[\"count\"]} tz={tz} lang={lang}')
+
+                self.send_response(200)
+                self.send_header('Content-Type', 'application/json')
+                self.send_header('Access-Control-Allow-Origin', '*')
+                self.end_headers()
+                self.wfile.write(json.dumps({'ok': True, 'count': v['count']}).encode())
+            except Exception as e:
+                print(f'  [VIS] Error: {e}')
+                self.send_response(500)
+                self.end_headers()
 
         def _handle_counter(self, path):
             import datetime
