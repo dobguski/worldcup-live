@@ -74,7 +74,7 @@ WATCH_INTERVAL = 60   # seconds between full sync cycles
 # ============================================================
 # API FETCHERS
 # ============================================================
-def fetch_json(url: str, retries: int = 3, backoff: float = 2.0) -> dict | None:
+def fetch_json(url: str, retries: int = 1, backoff: float = 1.0) -> dict | None:
     """Fetch JSON from URL with retries, exponential backoff, and SSL fallback."""
     import ssl
     ssl_ctx = None  # default
@@ -84,7 +84,7 @@ def fetch_json(url: str, retries: int = 3, backoff: float = 2.0) -> dict | None:
             opener_args = {}
             if ssl_ctx is not None:
                 opener_args['context'] = ssl_ctx
-            with urllib.request.urlopen(req, timeout=30, **opener_args) as resp:
+            with urllib.request.urlopen(req, timeout=10, **opener_args) as resp:
                 return json.loads(resp.read().decode())
         except urllib.error.HTTPError as e:
             if e.code == 429 and attempt < retries - 1:
@@ -1781,26 +1781,37 @@ def serve_dashboard(port: int = 8888):
                 self.end_headers()
 
         def _handle_live_scores(self):
-            """Return live scores directly from ESPN API (bypasses cup.txt pipeline)."""
+            """Return live scores (cached from last sync, fast reply)."""
             import datetime
             try:
-                espn = fetch_espn_matches()
-                tsdb = fetch_thesportsdb_matches()
-                all_scores = {}
-                for m in espn + tsdb:
-                    key = f"{m.get('home_team','')}|{m.get('away_team','')}"
-                    if m.get('home_score') is not None:
-                        all_scores[key] = {
-                            'home_score': m['home_score'],
-                            'away_score': m['away_score'],
-                            'status': m.get('status',''),
-                            'source': m.get('source',''),
-                        }
-                self.send_response(200)
-                self.send_header('Content-Type', 'application/json')
-                self.send_header('Access-Control-Allow-Origin', '*')
-                self.end_headers()
-                self.wfile.write(json.dumps({'updated': datetime.datetime.now().isoformat(), 'scores': all_scores}, ensure_ascii=False).encode())
+                # Read match_data.json directly — it has the latest merged scores
+                mpath = REPO_DIR / 'match_data.json'
+                if mpath.exists():
+                    matches = json.loads(mpath.read_text(encoding='utf-8'))
+                    live = []
+                    now = datetime.datetime.now(datetime.timezone.utc)
+                    for m in matches:
+                        if m.get('is_result'): continue
+                        if not m.get('utc_ts'): continue
+                        ko = datetime.datetime.strptime(m['utc_ts'], '%Y-%m-%dT%H:%M:%SZ').replace(tzinfo=datetime.timezone.utc)
+                        from datetime import timedelta
+                        if ko <= now <= ko + timedelta(hours=2.5):
+                            live.append({
+                                'home_team': m['home_team'], 'away_team': m['away_team'],
+                                'home_score': m.get('home_score'), 'away_score': m.get('away_score'),
+                                'is_result': m.get('is_result', False),
+                            })
+                    self.send_response(200)
+                    self.send_header('Content-Type', 'application/json')
+                    self.send_header('Access-Control-Allow-Origin', '*')
+                    self.end_headers()
+                    self.wfile.write(json.dumps({'updated': datetime.datetime.now().isoformat(), 'live': live}, ensure_ascii=False).encode())
+                else:
+                    self.send_response(200)
+                    self.send_header('Content-Type', 'application/json')
+                    self.send_header('Access-Control-Allow-Origin', '*')
+                    self.end_headers()
+                    self.wfile.write(json.dumps({'updated': '', 'live': []}).encode())
             except Exception as e:
                 print(f'  [LIVE] Error: {e}')
                 self.send_response(500)

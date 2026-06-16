@@ -526,27 +526,19 @@ function renderAll() {
 // Apply live scores from local server (real-time updates bypassing git push pipeline)
 async function applyLiveScores() {
   try {
-    const resp = await fetch('http://localhost:8888/live-scores', { signal: AbortSignal.timeout(5000) });
+    const resp = await fetch('http://localhost:8888/live-scores', { signal: AbortSignal.timeout(3000) });
     const data = await resp.json();
-    const scores = data.scores || {};
-    let applied = 0;
-    matchData.forEach(m => {
-      if (m.is_result) return;
-      const key1 = m.home_team + '|' + m.away_team;
-      const key2 = m.away_team + '|' + m.home_team;
-      const s = scores[key1] || scores[key2];
-      if (s && s.home_score != null && s.away_score != null) {
-        if (m.home_score !== s.home_score || m.away_score !== s.away_score) {
-          m.home_score = s.home_score;
-          m.away_score = s.away_score;
-          m.api_status = s.status;
-          applied++;
+    (data.live || []).forEach(s => {
+      matchData.forEach(m => {
+        if (m.is_result) return;
+        if (m.home_team === s.home_team && m.away_team === s.away_team) {
+          if (s.home_score != null) m.home_score = s.home_score;
+          if (s.away_score != null) m.away_score = s.away_score;
+          if (s.is_result) m.is_result = true;
         }
-      }
+      });
     });
-  } catch(e) {
-    // Server not running — silently ignore
-  }
+  } catch(e) { /* server not running — ignore */ }
 }
 
 // Auto-scroll to most relevant match after load + switch to right tab
