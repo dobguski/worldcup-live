@@ -1752,7 +1752,8 @@ def serve_dashboard(port: int = 8888):
                 v['lang_dist'][lang] = v['lang_dist'].get(lang, 0) + 1
 
                 visitor_path.write_text(json.dumps(v, ensure_ascii=False, indent=2), encoding='utf-8')
-                print(f'  [VIS] #{v[\"count\"]} tz={tz} lang={lang}')
+                cnt = v.get('count', 0)
+                print(f'  [VIS] #{cnt} tz={tz} lang={lang}')
 
                 self.send_response(200)
                 self.send_header('Content-Type', 'application/json')
