@@ -42,7 +42,7 @@ STANDINGS_JSON = REPO_DIR / "standings.json"
 TEAM_NAMES_JSON = REPO_DIR / "team_names.json"
 TEAMS_JSON = REPO_DIR / "teams.json"
 
-ESPN_API = "https://site.api.espn.com/apis/site/v2/sports/soccer/fifa.world/scoreboard"
+ESPN_API = "https://site.api.espn.com/apis/site/v2/sports/soccer/fifa.world/scoreboard?dates=20260611-20260719"
 TSDB_API = "https://www.thesportsdb.com/api/v1/json/3/eventsseason.php?id=4429&s=2026"
 TSDB_EVENT_API = "https://www.thesportsdb.com/api/v1/json/3/lookupevent.php?id="
 
@@ -984,12 +984,18 @@ def merge_api_results(matches: list[dict], api_matches: list[dict]) -> list[dict
                 aws = api.get("away_score")
                 status = api.get("status", "")
 
-                if hs is not None and aws is not None and "FULL_TIME" in status or status == "FT" or "FINAL" in status:
+                if hs is not None and aws is not None:
+                    # Only accept scores if match has actually started (not SCHEDULED)
+                    has_started = any(kw in status for kw in ['IN_PROGRESS','HALFTIME','FULL_TIME','FINAL','FT'])
+                    if not has_started:
+                        continue
                     match["home_score"] = int(hs)
                     match["away_score"] = int(aws)
-                    match["is_result"] = True
                     match["api_status"] = status
                     match["api_source"] = api.get("source", "")
+                    is_finished = ('FULL_TIME' in status or 'FINAL' in status or status == 'FT')
+                    if is_finished:
+                        match["is_result"] = True
                     updated.append(match)
 
     return updated
@@ -1163,7 +1169,7 @@ def check_missing_results(matches: list[dict]) -> list[dict]:
         try:
             tz_offset = int(m['tz'].replace('UTC', ''))
             mt = datetime.strptime(f"{m['date']} {m['time']}", '%Y-%m-%d %H:%M')
-            match_utc = mt - timedelta(hours=tz_offset)
+            match_utc = (mt - timedelta(hours=tz_offset)).replace(tzinfo=timezone.utc)
             if match_utc + timedelta(hours=2) < now_utc:  # 2+ hours past kickoff
                 missing.append(m)
         except (ValueError, KeyError):
