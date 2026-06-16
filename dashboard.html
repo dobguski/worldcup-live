@@ -914,14 +914,23 @@ function renderPM() {
     const actualWinner = m.home_score > m.away_score ? m.home_team : (m.away_score > m.home_score ? m.away_team : '平局');
     const correct = pm.correct ? '✅' : '❌';
     const tier = pm.home_prob > 0.75 ? '🔥' : (pm.home_prob > 0.6 ? '⭐' : (pm.home_prob > 0.5 ? '' : '🎲'));
+    const hCn = teamNamesCN[m.home_team] || '';
+    const aCn = teamNamesCN[m.away_team] || '';
+    const homeDisp = `<span style=\"font-size:.85em\">${hCn||m.home_team}</span><br><span style=\"font-size:.62em;color:#64748b\">${m.home_team}</span>`;
+    const awayDisp = `<span style=\"font-size:.85em\">${aCn||m.away_team}</span><br><span style=\"font-size:.62em;color:#64748b\">${m.away_team}</span>`;
+    const teamHtml = `<div style=\"display:flex;align-items:center;gap:8px;justify-content:center\">${homeDisp}<span style=\"font-weight:bold;color:#e2b04a;font-size:1.1em\">${m.home_score}-${m.away_score}</span>${awayDisp}</div>`;
+    const hp = Math.round(pm.home_prob*100), dp = Math.round(pm.draw_prob*100), ap = Math.round(pm.away_prob*100);
+    const probHtml = `<span style=\"font-size:.7em;color:#94a3b8\">胜</span><br><span>${hp}%</span>` +
+      ` <span style=\"font-size:.7em;color:#94a3b8;margin-left:4px\">平</span><br><span>${dp}%</span>` +
+      ` <span style=\"font-size:.7em;color:#94a3b8;margin-left:4px\">负</span><br><span>${ap}%</span>`;
 
     html += `<tr style=\"border-bottom:1px solid #1e293b;${pm.correct ? '' : 'background:rgba(220,38,38,.08)'}\">
-      <td style=\"padding:6px\">${teamName(m.home_team)} ${m.home_score}-${m.away_score} ${teamName(m.away_team)}</td>
-      <td style=\"padding:6px;text-align:center;color:#94a3b8\">${m.group}组</td>
-      <td style=\"padding:6px;text-align:center\">${tier} ${predLabel}</td>
-      <td style=\"padding:6px;text-align:center;font-size:.85em\">胜${Math.round(pm.home_prob*100)}%/平${Math.round(pm.draw_prob*100)}%/负${Math.round(pm.away_prob*100)}%</td>
-      <td style=\"padding:6px;text-align:center;font-weight:bold\">${actualWinner}</td>
-      <td style=\"padding:6px;text-align:center\">${correct}</td>
+      <td style=\"padding:10px 8px;line-height:1.6\">${teamHtml}</td>
+      <td style=\"padding:10px 8px;text-align:center;color:#94a3b8;vertical-align:middle\">${m.group}组</td>
+      <td style=\"padding:10px 8px;text-align:center;vertical-align:middle\">${tier} ${predLabel}</td>
+      <td style=\"padding:10px 8px;text-align:center;vertical-align:middle;line-height:1.6\">${probHtml}</td>
+      <td style=\"padding:10px 8px;text-align:center;font-weight:bold;vertical-align:middle\">${actualWinner}</td>
+      <td style=\"padding:10px 8px;text-align:center;vertical-align:middle;font-size:1.1em\">${correct}</td>
     </tr>`;
   });
 
