@@ -67,8 +67,8 @@ TZ_OFFSETS = {
     "Vancouver": "UTC-7",
 }
 
-POLL_INTERVAL = 30   # seconds between API polls during live matches
-WATCH_INTERVAL = 90   # seconds between full sync cycles
+POLL_INTERVAL = 20   # seconds between API polls during live matches
+WATCH_INTERVAL = 60   # seconds between full sync cycles
 
 
 # ============================================================
