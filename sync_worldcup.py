@@ -808,7 +808,7 @@ def parse_match_line(line: str) -> dict | None:
     # Scheduled: "Home Team  v Away Team"
 
     score_m = re.search(r"(\d+)-(\d+)\s+\((.*?)\)", rest)
-    v_m = re.search(r"\s{2,}v\s+", rest)
+    v_m = re.search(r"\s+v\s+", rest)
 
     if score_m:
         # Scored match: split by the score pattern
