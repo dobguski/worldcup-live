@@ -971,9 +971,16 @@ def merge_api_results(matches: list[dict], api_matches: list[dict]) -> list[dict
             api_away = normalize_name(api["away_team"])
             api_date = api.get("date", "")
 
-            # Match by date + teams
-            if api_date != match_date:
-                continue
+            # Match by date + teams (±1 day for UTC date rollover)
+            from datetime import date as dt_date, timedelta as dt_timedelta
+            try:
+                api_d = dt_date.fromisoformat(api_date)
+                match_d = dt_date.fromisoformat(match_date)
+                if abs((api_d - match_d).days) > 1:
+                    continue
+            except (ValueError, TypeError):
+                if api_date != match_date:
+                    continue
 
             # Fuzzy match teams
             home_match = (home.lower() in api_home.lower() or api_home.lower() in home.lower())
