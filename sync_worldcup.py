@@ -1022,53 +1022,79 @@ def merge_api_results(matches: list[dict], api_matches: list[dict]) -> list[dict
     """Merge API results into parsed match data. Returns list of updated matches."""
     updated = []
 
-    for match in matches:
-        if match.get("is_result"):
-            continue  # Already has a result
+    corrections = []
+    from datetime import date as dt_date, timedelta as dt_timedelta
 
+    for match in matches:
         home = normalize_name(match["home_team"])
         away = normalize_name(match["away_team"])
         match_date = match["date"]
+        current_hs = match.get("home_score")
+        current_aws = match.get("away_score")
+        is_done = match.get("is_result", False)
 
+        # Collect all API results for this match (across all sources)
+        api_results = []
         for api in api_matches:
             api_home = normalize_name(api["home_team"])
             api_away = normalize_name(api["away_team"])
             api_date = api.get("date", "")
 
-            # Match by date + teams (±1 day for UTC date rollover)
-            from datetime import date as dt_date, timedelta as dt_timedelta
             try:
                 api_d = dt_date.fromisoformat(api_date)
                 match_d = dt_date.fromisoformat(match_date)
-                if abs((api_d - match_d).days) > 1:
-                    continue
+                if abs((api_d - match_d).days) > 1: continue
             except (ValueError, TypeError):
-                if api_date != match_date:
-                    continue
+                if api_date != match_date: continue
 
-            # Fuzzy match teams
             home_match = (home.lower() in api_home.lower() or api_home.lower() in home.lower())
             away_match = (away.lower() in api_away.lower() or api_away.lower() in away.lower())
+            if not (home_match and away_match): continue
 
-            if home_match and away_match:
-                hs = api.get("home_score")
-                aws = api.get("away_score")
-                status = api.get("status", "")
+            hs = api.get("home_score")
+            aws = api.get("away_score")
+            status = api.get("status", "")
+            source = api.get("source", "")
+            if hs is not None and aws is not None:
+                api_results.append({'hs': int(hs), 'aws': int(aws), 'status': status, 'source': source})
 
-                if hs is not None and aws is not None:
-                    # Only accept scores if match has actually started (not SCHEDULED)
-                    has_started = any(kw in status for kw in ['IN_PROGRESS','HALFTIME','FULL_TIME','FINAL','FT'])
-                    if not has_started:
-                        continue
-                    match["home_score"] = int(hs)
-                    match["away_score"] = int(aws)
-                    match["api_status"] = status
-                    match["api_source"] = api.get("source", "")
-                    is_finished = ('FULL_TIME' in status or 'FINAL' in status or status == 'FT')
-                    if is_finished:
-                        match["is_result"] = True
-                    updated.append(match)
+        if not api_results:
+            continue
 
+        # Best score: TheSportsDB priority, then any
+        tsdb = [r for r in api_results if r['source'] == 'thesportsdb']
+        best = tsdb[0] if tsdb else api_results[0]
+
+        # === CORRECTION: already-finished match, API says different score ===
+        if is_done and current_hs is not None:
+            if best['hs'] != current_hs or best['aws'] != current_aws:
+                old_s = f"{current_hs}-{current_aws}"
+                new_s = f"{best['hs']}-{best['aws']}"
+                print(f"  ⚠️ CORRECTION: {match['home_team']} vs {match['away_team']} {old_s} → {new_s} (src: {best['source']})")
+                match["home_score"] = best['hs']
+                match["away_score"] = best['aws']
+                corrections.append(match)
+            continue
+
+        # === NEW RESULT ===
+        has_started = any(kw in best['status'] for kw in ['IN_PROGRESS','HALFTIME','FULL_TIME','FINAL','FT'])
+        if not has_started: continue
+
+        match["home_score"] = best['hs']
+        match["away_score"] = best['aws']
+        match["api_status"] = best['status']
+        match["api_source"] = best['source']
+
+        # Mark final only if: TheSportsDB confirms, OR 2+ sources agree
+        is_final = ('FULL_TIME' in best['status'] or 'FINAL' in best['status'] or best['status'] == 'FT')
+        multi_agree = len(api_results) >= 2 and len(set(r['hs'] for r in api_results)) == 1
+        if is_final or (multi_agree and best['source'] == 'thesportsdb'):
+            match["is_result"] = True
+
+        updated.append(match)
+
+    if corrections:
+        print(f"  🔧 {len(corrections)} score correction(s) applied")
     return updated
 
 
