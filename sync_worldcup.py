@@ -44,7 +44,10 @@ TEAMS_JSON = REPO_DIR / "teams.json"
 
 ESPN_API = "https://site.api.espn.com/apis/site/v2/sports/soccer/fifa.world/scoreboard?dates=20260611-20260719"
 TSDB_API = "https://www.thesportsdb.com/api/v1/json/3/eventsseason.php?id=4429&s=2026"
+TSDB_PAST_API = "https://www.thesportsdb.com/api/v1/json/3/eventspastleague.php?id=4429"
+TSDB_NEXT_API = "https://www.thesportsdb.com/api/v1/json/3/eventsnextleague.php?id=4429"
 TSDB_EVENT_API = "https://www.thesportsdb.com/api/v1/json/3/lookupevent.php?id="
+TSDB_DAY_API = "https://www.thesportsdb.com/api/v1/json/3/eventsday.php?d={date}&s=Soccer"
 
 # 2026 World Cup timezones used in Football.TXT
 # EDT = UTC-4, CDT = UTC-5, MDT = UTC-6, PDT = UTC-7
@@ -158,24 +161,42 @@ def fetch_espn_matches() -> list[dict]:
 
 
 def fetch_thesportsdb_matches() -> list[dict]:
-    """Fetch all 2026 World Cup matches from TheSportsDB."""
-    data = fetch_json(TSDB_API)
-    if not data or "events" not in data:
-        return []
+    """Fetch all 2026 World Cup matches from TheSportsDB (multiple endpoints for free key coverage)."""
     matches = []
-    for e in data["events"]:
-        matches.append({
-            "id": e.get("idEvent", ""),
-            "date": e.get("dateEvent", ""),
-            "home_team": e.get("strHomeTeam", ""),
-            "away_team": e.get("strAwayTeam", ""),
-            "home_score": int(e.get("intHomeScore")) if e.get("intHomeScore") is not None else None,
-            "away_score": int(e.get("intAwayScore")) if e.get("intAwayScore") is not None else None,
-            "status": e.get("strStatus", ""),
-            "venue": e.get("strVenue", ""),
-            "round": e.get("intRound", ""),
-            "source": "thesportsdb",
-        })
+    seen = set()
+    def add_events(data, status_hint=""):
+        if not data or "events" not in data:
+            return
+        for e in data["events"]:
+            eid = e.get("idEvent", "")
+            if eid in seen: continue
+            seen.add(eid)
+            hs = e.get("intHomeScore")
+            aws = e.get("intAwayScore")
+            matches.append({
+                "id": eid,
+                "date": e.get("dateEvent", ""),
+                "home_team": e.get("strHomeTeam", ""),
+                "away_team": e.get("strAwayTeam", ""),
+                "home_score": int(hs) if hs is not None and hs != "" else None,
+                "away_score": int(aws) if aws is not None and aws != "" else None,
+                "status": e.get("strStatus", status_hint),
+                "venue": e.get("strVenue", ""),
+                "round": e.get("intRound", ""),
+                "source": "thesportsdb",
+            })
+
+    # Season events (main endpoint, but limited on free key)
+    add_events(fetch_json(TSDB_API))
+    # Past results (recently finished)
+    add_events(fetch_json(TSDB_PAST_API), "FT")
+    # Upcoming matches
+    add_events(fetch_json(TSDB_NEXT_API), "Scheduled")
+    # Recent days (last 3 days of matches)
+    from datetime import date, timedelta
+    for i in range(4):
+        d = (date.today() - timedelta(days=i)).isoformat()
+        add_events(fetch_json(TSDB_DAY_API.format(date=d)), "")
     return matches
 
 
