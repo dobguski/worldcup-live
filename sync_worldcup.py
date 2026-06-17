@@ -1258,8 +1258,9 @@ def sync_once(commit: bool = True) -> dict:
     print("\n[1/4] Fetching live data...")
     espn = fetch_espn_matches()
     tsdb = fetch_thesportsdb_matches()
-    all_api = espn + tsdb
-    print(f"  ESPN: {len(espn)} matches  |  TheSportsDB: {len(tsdb)} matches")
+    fifa = fetch_fifa_matches()
+    all_api = espn + tsdb + fifa
+    print(f"  ESPN: {len(espn)}  |  TSDB: {len(tsdb)}  |  FIFA: {len(fifa)}")
 
     # Show live matches
     live = [m for m in espn if "FULL_TIME" not in m.get("status", "") and
