@@ -48,6 +48,7 @@ TSDB_PAST_API = "https://www.thesportsdb.com/api/v1/json/3/eventspastleague.php?
 TSDB_NEXT_API = "https://www.thesportsdb.com/api/v1/json/3/eventsnextleague.php?id=4429"
 TSDB_EVENT_API = "https://www.thesportsdb.com/api/v1/json/3/lookupevent.php?id="
 TSDB_DAY_API = "https://www.thesportsdb.com/api/v1/json/3/eventsday.php?d={date}&s=Soccer"
+FIFA_CALENDAR_API = "https://api.fifa.com/api/v3/calendar/matches?from=2026-06-10T00:00:00Z&to=2026-07-20T23:59:59Z&count=200"
 
 # 2026 World Cup timezones used in Football.TXT
 # EDT = UTC-4, CDT = UTC-5, MDT = UTC-6, PDT = UTC-7
@@ -199,6 +200,35 @@ def fetch_thesportsdb_matches() -> list[dict]:
         add_events(fetch_json(TSDB_DAY_API.format(date=d)), "")
     return matches
 
+
+def fetch_fifa_matches() -> list[dict]:
+    """Fetch 2026 World Cup matches from FIFA calendar API (tertiary source)."""
+    data = fetch_json(FIFA_CALENDAR_API, retries=1, backoff=1.0)
+    if not data or 'Results' not in data:
+        return []
+    matches = []
+    wc_keywords = ['world cup', 'fifa world', 'cop do mundo', 'coupe du monde', 'copa mundial', 'weltmeisterschaft']
+    for m in data['Results']:
+        comp = ' '.join([c.get('Description','') for c in m.get('CompetitionName', [])]).lower()
+        season = ' '.join([s.get('Description','') for s in m.get('SeasonName', [])]).lower()
+        if not any(kw in comp or kw in season for kw in wc_keywords):
+            continue  # Skip non-World Cup matches
+        h = m.get('Home', {})
+        a = m.get('Away', {})
+        hs = h.get('Score')
+        aws = a.get('Score')
+        matches.append({
+            'id': m.get('IdMatch', ''),
+            'date': (m.get('Date', ''))[:10],
+            'home_team': (h.get('TeamName', [{}]) or [{}])[0].get('Description', '') if h.get('TeamName') else '',
+            'away_team': (a.get('TeamName', [{}]) or [{}])[0].get('Description', '') if a.get('TeamName') else '',
+            'home_score': int(hs) if hs is not None and hs != '' else None,
+            'away_score': int(aws) if aws is not None and aws != '' else None,
+            'status': 'FT' if (hs is not None and hs != '') else 'Scheduled',
+            'venue': m.get('Stadium', {}).get('Name', [{}])[0].get('Description', '') if m.get('Stadium') else '',
+            'source': 'fifa',
+        })
+    return matches
 
 def fetch_event_details(event_id: str) -> dict | None:
     """Fetch detailed event data including goal scorers."""
