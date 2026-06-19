@@ -1076,7 +1076,7 @@ def merge_api_results(matches: list[dict], api_matches: list[dict]) -> list[dict
             continue
 
         # === NEW RESULT ===
-        has_started = any(kw in best['status'] for kw in ['IN_PROGRESS','HALFTIME','FULL_TIME','FINAL','FT'])
+        has_started = any(kw in best['status'] for kw in ['FIRST_HALF','SECOND_HALF','IN_PROGRESS','HALFTIME','FULL_TIME','FINAL','FT'])
         if not has_started: continue
 
         match["home_score"] = best['hs']
