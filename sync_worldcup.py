@@ -251,7 +251,9 @@ def fetch_pm_odds() -> dict | None:
             pm['accuracy_stats']['overall_accuracy'] = f'{round(correct/total_verified*100)}% ({correct}/{total_verified})'
 
     pm_path.write_text(json.dumps(pm, ensure_ascii=False, indent=2), encoding='utf-8')
-    print(f'  [PM] Updated polymarket.json ({len(pm.get(\"champion_odds\",{}))} champion odds, {len(pm.get(\"matches\",{}))} match markets)')
+    n_champs = len(pm.get('champion_odds', {}))
+    n_matches = len(pm.get('matches', {}))
+    print(f'  [PM] Updated: {n_champs} champion odds, {n_matches} match markets')
     return pm
 
 
