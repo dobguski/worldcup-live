@@ -26,6 +26,7 @@ _site/
 
 sandbox/
 tmp/
+_stage/
 .db_snapshots/
 __pycache__/
 
