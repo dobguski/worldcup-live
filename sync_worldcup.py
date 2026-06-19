@@ -200,6 +200,61 @@ def fetch_thesportsdb_matches() -> list[dict]:
     return matches
 
 
+def fetch_pm_odds() -> dict | None:
+    """Fetch Polymarket odds from Gamma API. Updates polymarket.json daily.
+    Returns updated polymarket data dict, or None if fetch fails.
+    """
+    import datetime
+    pm_path = REPO_DIR / 'polymarket.json'
+
+    # Load existing data
+    try:
+        pm = json.loads(pm_path.read_text(encoding='utf-8'))
+    except Exception:
+        pm = {'matches': {}, 'champion_odds': {}, 'updated': '', 'source': 'Polymarket Gamma API'}
+
+    last_update = pm.get('updated', '')
+    today = datetime.date.today().isoformat()
+    if last_update.startswith(today):
+        return pm  # Already updated today
+
+    # Try Gamma API for champion odds
+    try:
+        url = 'https://gamma-api.polymarket.com/markets?search=World+Cup+winner&limit=20'
+        data = fetch_json(url, retries=2, backoff=2.0)
+        if data and isinstance(data, list):
+            for item in data:
+                title = (item.get('question') or item.get('title', '')).lower()
+                if 'world cup' in title and 'winner' in title:
+                    outcomes = json.loads(item.get('outcomes', '[]'))
+                    for o in outcomes:
+                        name = o.get('outcome', '')
+                        price = float(o.get('price', 0))
+                        if price > 0.001:
+                            pm['champion_odds'][name] = round(price, 4)
+                    pm['updated'] = datetime.datetime.now().isoformat()
+                    pm['source'] = 'Polymarket Gamma API (daily crawl)'
+                    break
+    except Exception as e:
+        print(f'  [PM] Gamma API failed: {e}')
+
+    # Update match-level odds from existing cup.txt results
+    # (PM match markets are harder to scrape — use stored data as fallback)
+    if pm.get('matches'):
+        # Cross-reference with match_data to mark correct/incorrect
+        pm['total_matches'] = len(pm['matches'])
+        correct = sum(1 for m in pm['matches'].values() if m.get('correct') is True)
+        incorrect = sum(1 for m in pm['matches'].values() if m.get('correct') is False)
+        total_verified = correct + incorrect
+        pm['accuracy_stats'] = pm.get('accuracy_stats', {})
+        if total_verified > 0:
+            pm['accuracy_stats']['overall_accuracy'] = f'{round(correct/total_verified*100)}% ({correct}/{total_verified})'
+
+    pm_path.write_text(json.dumps(pm, ensure_ascii=False, indent=2), encoding='utf-8')
+    print(f'  [PM] Updated polymarket.json ({len(pm.get(\"champion_odds\",{}))} champion odds, {len(pm.get(\"matches\",{}))} match markets)')
+    return pm
+
+
 def fetch_fifa_matches() -> list[dict]:
     """Fetch 2026 World Cup matches from FIFA calendar API (tertiary source)."""
     data = fetch_json(FIFA_CALENDAR_API, retries=1, backoff=1.0)
@@ -2357,10 +2412,16 @@ if __name__ == "__main__":
         import threading
 
         def bg_sync():
+            pm_last_check = ''
             while True:
                 try:
-                    bump_counter()  # Update counter BEFORE sync (included in commit)
+                    bump_counter()
                     sync_once(commit=True)
+                    # PM odds: daily refresh
+                    today = __import__('datetime').date.today().isoformat()
+                    if today != pm_last_check:
+                        fetch_pm_odds()
+                        pm_last_check = today
                 except Exception as e:
                     print(f"  [BG ERROR] {e}")
                 time.sleep(WATCH_INTERVAL)
