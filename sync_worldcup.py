@@ -79,39 +79,38 @@ WATCH_INTERVAL = 30   # seconds between full sync cycles
 # API FETCHERS
 # ============================================================
 def fetch_json(url: str, retries: int = 1, backoff: float = 1.0) -> dict | None:
-    """Fetch JSON from URL with retries, exponential backoff, and SSL fallback."""
-    import ssl
-    ssl_ctx = None  # default
-    for attempt in range(retries + 1):  # +1 for SSL fallback attempt
+    """Fetch JSON from URL with retries, gzip support, and SSL fallback."""
+    import ssl, gzip
+    ssl_ctx = None
+    for attempt in range(retries + 1):
         try:
-            req = urllib.request.Request(url, headers={"User-Agent": "WorldCupSync/1.0"})
+            req = urllib.request.Request(url, headers={
+                "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
+                "Accept": "application/json",
+            })
             opener_args = {}
             if ssl_ctx is not None:
                 opener_args['context'] = ssl_ctx
-            with urllib.request.urlopen(req, timeout=10, **opener_args) as resp:
-                return json.loads(resp.read().decode())
+            with urllib.request.urlopen(req, timeout=15, **opener_args) as resp:
+                raw = resp.read()
+                if raw[:2] == b'\x1f\x8b':  # gzip magic bytes
+                    raw = gzip.decompress(raw)
+                return json.loads(raw.decode())
         except urllib.error.HTTPError as e:
             if e.code == 429 and attempt < retries - 1:
-                wait = backoff * (2 ** attempt)
-                time.sleep(wait)
+                time.sleep(backoff * (2 ** attempt))
                 continue
-            if attempt < retries - 1:
-                time.sleep(backoff)
-            else:
+            if attempt >= retries - 1:
                 print(f"  [WARN] HTTP {e.code} on {url[:60]}...")
         except Exception as e:
-            # On SSL error, retry with unverified context
             if 'SSL' in str(e).upper() and ssl_ctx is None:
                 ssl_ctx = ssl.create_default_context()
                 ssl_ctx.check_hostname = False
                 ssl_ctx.verify_mode = ssl.CERT_NONE
-                print(f"  [SSL] Retrying with unverified context...")
                 time.sleep(1)
                 continue
-            if attempt < retries - 1:
-                time.sleep(backoff)
-            else:
-                print(f"  [WARN] Failed to fetch {url[:60]}... : {e}")
+            if attempt >= retries - 1:
+                print(f"  [WARN] {url[:60]}...: {e}")
     return None
 
 
