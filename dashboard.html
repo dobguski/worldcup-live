@@ -46,6 +46,7 @@ body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:#0f172
 .lang-btn.active{background:#e2b04a;color:#0f1724;border-color:#e2b04a;font-weight:bold}
 .lang-btn:hover{border-color:#e2b04a}
 .container{max-width:1400px;margin:0 auto;padding:0 15px 15px}
+.sticky-spacer{height:0}
 .live-banner{background:#dc2626;color:white;text-align:center;padding:8px;font-weight:bold;display:none;animation:pulse 2s infinite}
 .live-banner.active{display:block}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:0.7}}
@@ -201,7 +202,8 @@ body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:#0f172
 .player-num{color:#e2b04a;font-weight:bold;text-align:center;width:28px}
 .player-pos{color:#94a3b8;text-align:center;font-size:.85em}
 .player-club{color:#64748b;font-size:.85em}
-.tabs{display:flex;gap:5px;margin:15px 0;flex-wrap:wrap}
+.sticky-header{position:sticky;top:0;z-index:100;background:#0f1724;padding-bottom:0}
+.tabs{display:flex;gap:5px;margin:0;flex-wrap:wrap;padding:8px 0 0 0}
 .tab{padding:8px 20px;background:#1e293b;border:1px solid #334155;border-radius:8px 8px 0 0;cursor:pointer;color:#94a3b8;font-size:.9em}
 .tab.active{background:#3b82f6;color:#fff;border-color:#3b82f6}
 .tab-content{display:none}
@@ -220,31 +222,23 @@ body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:#0f172
   <div class="subtitle">🇨🇦 Canada · 🇺🇸 USA · 🇲🇽 Mexico | Jun 11 – Jul 19 | 48 Teams · 104 Matches / 48队 · 104场</div>
 </div>
 
-<div class="top-bar">
-  <div class="lang-switch">
-    <button class="lang-btn active" onclick="setLang('dual')" id="btn-dual">中英双语 Dual</button>
-    <button class="lang-btn" onclick="setLang('cn')" id="btn-cn">中文 CN</button>
-    <button class="lang-btn" onclick="setLang('en')" id="btn-en">English EN</button>
-  </div>
-  <div style="display:flex;align-items:center;gap:12px;">
-    <span class="quality-badge" id="qualityBadge">--</span>
-    <div class="last-update" id="lastUpdate">Loading / 加载中...</div>
-  </div>
-</div>
-
-<div class="live-banner" id="liveBanner">
-  <span class="live-dot"></span><span id="liveBannerText">比赛进行中 · LIVE MATCHES IN PROGRESS</span>
-</div>
-
 <div class="container">
-
-<div class="tabs">
-  <div class="tab" onclick="switchTab('standings')"><span data-i18n="tab.standings">📊 积分榜 / Standings</span></div>
-  <div class="tab active" onclick="switchTab('matches')"><span data-i18n="tab.matches">📰 最新战报 / Latest</span></div>
-  <div class="tab" onclick="switchTab('live')"><span data-i18n="tab.live">🔴 直播 / Live</span></div>
-  <div class="tab" onclick="switchTab('teams')"><span data-i18n="tab.teams">👥 球队 / Teams</span></div>
-  <div class="tab" onclick="switchTab('bracket')"><span data-i18n="tab.bracket">🏆 淘汰赛 / Bracket</span></div>
-  <div class="tab" onclick="switchTab('pm')"><span data-i18n="tab.pm">📈 PM预测 / PM Picks</span></div>
+<div class="sticky-header">
+  <div class="top-bar">
+    <div class="lang-switch">
+      <button class="lang-btn active" onclick="setLang('dual')" id="btn-dual">中英双语 Dual</button>
+      <button class="lang-btn" onclick="setLang('cn')" id="btn-cn">中文 CN</button>
+      <button class="lang-btn" onclick="setLang('en')" id="btn-en">English EN</button>
+    </div>
+    <div style="display:flex;align-items:center;gap:12px;">
+      <span class="quality-badge" id="qualityBadge">--</span>
+      <div class="last-update" id="lastUpdate">Loading / 加载中...</div>
+    </div>
+  </div>
+  <div class="live-banner" id="liveBanner">
+    <span class="live-dot"></span><span id="liveBannerText">比赛进行中 · LIVE MATCHES IN PROGRESS</span>
+  </div>
+  <div class="tabs" id="tabNav"></div>
 </div>
 
 <div class="tab-content" id="tab-standings">
