@@ -414,6 +414,30 @@ const I18N = {
 
 let currentLang = 'dual';
 
+// ── Tab Configuration (navigation decoupled from content) ──
+const TAB_CONFIG = [
+  { id: 'standings', icon: '📊', cn: '积分榜', en: 'Standings' },
+  { id: 'matches',   icon: '📰', cn: '最新战报', en: 'Latest',   active: true },
+  { id: 'live',      icon: '🔴', cn: '直播',     en: 'Live' },
+  { id: 'teams',     icon: '👥', cn: '球队',     en: 'Teams' },
+  { id: 'bracket',   icon: '🏆', cn: '淘汰赛',   en: 'Bracket' },
+  { id: 'pm',        icon: '📈', cn: 'PM预测',   en: 'PM Picks' },
+];
+
+function renderNav() {
+  const nav = document.getElementById('tabNav');
+  if (!nav) return;
+  nav.innerHTML = TAB_CONFIG.map(t =>
+    `<div class="tab${t.active?' active':''}" onclick="switchTab('${t.id}')"><span>${t.icon} ${t.cn} / ${t.en}</span></div>`
+  ).join('');
+  // Update i18n labels
+  TAB_CONFIG.forEach(t => {
+    I18N.cn['tab.' + t.id] = t.icon + ' ' + t.cn;
+    I18N.en['tab.' + t.id] = t.icon + ' ' + t.en;
+  });
+}
+renderNav();  // Build nav on page load
+
 function t(key) {
   if (currentLang === 'cn') return I18N.cn[key] || key;
   if (currentLang === 'en') return I18N.en[key] || key;
@@ -1274,11 +1298,10 @@ function closePlayerModal() {
 }
 
 function switchTab(name) {
-  const tabOrder = {standings:1, matches:2, live:3, teams:4, bracket:5, pm:6};
-  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  const idx = TAB_CONFIG.findIndex(t => t.id === name);
+  document.querySelectorAll('.tab').forEach((t, i) => t.classList.toggle('active', i === idx));
   document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
-  document.querySelector(`.tab:nth-child(${tabOrder[name]})`).classList.add('active');
-  document.getElementById(`tab-${name}`).classList.add('active');
+  document.getElementById('tab-' + name).classList.add('active');
 }
 
 let refreshTimer = null;
