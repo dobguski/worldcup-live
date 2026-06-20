@@ -478,12 +478,12 @@
     "home_team_cn": "德国",
     "away_team": "Ivory Coast",
     "away_team_cn": "科特迪瓦",
-    "home_score": null,
-    "away_score": null,
-    "halftime": null,
+    "home_score": 2,
+    "away_score": 1,
+    "halftime": "0-0",
     "venue": "Toronto",
     "group": "E",
-    "is_result": false
+    "is_result": true
   },
   {
     "date": "2026-06-21",
@@ -586,12 +586,12 @@
     "home_team_cn": "荷兰",
     "away_team": "Sweden",
     "away_team_cn": "瑞典",
-    "home_score": null,
-    "away_score": null,
-    "halftime": null,
+    "home_score": 5,
+    "away_score": 1,
+    "halftime": "0-0",
     "venue": "Houston",
     "group": "F",
-    "is_result": false
+    "is_result": true
   },
   {
     "date": "2026-06-21",

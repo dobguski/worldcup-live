@@ -237,14 +237,16 @@ def fetch_pm_odds() -> dict | None:
             if champion_odds:
                 pm['champion_odds'] = champion_odds
                 pm['champion_odds_updated'] = today
-                pm['champion_odds_volume'] = f'${float(event.get(\"volume\",0)):,.0f}'
+                vol = float(event.get('volume', 0))
+                pm['champion_odds_volume'] = f'${vol:,.0f}'
                 pm['source'] = 'Polymarket Gamma API (event/30615 daily)'
                 pm['updated'] = datetime.datetime.now().isoformat()
     except Exception as e:
         print(f'  [PM] {e}')
 
     pm_path.write_text(json.dumps(pm, ensure_ascii=False, indent=2), encoding='utf-8')
-    print(f'  [PM] {len(pm.get(\"champion_odds\",{}))} teams updated')
+    n_odds = len(pm.get('champion_odds', {}))
+    print(f'  [PM] {n_odds} teams updated')
     return pm
 
 
