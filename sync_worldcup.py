@@ -201,59 +201,50 @@ def fetch_thesportsdb_matches() -> list[dict]:
 
 
 def fetch_pm_odds() -> dict | None:
-    """Fetch Polymarket odds from Gamma API. Updates polymarket.json daily.
-    Returns updated polymarket data dict, or None if fetch fails.
-    """
+    """Fetch Polymarket odds from Gamma API event/30615 (World Cup Winner).
+    Updates polymarket.json daily. Returns updated dict or None if fetch fails."""
     import datetime
     pm_path = REPO_DIR / 'polymarket.json'
-
-    # Load existing data
     try:
         pm = json.loads(pm_path.read_text(encoding='utf-8'))
     except Exception:
-        pm = {'matches': {}, 'champion_odds': {}, 'updated': '', 'source': 'Polymarket Gamma API'}
+        pm = {'matches': {}, 'champion_odds': {}, 'updated': '', 'source': ''}
 
-    last_update = pm.get('updated', '')
+    last_update = pm.get('champion_odds_updated', '')
     today = datetime.date.today().isoformat()
     if last_update.startswith(today):
-        return pm  # Already updated today
+        return pm
 
-    # Try Gamma API for champion odds
     try:
-        url = 'https://gamma-api.polymarket.com/markets?search=World+Cup+winner&limit=20'
-        data = fetch_json(url, retries=2, backoff=2.0)
-        if data and isinstance(data, list):
-            for item in data:
-                title = (item.get('question') or item.get('title', '')).lower()
-                if 'world cup' in title and 'winner' in title:
-                    outcomes = json.loads(item.get('outcomes', '[]'))
-                    for o in outcomes:
-                        name = o.get('outcome', '')
-                        price = float(o.get('price', 0))
-                        if price > 0.001:
-                            pm['champion_odds'][name] = round(price, 4)
-                    pm['updated'] = datetime.datetime.now().isoformat()
-                    pm['source'] = 'Polymarket Gamma API (daily crawl)'
-                    break
+        url = 'https://gamma-api.polymarket.com/events/30615'
+        event = fetch_json(url, retries=2, backoff=2.0)
+        if event:
+            champion_odds = {}
+            for m in event.get('markets', []):
+                q = m.get('question', ''); outcomes = m.get('outcomes', [])
+                prices = m.get('outcomePrices', [])
+                if isinstance(outcomes, str): outcomes = json.loads(outcomes)
+                if isinstance(prices, str): prices = json.loads(prices)
+                for o in outcomes:
+                    label = o.get('outcome', o) if isinstance(o, dict) else o
+                    if label.lower() == 'yes':
+                        import re
+                        team_match = re.search(r'Will (.+?) win the 2026', q)
+                        idx = list(outcomes).index(o)
+                        prob = float(prices[idx]) if idx < len(prices) else 0
+                        if team_match and prob > 0.001:
+                            champion_odds[team_match.group(1).strip()] = round(prob, 4)
+            if champion_odds:
+                pm['champion_odds'] = champion_odds
+                pm['champion_odds_updated'] = today
+                pm['champion_odds_volume'] = f'${float(event.get(\"volume\",0)):,.0f}'
+                pm['source'] = 'Polymarket Gamma API (event/30615 daily)'
+                pm['updated'] = datetime.datetime.now().isoformat()
     except Exception as e:
-        print(f'  [PM] Gamma API failed: {e}')
-
-    # Update match-level odds from existing cup.txt results
-    # (PM match markets are harder to scrape — use stored data as fallback)
-    if pm.get('matches'):
-        # Cross-reference with match_data to mark correct/incorrect
-        pm['total_matches'] = len(pm['matches'])
-        correct = sum(1 for m in pm['matches'].values() if m.get('correct') is True)
-        incorrect = sum(1 for m in pm['matches'].values() if m.get('correct') is False)
-        total_verified = correct + incorrect
-        pm['accuracy_stats'] = pm.get('accuracy_stats', {})
-        if total_verified > 0:
-            pm['accuracy_stats']['overall_accuracy'] = f'{round(correct/total_verified*100)}% ({correct}/{total_verified})'
+        print(f'  [PM] {e}')
 
     pm_path.write_text(json.dumps(pm, ensure_ascii=False, indent=2), encoding='utf-8')
-    n_champs = len(pm.get('champion_odds', {}))
-    n_matches = len(pm.get('matches', {}))
-    print(f'  [PM] Updated: {n_champs} champion odds, {n_matches} match markets')
+    print(f'  [PM] {len(pm.get(\"champion_odds\",{}))} teams updated')
     return pm
 
 
