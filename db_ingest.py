@@ -135,6 +135,45 @@ def validate_staging(stage_data: dict) -> tuple[bool, list[str]]:
     return passed, warnings
 
 # ═══════════════════════════════════════════════════════════════
+# SOURCE 4: Manifold Markets (prediction market odds)
+# ═══════════════════════════════════════════════════════════════
+def fetch_manifold_odds() -> dict:
+    """Fetch World Cup 2026 champion odds from Manifold Markets API."""
+    result = {'markets': [], 'champion_odds': {}, 'source': 'manifold', 'status': 'ok'}
+
+    # Get World Cup winner market
+    try:
+        search_url = 'https://api.manifold.markets/v0/search-markets?term=world+cup+2026+winner+fifa&limit=10'
+        data = fetch_json(search_url)
+        if data and isinstance(data, list):
+            for item in data:
+                q = item.get('question', '')
+                prob = item.get('probability')
+                if prob is None: continue
+                # Check for team-specific markets
+                if 'win the 2026' in q.lower() and 'world cup' in q.lower():
+                    # Extract team name from question
+                    import re
+                    team_match = re.search(r'Will\s+(.+?)\s+win', q)
+                    if team_match:
+                        team = team_match.group(1).strip()
+                        result['champion_odds'][team] = round(prob, 4)
+                result['markets'].append({
+                    'question': q[:200],
+                    'probability': prob,
+                    'volume': item.get('volume24Hours', 0),
+                })
+
+        result['fetched_at'] = datetime.now(timezone.utc).isoformat()
+        if result['champion_odds']:
+            print(f'  [MANIFOLD] {len(result["champion_odds"])} team odds fetched')
+    except Exception as e:
+        result['status'] = 'fetch_failed'
+        print(f'  [MANIFOLD] Failed: {e}')
+
+    return result
+
+# ═══════════════════════════════════════════════════════════════
 # MAIN INGEST CYCLE
 # ═══════════════════════════════════════════════════════════════
 def ingest_cycle():
@@ -161,6 +200,7 @@ def ingest_cycle():
             'espn': espn,
             'thesportsdb': tsdb,
             'fifa': fifa,
+            'manifold': fetch_manifold_odds(),
         },
     }
     (STAGE_DIR / 'raw_sources.json').write_text(json.dumps(stage_data, ensure_ascii=False, indent=2), encoding='utf-8')
