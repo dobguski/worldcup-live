@@ -1214,7 +1214,7 @@ def calculate_standings(matches: list[dict]) -> dict:
 # GIT SYNC
 # ============================================================
 def git_commit_and_push(message: str = "Auto-sync: update match results") -> bool:
-    """Commit changes and push to private repo (worldcup-live) + public Pages repo (worldcup-pages)."""
+    """Commit changes and push. Tries HTTPS (gh credential) first, then SSH fallback."""
     import subprocess
     try:
         subprocess.run(["git", "add", "2026--usa/cup.txt", "match_data.json",
@@ -1223,13 +1223,21 @@ def git_commit_and_push(message: str = "Auto-sync: update match results") -> boo
                        cwd=REPO_DIR, capture_output=True, check=False)
         subprocess.run(["git", "commit", "-m", message],
                        cwd=REPO_DIR, capture_output=True, check=False)
-        # Push via SSH (more reliable than HTTPS behind certain networks)
-        for remote in ["dashboard", "origin"]:
-            result = subprocess.run(["git", "push", remote],
-                                    cwd=REPO_DIR, capture_output=True, check=False,
-                                    env={**dict(os.environ), "GIT_SSH_COMMAND": "ssh -o StrictHostKeyChecking=no"})
+
+        # Try HTTPS first (works via gh credential, bypasses firewall), then SSH
+        pushed = False
+        for remote in ["https-push", "dashboard", "origin"]:
+            env = dict(os.environ)
+            if 'ssh' in str(subprocess.run(["git", "remote", "get-url", remote],
+                                            cwd=REPO_DIR, capture_output=True, text=True).stdout).lower():
+                env["GIT_SSH_COMMAND"] = "ssh -o StrictHostKeyChecking=no -o ConnectTimeout=10"
+            result = subprocess.run(["git", "push", remote], cwd=REPO_DIR,
+                                    capture_output=True, check=False, timeout=30, env=env)
             if result.returncode == 0:
+                pushed = True
                 break
+        if not pushed:
+            print("  [PUSH] All remotes failed — will retry next cycle")
 
         # Sync web files to public Pages repo (worldcup-pages)
         WEB_FILES = ["dashboard.html", "index.html", "welcome.html", "CNAME", "robots.txt",
@@ -1862,6 +1870,8 @@ def serve_dashboard(port: int = 8888):
                 self._handle_visitor(self.path)
             elif self.path == '/live-scores':
                 self._handle_live_scores()
+            elif self.path == '/health':
+                self._handle_health()
             else:
                 super().do_GET()
 
@@ -1942,6 +1952,28 @@ def serve_dashboard(port: int = 8888):
                     self.wfile.write(json.dumps({'updated': '', 'live': []}).encode())
             except Exception as e:
                 print(f'  [LIVE] Error: {e}')
+                self.send_response(500)
+                self.end_headers()
+
+        def _handle_health(self):
+            """Health check endpoint — returns data freshness."""
+            import datetime
+            try:
+                mpath = REPO_DIR / 'match_data.json'
+                mtime = datetime.datetime.fromtimestamp(mpath.stat().st_mtime)
+                age_min = (datetime.datetime.now() - mtime).total_seconds() / 60
+                matches = json.loads(mpath.read_text(encoding='utf-8'))
+                scored = sum(1 for m in matches if m.get('is_result'))
+                status = 'ok' if age_min < 15 else 'stale'
+                self.send_response(200)
+                self.send_header('Content-Type', 'application/json')
+                self.send_header('Access-Control-Allow-Origin', '*')
+                self.end_headers()
+                self.wfile.write(json.dumps({
+                    'status': status, 'scored': scored, 'total': len(matches),
+                    'data_age_min': round(age_min, 1), 'updated': mtime.isoformat()
+                }, ensure_ascii=False).encode())
+            except Exception as e:
                 self.send_response(500)
                 self.end_headers()
 
