@@ -1214,8 +1214,8 @@ def calculate_standings(matches: list[dict]) -> dict:
 # GIT SYNC
 # ============================================================
 def git_commit_and_push(message: str = "Auto-sync: update match results") -> bool:
-    """Commit changes and push. Tries HTTPS (gh credential) first, then SSH fallback."""
-    import subprocess
+    """Commit changes and push. Returns True on success. Alerts loudly on failure."""
+    import subprocess, datetime
     try:
         subprocess.run(["git", "add", "2026--usa/cup.txt", "match_data.json",
                         "standings.json", "team_names.json", "teams.json", "dashboard.html",
@@ -1224,8 +1224,8 @@ def git_commit_and_push(message: str = "Auto-sync: update match results") -> boo
         subprocess.run(["git", "commit", "-m", message],
                        cwd=REPO_DIR, capture_output=True, check=False)
 
-        # Try HTTPS first (works via gh credential, bypasses firewall), then SSH
         pushed = False
+        last_error = ""
         for remote in ["https-push", "dashboard", "origin"]:
             env = dict(os.environ)
             if 'ssh' in str(subprocess.run(["git", "remote", "get-url", remote],
@@ -1236,8 +1236,21 @@ def git_commit_and_push(message: str = "Auto-sync: update match results") -> boo
             if result.returncode == 0:
                 pushed = True
                 break
+            else:
+                err = (result.stderr or result.stdout or b'').decode('utf-8', errors='ignore')[:200]
+                last_error = err.strip()
+
         if not pushed:
-            print("  [PUSH] All remotes failed — will retry next cycle")
+            now = datetime.datetime.now().strftime('%H:%M:%S')
+            msg = f"[PUSH FAIL {now}] {last_error}"
+            print(f"\n  {'='*50}")
+            print(f"  🔴 推送失败! 网络不可达 — 公网数据将滞后!")
+            print(f"  {msg}")
+            print(f"  {'='*50}\n")
+            # Log to persistent file
+            with open(REPO_DIR / 'push_failures.log', 'a', encoding='utf-8') as f:
+                f.write(f"{now} | {last_error}\n")
+            return False
 
         # Sync web files to public Pages repo (worldcup-pages)
         WEB_FILES = ["dashboard.html", "index.html", "welcome.html", "CNAME", "robots.txt",
@@ -1956,7 +1969,7 @@ def serve_dashboard(port: int = 8888):
                 self.end_headers()
 
         def _handle_health(self):
-            """Health check endpoint — returns data freshness."""
+            """Health check — data freshness + push status."""
             import datetime
             try:
                 mpath = REPO_DIR / 'match_data.json'
@@ -1965,13 +1978,24 @@ def serve_dashboard(port: int = 8888):
                 matches = json.loads(mpath.read_text(encoding='utf-8'))
                 scored = sum(1 for m in matches if m.get('is_result'))
                 status = 'ok' if age_min < 15 else 'stale'
+
+                # Push failure log
+                push_log = REPO_DIR / 'push_failures.log'
+                push_fails = 0
+                last_fail = ''
+                if push_log.exists():
+                    lines = push_log.read_text(encoding='utf-8').strip().split('\n')
+                    push_fails = len(lines)
+                    last_fail = lines[-1] if lines else ''
+
                 self.send_response(200)
                 self.send_header('Content-Type', 'application/json')
                 self.send_header('Access-Control-Allow-Origin', '*')
                 self.end_headers()
                 self.wfile.write(json.dumps({
                     'status': status, 'scored': scored, 'total': len(matches),
-                    'data_age_min': round(age_min, 1), 'updated': mtime.isoformat()
+                    'data_age_min': round(age_min, 1), 'updated': mtime.isoformat(),
+                    'push_failures': push_fails, 'last_push_fail': last_fail,
                 }, ensure_ascii=False).encode())
             except Exception as e:
                 self.send_response(500)
