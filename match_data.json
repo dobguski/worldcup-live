@@ -820,12 +820,12 @@
     "home_team_cn": "乌拉圭",
     "away_team": "Cape Verde",
     "away_team_cn": "佛得角",
-    "home_score": null,
-    "away_score": null,
-    "halftime": null,
+    "home_score": 2,
+    "away_score": 2,
+    "halftime": "0-0",
     "venue": "Miami (Miami Gardens)",
     "group": "H",
-    "is_result": false
+    "is_result": true
   },
   {
     "date": "2026-06-27",
