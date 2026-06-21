@@ -2436,20 +2436,22 @@ if __name__ == "__main__":
         sync_thread.start()
         serve_dashboard()
     elif "--serve" in sys.argv:
-        # Decoupled architecture: Ingest → Publish → Web Server
+        # Single sync loop + web server (no decoupled complexity)
         import threading
-        from db_ingest import ingest_loop as ingest_run
-        from db_publish import publish_loop as publish_run
-
-        # Layer 0-1: Resource DB — data ingestion (fetch all sources)
-        ingest_thread = threading.Thread(target=ingest_run, daemon=True, name='ingest')
-        ingest_thread.start()
-
-        # Layer 2-3: Operational DB — validate, build, publish, push
-        publish_thread = threading.Thread(target=publish_run, daemon=True, name='publish')
-        publish_thread.start()
-
-        print('\n  Architecture: INGEST(→_stage/) | PUBLISH(→production→push) | WEB(→:8888)')
+        def bg_sync():
+            pm_last_check = ''
+            while True:
+                try:
+                    bump_counter()
+                    sync_once(commit=True)
+                    today = __import__('datetime').date.today().isoformat()
+                    if today != pm_last_check:
+                        fetch_pm_odds()
+                        pm_last_check = today
+                except Exception as e:
+                    print(f"  [SYNC ERROR] {e}")
+                time.sleep(WATCH_INTERVAL)
+        threading.Thread(target=bg_sync, daemon=True).start()
         serve_dashboard()
     elif "--once" in sys.argv:
         sync_once(commit=False)
