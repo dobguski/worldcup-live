@@ -1932,40 +1932,62 @@ def serve_dashboard(port: int = 8888):
                 self.end_headers()
 
         def _handle_live_scores(self):
-            """Return live scores (cached from last sync, fast reply)."""
-            import datetime
+            """Return live scores: ESPN API direct + match_data.json merge (10s cache)."""
+            import datetime, time as _time
             try:
-                # Read match_data.json directly — it has the latest merged scores
-                mpath = REPO_DIR / 'match_data.json'
-                if mpath.exists():
-                    matches = json.loads(mpath.read_text(encoding='utf-8'))
-                    live = []
-                    now = datetime.datetime.now(datetime.timezone.utc)
-                    for m in matches:
-                        if m.get('is_result'): continue
-                        if not m.get('utc_ts'): continue
-                        ko = datetime.datetime.strptime(m['utc_ts'], '%Y-%m-%dT%H:%M:%SZ').replace(tzinfo=datetime.timezone.utc)
-                        from datetime import timedelta
-                        if ko <= now <= ko + timedelta(hours=2.5):
-                            live.append({
-                                'home_team': m['home_team'], 'away_team': m['away_team'],
-                                'home_score': m.get('home_score'), 'away_score': m.get('away_score'),
-                                'is_result': m.get('is_result', False),
-                            })
-                    self.send_response(200)
-                    self.send_header('Content-Type', 'application/json')
-                    self.send_header('Access-Control-Allow-Origin', '*')
-                    self.end_headers()
-                    self.wfile.write(json.dumps({'updated': datetime.datetime.now().isoformat(), 'live': live}, ensure_ascii=False).encode())
+                # Cache: re-fetch ESPN max every 10 seconds
+                cache_key = '_live_cache'
+                now_ts = _time.time()
+                if not hasattr(self, cache_key) or now_ts - getattr(self, cache_key + '_ts', 0) > 10:
+                    from sync_worldcup import fetch_espn_matches
+                    espn = fetch_espn_matches()
+                    setattr(self, cache_key, espn)
+                    setattr(self, cache_key + '_ts', now_ts)
                 else:
-                    self.send_response(200)
-                    self.send_header('Content-Type', 'application/json')
-                    self.send_header('Access-Control-Allow-Origin', '*')
-                    self.end_headers()
-                    self.wfile.write(json.dumps({'updated': '', 'live': []}).encode())
+                    espn = getattr(self, cache_key, [])
+
+                # Merge with match_data.json
+                mpath = REPO_DIR / 'match_data.json'
+                matches = json.loads(mpath.read_text(encoding='utf-8')) if mpath.exists() else []
+                live = []
+                now = datetime.datetime.now(datetime.timezone.utc)
+                from datetime import timedelta
+
+                for m in matches:
+                    if not m.get('utc_ts'): continue
+                    ko = datetime.datetime.strptime(m['utc_ts'], '%Y-%m-%dT%H:%M:%SZ').replace(tzinfo=datetime.timezone.utc)
+                    if not (ko <= now <= ko + timedelta(hours=2.5)): continue
+
+                    # Try to get live score from ESPN cache
+                    hs, aws, status = m.get('home_score'), m.get('away_score'), ''
+                    for e in espn:
+                        comps = e.get('competitions', [{}])[0]
+                        teams = comps.get('competitors', [])
+                        if len(teams) < 2: continue
+                        enames = [t.get('team', {}).get('displayName', '') for t in teams]
+                        if m['home_team'] in enames[0] and m['away_team'] in enames[1]:
+                            hs = teams[0].get('score'); aws = teams[1].get('score')
+                            status = comps.get('status', {}).get('type', {}).get('name', '')
+                            break
+
+                    if hs is not None: hs = int(hs)
+                    if aws is not None: aws = int(aws)
+                    live.append({
+                        'home_team': m['home_team'], 'away_team': m['away_team'],
+                        'home_score': hs, 'away_score': aws,
+                        'is_result': m.get('is_result', False),
+                        'status': status,
+                    })
+
+                self.send_response(200)
+                self.send_header('Content-Type', 'application/json')
+                self.send_header('Access-Control-Allow-Origin', '*')
+                self.end_headers()
+                self.wfile.write(json.dumps({'updated': datetime.datetime.now().isoformat(), 'live': live}, ensure_ascii=False).encode())
             except Exception as e:
                 print(f'  [LIVE] Error: {e}')
                 self.send_response(500)
+                self.end_headers()
                 self.end_headers()
 
         def _handle_health(self):
