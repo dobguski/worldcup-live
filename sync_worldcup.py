@@ -1144,7 +1144,7 @@ def merge_api_results(matches: list[dict], api_matches: list[dict]) -> list[dict
 
     if corrections:
         print(f"  🔧 {len(corrections)} score correction(s) applied")
-    return updated
+    return updated, corrections
 
 
 # ============================================================
@@ -1361,7 +1361,7 @@ def sync_once(commit: bool = True) -> dict:
 
     # 3. Merge new results (aggressive multi-source fetch)
     print("\n[3/4] Merging new results...")
-    updated = merge_api_results(matches, all_api)
+    updated, corrections = merge_api_results(matches, all_api)
 
     # Check for matches that should be finished but APIs haven't returned
     missing = check_missing_results(matches)
@@ -1371,7 +1371,7 @@ def sync_once(commit: bool = True) -> dict:
         retry_espn = fetch_espn_matches()
         retry_tsdb = fetch_thesportsdb_matches()
         retry_all = retry_espn + retry_tsdb
-        retry_updates = merge_api_results(matches, retry_all)
+        retry_updates, _ = merge_api_results(matches, retry_all)
         if retry_updates:
             updated = retry_updates
             print(f"  Retry found {len(updated)} result(s)!")
@@ -1380,10 +1380,11 @@ def sync_once(commit: bool = True) -> dict:
                 print(f"    ⚠️ Still missing: {m['date']} {m['home_team']} v {m['away_team']} — APIs lagging")
 
     new_results = []
-    if updated:
-        print(f"  Found {len(updated)} new result(s)!")
-        for m in updated:
-            print(f"    ✅ {m['date']}  {m['home_team']} {m['home_score']}-{m['away_score']} {m['away_team']}  [Group {m['group']}]")
+    all_changes = list(updated) + list(corrections)
+    if all_changes:
+        for m in all_changes:
+            tag = '🔧' if m in corrections else '✅'
+            print(f"    {tag} {m['date']}  {m['home_team']} {m['home_score']}-{m['away_score']} {m['away_team']}  [Group {m['group']}]")
             update_match_in_file(m, m["home_score"], m["away_score"])
             new_results.append(f"{m['home_team']} {m['home_score']}-{m['away_score']} {m['away_team']}")
     else:
@@ -2023,7 +2024,7 @@ def tui_mode():
             tsdb = fetch_thesportsdb_matches()
             all_api = espn + tsdb
             matches = parse_cup_txt()
-            merge_api_results(matches, all_api)
+            merge_api_results(matches, all_api)  # TUI: display only, discard corrections
             matches = parse_cup_txt()  # Re-parse after merge
             standings = calculate_standings(matches)
             live = [m for m in espn if "FULL_TIME" not in m.get("status", "") and
