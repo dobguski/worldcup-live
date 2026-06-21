@@ -694,12 +694,12 @@
     "home_team_cn": "比利时",
     "away_team": "Iran",
     "away_team_cn": "伊朗",
-    "home_score": null,
-    "away_score": null,
-    "halftime": null,
+    "home_score": 0,
+    "away_score": 0,
+    "halftime": "0-0",
     "venue": "Los Angeles (Inglewood)",
     "group": "G",
-    "is_result": false
+    "is_result": true
   },
   {
     "date": "2026-06-22",
@@ -802,12 +802,12 @@
     "home_team_cn": "西班牙",
     "away_team": "Saudi Arabia",
     "away_team_cn": "沙特阿拉伯",
-    "home_score": null,
-    "away_score": null,
-    "halftime": null,
+    "home_score": 4,
+    "away_score": 0,
+    "halftime": "0-0",
     "venue": "Atlanta",
     "group": "H",
-    "is_result": false
+    "is_result": true
   },
   {
     "date": "2026-06-22",
