@@ -496,12 +496,12 @@
     "home_team_cn": "厄瓜多尔",
     "away_team": "Curaçao",
     "away_team_cn": "库拉索",
-    "home_score": null,
-    "away_score": null,
-    "halftime": null,
+    "home_score": 0,
+    "away_score": 0,
+    "halftime": "0-0",
     "venue": "Kansas City",
     "group": "E",
-    "is_result": false
+    "is_result": true
   },
   {
     "date": "2026-06-26",
