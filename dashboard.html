@@ -556,7 +556,32 @@ function renderAll() {
   renderPM();
 }
 
-// Apply live scores from local server (real-time updates bypassing git push pipeline)
+// Live score poller — runs every 10s during match windows, bypasses git push pipeline
+let _livePoller = null;
+function startLiveScorePolling() {
+  if (_livePoller) return;
+  _livePoller = setInterval(async () => {
+    try {
+      const resp = await fetch('http://localhost:8888/live-scores', { signal: AbortSignal.timeout(3000) });
+      const data = await resp.json();
+      let changed = false;
+      (data.live || []).forEach(s => {
+        matchData.forEach(m => {
+          if (m.is_result) return;
+          if (m.home_team === s.home_team && m.away_team === s.away_team) {
+            if (s.home_score != null && m.home_score !== s.home_score) { m.home_score = s.home_score; changed = true; }
+            if (s.away_score != null && m.away_score !== s.away_score) { m.away_score = s.away_score; changed = true; }
+            if (s.is_result && !m.is_result) { m.is_result = true; changed = true; }
+          }
+        });
+      });
+      if (changed) { renderMatches(); renderLive(); }
+    } catch(e) {}
+  }, 10000);
+}
+startLiveScorePolling();
+
+// Apply live scores once on load
 async function applyLiveScores() {
   try {
     const resp = await fetch('http://localhost:8888/live-scores', { signal: AbortSignal.timeout(3000) });
@@ -571,7 +596,7 @@ async function applyLiveScores() {
         }
       });
     });
-  } catch(e) { /* server not running — ignore */ }
+  } catch(e) {}
 }
 
 // Auto-scroll to most relevant match after load + switch to right tab
