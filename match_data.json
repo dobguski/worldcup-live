@@ -1252,12 +1252,12 @@
     "home_team_cn": "巴拿马",
     "away_team": "Croatia",
     "away_team_cn": "克罗地亚",
-    "home_score": null,
-    "away_score": null,
-    "halftime": null,
+    "home_score": 0,
+    "away_score": 1,
+    "halftime": "0-0",
     "venue": "Toronto",
     "group": "L",
-    "is_result": false
+    "is_result": true
   },
   {
     "date": "2026-06-28",
