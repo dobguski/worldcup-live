@@ -730,7 +730,7 @@ function renderMatches() {
         <div class="match-date">${infoLine}</div>
         <div class="match-teams">
           <div class="team"><div class="team-name">${teamName(match.home_team)}</div></div>
-          <div class="score ${!isDone&&!isLive?'pending':''}">${isDone||isLive ? match.home_score+'-'+match.away_score : 'vs'}</div>
+          <div class="score ${!isDone&&!isLive?'pending':''}">${isDone||isLive ? (match.home_score!=null?match.home_score:0)+'-'+(match.away_score!=null?match.away_score:0) : 'vs'}</div>
           <div class="team"><div class="team-name">${teamName(match.away_team)}</div></div>
         </div>
         <div class="match-info"><span class="match-status ${statusCls}">${statusLabel}</span></div>
