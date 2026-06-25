@@ -1994,9 +1994,14 @@ def serve_dashboard(port: int = 8888):
                 self.end_headers()
                 self.wfile.write(json.dumps({'updated': datetime.datetime.now().isoformat(), 'live': live}, ensure_ascii=False).encode())
             except Exception as e:
-                print(f'  [LIVE] Error: {e}')
-                self.send_response(500)
-                self.end_headers()
+                err_msg = str(e)
+                # Client disconnect (10053/10054) is expected — don't spam logs
+                if '10053' not in err_msg and '10054' not in err_msg and 'aborted' not in err_msg.lower():
+                    print(f'  [LIVE] Error: {err_msg[:100]}')
+                try: self.send_response(500)
+                except: pass
+                try: self.end_headers()
+                except: pass
                 self.end_headers()
 
         def _handle_health(self):
