@@ -100,12 +100,12 @@
     "home_team_cn": "南非",
     "away_team": "South Korea",
     "away_team_cn": "韩国",
-    "home_score": null,
-    "away_score": null,
-    "halftime": null,
+    "home_score": 0,
+    "away_score": 0,
+    "halftime": "0-0",
     "venue": "Monterrey (Guadalupe)",
     "group": "A",
-    "is_result": false
+    "is_result": true
   },
   {
     "date": "2026-06-13",
