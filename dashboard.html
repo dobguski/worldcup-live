@@ -557,47 +557,50 @@ function renderAll() {
   renderPM();
 }
 
-// Live score poller — runs every 10s during match windows, bypasses git push pipeline
+// Live scores cache — survives loadData() wipes of matchData
+let _liveScoresCache = [];
+
+async function _fetchLiveScores() {
+  try {
+    const resp = await fetch('http://localhost:8888/live-scores', { signal: AbortSignal.timeout(5000) });
+    const data = await resp.json();
+    _liveScoresCache = data.live || [];
+  } catch(e) {}
+}
+
+function _applyLiveScoresToMatchData() {
+  _liveScoresCache.forEach(s => {
+    matchData.forEach(m => {
+      if (m.is_result) return;
+      if (m.home_team === s.home_team && m.away_team === s.away_team) {
+        if (s.home_score != null) m.home_score = s.home_score;
+        if (s.away_score != null) m.away_score = s.away_score;
+        if (s.is_result) m.is_result = true;
+      }
+    });
+  });
+}
+
+// Poll every 10s — keep cache fresh, re-render on change
 let _livePoller = null;
 function startLiveScorePolling() {
   if (_livePoller) return;
   _livePoller = setInterval(async () => {
-    try {
-      const resp = await fetch('http://localhost:8888/live-scores', { signal: AbortSignal.timeout(3000) });
-      const data = await resp.json();
-      let changed = false;
-      (data.live || []).forEach(s => {
-        matchData.forEach(m => {
-          if (m.is_result) return;
-          if (m.home_team === s.home_team && m.away_team === s.away_team) {
-            if (s.home_score != null && m.home_score !== s.home_score) { m.home_score = s.home_score; changed = true; }
-            if (s.away_score != null && m.away_score !== s.away_score) { m.away_score = s.away_score; changed = true; }
-            if (s.is_result && !m.is_result) { m.is_result = true; changed = true; }
-          }
-        });
-      });
-      if (changed) { renderMatches(); renderLive(); }
-    } catch(e) {}
+    const prevScores = JSON.stringify(_liveScoresCache);
+    await _fetchLiveScores();
+    _applyLiveScoresToMatchData();
+    if (JSON.stringify(_liveScoresCache) !== prevScores) {
+      renderMatches();
+      renderLive();
+    }
   }, 10000);
 }
 startLiveScorePolling();
 
-// Apply live scores once on load
+// Called after each loadData() cycle: re-apply cached live scores (loadData wipes matchData)
 async function applyLiveScores() {
-  try {
-    const resp = await fetch('http://localhost:8888/live-scores', { signal: AbortSignal.timeout(3000) });
-    const data = await resp.json();
-    (data.live || []).forEach(s => {
-      matchData.forEach(m => {
-        if (m.is_result) return;
-        if (m.home_team === s.home_team && m.away_team === s.away_team) {
-          if (s.home_score != null) m.home_score = s.home_score;
-          if (s.away_score != null) m.away_score = s.away_score;
-          if (s.is_result) m.is_result = true;
-        }
-      });
-    });
-  } catch(e) {}
+  await _fetchLiveScores();
+  _applyLiveScoresToMatchData();
 }
 
 // Auto-scroll to most relevant match after load + switch to right tab
@@ -767,7 +770,7 @@ function renderLive() {
         <div class="match-date">${fmt.date} ${liveTimeDisplay} · ${m.group}${t('group')} · ${m.venue}</div>
         <div class="match-teams">
           <div class="team"><div class="team-name">${teamName(m.home_team)}</div></div>
-          <div class="score live-pulse">${hasScore ? m.home_score+'-'+m.away_score : 'vs'}</div>
+          <div class="score live-pulse">${hasScore ? (m.home_score!=null?m.home_score:0)+'-'+(m.away_score!=null?m.away_score:0) : '0-0'}</div>
           <div class="team"><div class="team-name">${teamName(m.away_team)}</div></div>
         </div>
         <div class="match-info"><span class="match-status status-live">🔴 ${t('status.live')}</span></div>
