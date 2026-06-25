@@ -145,8 +145,8 @@ Sat June 20
   16:00 UTC-4     Germany  2-1 (0-0)  Ivory Coast    @ Toronto
   19:00 UTC-5     Ecuador  0-0 (0-0)  Curaçao    @ Kansas City
 Thu June 25
-  16:00 UTC-4    Curaçao  v Ivory Coast     @ Philadelphia
-  16:00 UTC-4    Ecuador  v Germany         @ New York/New Jersey (East Rutherford)
+  16:00 UTC-4     Curaçao  0-2 (0-0)  Ivory Coast    @ Philadelphia
+  16:00 UTC-4     Ecuador  2-1 (0-0)  Germany    @ New York/New Jersey (East Rutherford)
 
 
 ▪ Group F
@@ -160,7 +160,7 @@ Sat June 20
   22:00 UTC-6     Tunisia  0-4 (0-0)  Japan    @ Monterrey (Guadalupe)
 Thu June 25
   18:00 UTC-5    Japan        v Sweden             @ Dallas (Arlington)
-  18:00 UTC-5   Tunisia      v Netherlands         @ Kansas City
+  18:00 UTC-5     Tunisia  0-2 (0-0)  Netherlands    @ Kansas City
 
 
 ▪ Group G
