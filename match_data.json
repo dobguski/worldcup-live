@@ -82,12 +82,12 @@
     "home_team_cn": "捷克",
     "away_team": "Mexico",
     "away_team_cn": "墨西哥",
-    "home_score": null,
-    "away_score": null,
-    "halftime": null,
+    "home_score": 0,
+    "away_score": 3,
+    "halftime": "0-0",
     "venue": "Mexico City",
     "group": "A",
-    "is_result": false
+    "is_result": true
   },
   {
     "date": "2026-06-25",
