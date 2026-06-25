@@ -18,20 +18,20 @@
       "d": 1,
       "l": 1,
       "gf": 2,
-      "ga": 2,
-      "gd": 0,
-      "team": "South Korea"
+      "ga": 3,
+      "gd": -1,
+      "team": "South Africa"
     },
     {
-      "pts": 2,
+      "pts": 3,
       "gp": 3,
-      "w": 0,
-      "d": 2,
-      "l": 1,
-      "gf": 1,
+      "w": 1,
+      "d": 0,
+      "l": 2,
+      "gf": 2,
       "ga": 3,
-      "gd": -2,
-      "team": "South Africa"
+      "gd": -1,
+      "team": "South Korea"
     },
     {
       "pts": 1,
