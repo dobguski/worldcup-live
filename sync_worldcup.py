@@ -1261,21 +1261,29 @@ def git_commit_and_push(message: str = "Auto-sync: update match results") -> boo
                 f.write(f"{now} | {last_error}\n")
             return False
 
-        # Sync web files to public Pages repo (worldcup-pages)
-        WEB_FILES = ["dashboard.html", "index.html", "welcome.html", "CNAME", "robots.txt",
-                     "match_data.json", "standings.json", "teams.json",
-                     "team_names.json", "player_details.json", "polymarket.json",
-                     "verify_report.json", "wiki_squads.json", "counter.json"]
-        pages_dir = REPO_DIR.parent / "pages_deploy"
-        if pages_dir.exists():
-            for f in WEB_FILES:
-                src = REPO_DIR / f
-                dst = pages_dir / f
-                if src.exists():
-                    dst.write_bytes(src.read_bytes())
-            subprocess.run(["git", "add"] + WEB_FILES, cwd=pages_dir, capture_output=True, check=False)
-            subprocess.run(["git", "commit", "-m", message], cwd=pages_dir, capture_output=True, check=False)
-            subprocess.run(["git", "push", "origin", "master"], cwd=pages_dir, capture_output=True, check=False)
+        # Sync data files to worldcup-pages (actual GitHub Pages deployment target)
+        PAGES_REPO = REPO_DIR.parent / "_pages_sync"
+        DATA_FILES = ["match_data.json", "standings.json", "counter.json",
+                      "polymarket.json", "team_names.json", "teams.json"]
+        try:
+            if not (PAGES_REPO / ".git").exists():
+                subprocess.run(["git", "clone", "--depth=1",
+                    "https://github.com/dobguski/worldcup-pages.git", str(PAGES_REPO)],
+                    capture_output=True, check=False, timeout=30)
+            if (PAGES_REPO / ".git").exists():
+                for f in DATA_FILES:
+                    src = REPO_DIR / f
+                    if src.exists():
+                        dst = PAGES_REPO / f
+                        dst.write_bytes(src.read_bytes())
+                subprocess.run(["git", "add"] + DATA_FILES, cwd=PAGES_REPO,
+                               capture_output=True, check=False, timeout=10)
+                subprocess.run(["git", "commit", "-m", message], cwd=PAGES_REPO,
+                               capture_output=True, check=False, timeout=10)
+                subprocess.run(["git", "push", "origin", "master"], cwd=PAGES_REPO,
+                               capture_output=True, check=False, timeout=30)
+        except Exception:
+            pass  # Pages sync is best-effort, not critical
         return True
     except Exception as e:
         print(f"  [WARN] Git sync failed: {e}")
