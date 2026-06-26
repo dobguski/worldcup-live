@@ -130,7 +130,7 @@ Fri June 19
   12:00 UTC-7     USA  2-0 (0-0)  Australia    @ Seattle
   20:00 UTC-7     Turkey  0-1 (0-0)  Paraguay    @ San Francisco Bay Area (Santa Clara)
 Thu June 25
-  19:00 UTC-7     Turkey  2-2 (0-0)  USA    @ Los Angeles (Inglewood)
+  19:00 UTC-7     Turkey  3-2 (0-0)  USA    @ Los Angeles (Inglewood)
   19:00 UTC-7     Paraguay  0-0 (0-0)  Australia    @ San Francisco Bay Area (Santa Clara)
 
 
