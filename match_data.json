@@ -622,12 +622,12 @@
     "home_team_cn": "日本",
     "away_team": "Sweden",
     "away_team_cn": "瑞典",
-    "home_score": null,
-    "away_score": null,
-    "halftime": null,
+    "home_score": 1,
+    "away_score": 1,
+    "halftime": "0-0",
     "venue": "Dallas (Arlington)",
     "group": "F",
-    "is_result": false
+    "is_result": true
   },
   {
     "date": "2026-06-26",
