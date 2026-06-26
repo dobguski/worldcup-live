@@ -406,12 +406,12 @@
     "home_team_cn": "土耳其",
     "away_team": "USA",
     "away_team_cn": "美国",
-    "home_score": null,
-    "away_score": null,
-    "halftime": null,
+    "home_score": 0,
+    "away_score": 0,
+    "halftime": "0-0",
     "venue": "Los Angeles (Inglewood)",
     "group": "D",
-    "is_result": false
+    "is_result": true
   },
   {
     "date": "2026-06-26",
@@ -424,12 +424,12 @@
     "home_team_cn": "巴拉圭",
     "away_team": "Australia",
     "away_team_cn": "澳大利亚",
-    "home_score": null,
-    "away_score": null,
-    "halftime": null,
+    "home_score": 0,
+    "away_score": 0,
+    "halftime": "0-0",
     "venue": "San Francisco Bay Area (Santa Clara)",
     "group": "D",
-    "is_result": false
+    "is_result": true
   },
   {
     "date": "2026-06-15",
