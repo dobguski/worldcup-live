@@ -1462,6 +1462,13 @@ def sync_once(commit: bool = True) -> dict:
     STANDINGS_JSON.write_text(json.dumps(standings, ensure_ascii=False, indent=2), encoding="utf-8")
     TEAM_NAMES_JSON.write_text(json.dumps(TEAM_CN, ensure_ascii=False, indent=2), encoding="utf-8")
     print(f"  Saved: {DATA_JSON.name} ({len(match_data)} matches)")
+
+    # Update goal scorers from cup.txt (real-time)
+    try:
+        from scripts.fetch_goal_scorers import main as update_goals
+        update_goals()
+    except Exception:
+        pass  # Non-critical
     print(f"  Saved: {STANDINGS_JSON.name} ({len(standings)} groups)")
     print(f"  Saved: {TEAM_NAMES_JSON.name} ({len(TEAM_CN)} teams)")
 
