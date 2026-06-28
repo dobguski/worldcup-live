@@ -17,6 +17,7 @@ _site/
 !verify_report.json
 !player_details.json
 !counter.json
+!goalscorers.json
 !visitors.json
 !stats.html
 
