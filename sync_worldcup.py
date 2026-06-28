@@ -1110,13 +1110,14 @@ def merge_api_results(matches: list[dict], api_matches: list[dict]) -> list[dict
         if not api_results:
             continue
 
-        # Best score: TheSportsDB priority, then any
-        tsdb = [r for r in api_results if r['source'] == 'thesportsdb']
-        best = tsdb[0] if tsdb else api_results[0]
+        # Best score: ESPN priority (100 events, primary source), TSDB supplementary
+        espn_r = [r for r in api_results if r['source'] == 'espn']
+        tsdb_r = [r for r in api_results if r['source'] == 'thesportsdb']
+        best = espn_r[0] if espn_r else (tsdb_r[0] if tsdb_r else api_results[0])
 
-        # === CORRECTION: already-finished match, API says different score ===
+        # === CORRECTION: only correct if ESPN (most reliable) disagrees ===
         if is_done and current_hs is not None:
-            if best['hs'] != current_hs or best['aws'] != current_aws:
+            if espn_r and (best['hs'] != current_hs or best['aws'] != current_aws):
                 old_s = f"{current_hs}-{current_aws}"
                 new_s = f"{best['hs']}-{best['aws']}"
                 print(f"  ⚠️ CORRECTION: {match['home_team']} vs {match['away_team']} {old_s} → {new_s} (src: {best['source']})")
