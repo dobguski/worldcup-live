@@ -118,7 +118,7 @@
       "tournaments": "1994-2006"
     },
     {
-      "name": "Gerd Müller",
+      "name": "Gerd Muller",
       "name_cn": "盖德·穆勒",
       "goals": 14,
       "nation": "Germany",
@@ -139,28 +139,28 @@
       "tournaments": "2006-2022"
     },
     {
-      "name": "Pelé",
+      "name": "Pele",
       "name_cn": "贝利",
       "goals": 12,
       "nation": "Brazil",
       "tournaments": "1958-1970"
     },
     {
-      "name": "Kylian Mbappé",
+      "name": "Kylian Mbappe",
       "name_cn": "姆巴佩",
       "goals": 12,
       "nation": "France",
       "tournaments": "2018-2022"
     },
     {
-      "name": "Sándor Kocsis",
+      "name": "Sandor Kocsis",
       "name_cn": "柯奇士",
       "goals": 11,
       "nation": "Hungary",
       "tournaments": "1954"
     },
     {
-      "name": "Jürgen Klinsmann",
+      "name": "Jurgen Klinsmann",
       "name_cn": "克林斯曼",
       "goals": 11,
       "nation": "Germany",
@@ -188,14 +188,14 @@
       "tournaments": "1994-2002"
     },
     {
-      "name": "Thomas Müller",
+      "name": "Thomas Muller",
       "name_cn": "托马斯·穆勒",
       "goals": 10,
       "nation": "Germany",
       "tournaments": "2010-2022"
     },
     {
-      "name": "Teófilo Cubillas",
+      "name": "Teofilo Cubillas",
       "name_cn": "库比拉斯",
       "goals": 10,
       "nation": "Peru",
@@ -207,6 +207,146 @@
       "goals": 10,
       "nation": "Poland",
       "tournaments": "1974-1982"
+    },
+    {
+      "name": "David Villa",
+      "name_cn": "比利亚",
+      "goals": 9,
+      "nation": "Spain",
+      "tournaments": "2006-2014"
+    },
+    {
+      "name": "Eusebio",
+      "name_cn": "尤西比奥",
+      "goals": 9,
+      "nation": "Portugal",
+      "tournaments": "1966"
+    },
+    {
+      "name": "Christian Vieri",
+      "name_cn": "维埃里",
+      "goals": 9,
+      "nation": "Italy",
+      "tournaments": "1998-2002"
+    },
+    {
+      "name": "Diego Maradona",
+      "name_cn": "马拉多纳",
+      "goals": 8,
+      "nation": "Argentina",
+      "tournaments": "1982-1994"
+    },
+    {
+      "name": "Rudi Voller",
+      "name_cn": "沃勒尔",
+      "goals": 8,
+      "nation": "Germany",
+      "tournaments": "1986-1994"
+    },
+    {
+      "name": "Enner Valencia",
+      "name_cn": "",
+      "goals": 4,
+      "nation": "",
+      "tournaments": ""
+    },
+    {
+      "name": "Cody Gakpo",
+      "name_cn": "",
+      "goals": 3,
+      "nation": "",
+      "tournaments": ""
+    },
+    {
+      "name": "Breel Embolo",
+      "name_cn": "",
+      "goals": 3,
+      "nation": "",
+      "tournaments": ""
+    },
+    {
+      "name": "Robin Van Persie",
+      "name_cn": "",
+      "goals": 2,
+      "nation": "",
+      "tournaments": ""
+    },
+    {
+      "name": "Arjen Robben",
+      "name_cn": "",
+      "goals": 2,
+      "nation": "",
+      "tournaments": ""
+    },
+    {
+      "name": "Wilfried Bony",
+      "name_cn": "",
+      "goals": 2,
+      "nation": "",
+      "tournaments": ""
+    },
+    {
+      "name": "Karim Benzema",
+      "name_cn": "",
+      "goals": 2,
+      "nation": "",
+      "tournaments": ""
+    },
+    {
+      "name": "Olivier Giroud",
+      "name_cn": "",
+      "goals": 2,
+      "nation": "",
+      "tournaments": ""
+    },
+    {
+      "name": "Xherdan Shaqiri",
+      "name_cn": "",
+      "goals": 2,
+      "nation": "",
+      "tournaments": ""
+    },
+    {
+      "name": "Marcos Rojo",
+      "name_cn": "",
+      "goals": 2,
+      "nation": "",
+      "tournaments": ""
+    },
+    {
+      "name": "Clint Dempsey",
+      "name_cn": "",
+      "goals": 2,
+      "nation": "",
+      "tournaments": ""
+    },
+    {
+      "name": "Asamoah Gyan",
+      "name_cn": "",
+      "goals": 2,
+      "nation": "",
+      "tournaments": ""
+    },
+    {
+      "name": "Cristiano Ronaldo",
+      "name_cn": "",
+      "goals": 2,
+      "nation": "",
+      "tournaments": ""
+    },
+    {
+      "name": "Islam Slimani",
+      "name_cn": "",
+      "goals": 2,
+      "nation": "",
+      "tournaments": ""
+    },
+    {
+      "name": "Wahbi Khazri",
+      "name_cn": "",
+      "goals": 2,
+      "nation": "",
+      "tournaments": ""
     }
   ],
   "total_2026_scorers": 20,
