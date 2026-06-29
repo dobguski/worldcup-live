@@ -933,12 +933,16 @@ def parse_match_line(line: str) -> dict | None:
         away_score = int(score_m.group(2))
         halftime = score_m.group(3)
 
+        # Check if match is actually finished vs live
+        halftime_lower = halftime.lower()
+        is_live = halftime_lower in ('live', 'ht', '1h', '2h') or 'half' in halftime_lower or 'extra' in halftime_lower
+
         return {
             "time": time_str, "tz": tz,
             "home_raw": home_raw, "away_raw": away_raw,
             "home_score": home_score, "away_score": away_score,
             "halftime": halftime, "venue": venue,
-            "is_result": True,
+            "is_result": not is_live,  # False for live matches
         }
     elif v_m:
         # Scheduled match
