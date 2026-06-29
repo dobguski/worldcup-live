@@ -935,7 +935,7 @@ def parse_match_line(line: str) -> dict | None:
 
         # Check if match is actually finished vs live
         halftime_lower = halftime.lower()
-        is_live = halftime_lower in ('live', 'ht', '1h', '2h') or 'half' in halftime_lower or 'extra' in halftime_lower
+        is_live = halftime_lower in ('live', 'ht', '1h', '2h') or any(k in halftime_lower for k in ('half', 'extra', 'shoot', 'pen', 'aet'))
 
         return {
             "time": time_str, "tz": tz,
@@ -1134,7 +1134,7 @@ def merge_api_results(matches: list[dict], api_matches: list[dict]) -> list[dict
             continue
 
         # === NEW RESULT ===
-        has_started = any(kw in best['status'] for kw in ['FIRST_HALF','SECOND_HALF','IN_PROGRESS','HALFTIME','FULL_TIME','FINAL','FT'])
+        has_started = any(kw in best['status'] for kw in ['FIRST_HALF','SECOND_HALF','IN_PROGRESS','HALFTIME','EXTRA_TIME','SHOOTOUT','PENALTY','FULL_TIME','FINAL','FT'])
         if not has_started: continue
 
         match["home_score"] = best['hs']
