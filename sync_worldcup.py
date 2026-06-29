@@ -977,6 +977,9 @@ def parse_cup_txt() -> list[dict]:
         group_match = re.match(r"^▪\s+Group\s+([A-L])", line)
         if group_match:
             current_group = group_match.group(1)
+        # Detect knockout section
+        if 'Knockout' in line and ('Stage' in line or '▪' in line):
+            current_group = 'KO'
 
         # Detect date headers
         date_match = re.match(
