@@ -1464,6 +1464,9 @@ def sync_once(commit: bool = True) -> dict:
             "venue": m.get("venue"),
             "group": m.get("group"),
             "is_result": m.get("is_result", False),
+                "penalty_home": m.get("penalty_home"),
+                "penalty_away": m.get("penalty_away"),
+                "penalty_winner": m.get("penalty_winner"),
         })
     DATA_JSON.write_text(json.dumps(match_data, ensure_ascii=False, indent=2), encoding="utf-8")
     STANDINGS_JSON.write_text(json.dumps(standings, ensure_ascii=False, indent=2), encoding="utf-8")
