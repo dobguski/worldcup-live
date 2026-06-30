@@ -1570,9 +1570,9 @@
     "venue": "Gillette Stadium",
     "group": "KO",
     "is_result": true,
-    "penalty_home": null,
-    "penalty_away": null,
-    "penalty_winner": null
+    "penalty_home": 3,
+    "penalty_away": 4,
+    "penalty_winner": "away"
   },
   {
     "date": "2026-06-30",
