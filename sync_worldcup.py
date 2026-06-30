@@ -1226,7 +1226,7 @@ def git_commit_and_push(message: str = "Auto-sync: update match results") -> boo
     import subprocess, datetime
     try:
         subprocess.run(["git", "add", "2026--usa/cup.txt", "match_data.json",
-                        "standings.json", "team_names.json", "teams.json", "dashboard.html",
+                        "standings.json", "team_names.json", "teams.json",
                         "index.html", "sync_worldcup.py", "counter.json"],
                        cwd=REPO_DIR, capture_output=True, check=False)
         subprocess.run(["git", "commit", "-m", message],
