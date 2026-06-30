@@ -1476,12 +1476,22 @@ def sync_once(commit: bool = True) -> dict:
     TEAM_NAMES_JSON.write_text(json.dumps(TEAM_CN, ensure_ascii=False, indent=2), encoding="utf-8")
     print(f"  Saved: {DATA_JSON.name} ({len(match_data)} matches)")
 
-    # Update goal scorers from cup.txt (real-time)
+    # Update goal scorers from cup.txt (every cycle)
     try:
         from scripts.fetch_goal_scorers import main as update_goals
         update_goals()
     except Exception:
-        pass  # Non-critical
+        pass
+    # Wikipedia scrape: triggered when new match results detected
+    if updated:
+        try:
+            from scripts.fetch_goal_scorers import parse_cuptxt_goals, update_goalscorers, fetch_name_cn_map
+            cuptxt = parse_cuptxt_goals()
+            name_cn = fetch_name_cn_map()
+            update_goalscorers(cuptxt, name_cn)
+            print('  [GOALS] Wikipedia-ready update triggered by new results')
+        except Exception:
+            pass
     print(f"  Saved: {STANDINGS_JSON.name} ({len(standings)} groups)")
     print(f"  Saved: {TEAM_NAMES_JSON.name} ({len(TEAM_CN)} teams)")
 
