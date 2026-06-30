@@ -3,6 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://pagead2.googlesyndication.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; connect-src 'self' http://localhost:8888 https://pagead2.googlesyndication.com; frame-ancestors 'none'; base-uri 'self'; form-action 'self';">
 <meta http-equiv="X-Content-Type-Options" content="nosniff">
 <meta http-equiv="X-Frame-Options" content="DENY">
@@ -509,14 +512,15 @@ function teamName(en) {
 
 async function loadData() {
   try {
-    const cb = '?v=' + Date.now();  // cache-bust to avoid stale data
+    const cb = '?v=' + Date.now();
+    const fetchOpts = { cache: 'no-store' };  // Force bypass browser cache
     const [mRes, sRes, tRes, tmRes, pmRes, goalsRes] = await Promise.all([
-      fetch('match_data.json' + cb),
-      fetch('standings.json' + cb),
-      fetch('team_names.json' + cb),
-      fetch('teams.json' + cb).catch(() => null),
-      fetch('polymarket.json' + cb).catch(() => null),
-      fetch('goalscorers.json' + cb).catch(() => null)
+      fetch('match_data.json' + cb, fetchOpts),
+      fetch('standings.json' + cb, fetchOpts),
+      fetch('team_names.json' + cb, fetchOpts),
+      fetch('teams.json' + cb, fetchOpts).catch(() => null),
+      fetch('polymarket.json' + cb, fetchOpts).catch(() => null),
+      fetch('goalscorers.json' + cb, fetchOpts).catch(() => null)
     ]);
     matchData = await mRes.json();
     standings = await sRes.json();
