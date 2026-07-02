@@ -2118,7 +2118,7 @@ def serve_dashboard(port: int = 8888):
 ╚══════════════════════════════════════════════════════════════╝
 """)
 
-    with socketserver.TCPServer(("", port), Handler) as httpd:
+    with socketserver.ThreadingTCPServer(("", port), Handler) as httpd:
         try:
             httpd.serve_forever()
         except KeyboardInterrupt:
