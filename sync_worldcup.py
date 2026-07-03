@@ -1114,10 +1114,15 @@ def merge_api_results(matches: list[dict], api_matches: list[dict]) -> list[dict
 
             hs = api.get("home_score")
             aws = api.get("away_score")
+            ph = api.get("penalty_home")
+            pa = api.get("penalty_away")
             status = api.get("status", "")
             source = api.get("source", "")
             if hs is not None and aws is not None:
-                api_results.append({'hs': int(hs), 'aws': int(aws), 'status': status, 'source': source})
+                api_results.append({'hs': int(hs), 'aws': int(aws),
+                                    'ph': int(ph) if ph is not None else None,
+                                    'pa': int(pa) if pa is not None else None,
+                                    'status': status, 'source': source})
 
         if not api_results:
             continue
@@ -1146,6 +1151,10 @@ def merge_api_results(matches: list[dict], api_matches: list[dict]) -> list[dict
         match["away_score"] = best['aws']
         match["api_status"] = best['status']
         match["api_source"] = best['source']
+        # Propagate penalty shootout scores (ESPN provides shootoutScore)
+        if best.get('ph') is not None and best.get('pa') is not None:
+            match["penalty_home"] = best['ph']
+            match["penalty_away"] = best['pa']
 
         # Mark final only if: TheSportsDB confirms, OR 2+ sources agree
         is_final = ('FULL_TIME' in best['status'] or 'FINAL' in best['status'] or best['status'] == 'FT')
