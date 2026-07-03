@@ -126,14 +126,17 @@ def fetch_espn_matches() -> list[dict]:
             continue
         home_team = away_team = None
         home_score = away_score = None
+        penalty_home = penalty_away = None
         competitors = comp.get("competitors", [])
         for c in competitors:
             if c.get("homeAway") == "home":
                 home_team = c.get("team", {}).get("displayName", "")
                 home_score = c.get("score")
+                penalty_home = c.get("shootoutScore")
             else:
                 away_team = c.get("team", {}).get("displayName", "")
                 away_score = c.get("score")
+                penalty_away = c.get("shootoutScore")
 
         status_info = event.get("status", {})
         status_type = status_info.get("type", {})
@@ -150,6 +153,8 @@ def fetch_espn_matches() -> list[dict]:
             "away_team": away_team,
             "home_score": home_score,
             "away_score": away_score,
+            "penalty_home": penalty_home,
+            "penalty_away": penalty_away,
             "status": status_name,
             "status_detail": status_detail,
             "period": period,
