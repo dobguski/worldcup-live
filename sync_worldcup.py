@@ -1479,7 +1479,12 @@ def sync_once(commit: bool = True) -> dict:
     # Update goal scorers from cup.txt (every cycle)
     try:
         from scripts.fetch_goal_scorers import main as update_goals
-        update_goals()
+        _saved_argv = sys.argv
+        sys.argv = ['fetch_goal_scorers.py']  # prevent argparse from picking up --serve/--watch
+        try:
+            update_goals()
+        finally:
+            sys.argv = _saved_argv
     except Exception:
         pass
     # Wikipedia scrape: triggered when new match results detected
