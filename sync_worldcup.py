@@ -1039,23 +1039,43 @@ def parse_cup_txt() -> list[dict]:
 
 def update_match_in_file(match: dict, new_home_score: int, new_away_score: int,
                          goal_details: list[str] = None) -> bool:
-    """Update a specific match line in cup.txt with new scores."""
+    """Update a specific match line in cup.txt with new scores.
+
+    Uses content-based lookup (not line_index) to avoid stale-index corruption
+    when multiple matches are updated in a single sync cycle.
+    """
     if not CUP_TXT.exists():
         return False
 
     text = CUP_TXT.read_text(encoding="utf-8")
     lines = text.split("\n")
 
-    line_idx = match.get("line_index")
-    if line_idx is None or line_idx >= len(lines):
-        return False
-
-    old_line = lines[line_idx]
     home = match["raw_home"]
     away = match["raw_away"]
     time_str = match["time"]
     tz = match["tz"]
     venue = match["venue"]
+    match_date = match.get("date", "")
+
+    # Content-based search: find the line matching home team, away team, time, and date context
+    line_idx = None
+    date_found = False
+    date_pattern = match_date[-5:] if match_date else ""  # "MM-DD"
+    for i, line in enumerate(lines):
+        stripped = line.strip()
+        # Track which date section we're in
+        if stripped and not stripped.startswith(" "):
+            # This is a date header line
+            date_found = (date_pattern in stripped) if date_pattern else True
+        elif date_found and time_str in line and home in line and away in line:
+            line_idx = i
+            break
+
+    if line_idx is None:
+        # Fallback: try original line_index if content search failed
+        line_idx = match.get("line_index")
+        if line_idx is None or line_idx >= len(lines):
+            return False
 
     # Build new score line: "  HH:MM UTC±N     Home X-Y (A-B) Away    @ Venue"
     halftime = f"{0}-{0}"  # fallback
