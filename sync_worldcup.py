@@ -1464,6 +1464,18 @@ def sync_once(commit: bool = True) -> dict:
     # 4. Calculate standings & save data
     print("\n[4/4] Calculating standings & saving data...")
     all_matches = parse_cup_txt()  # Re-parse after updates
+    # Carry over penalty shootout data from API merge (not stored in cup.txt)
+    _penalty_map = {}
+    for m in matches:
+        ph = m.get("penalty_home")
+        pa = m.get("penalty_away")
+        if ph is not None and pa is not None:
+            key = (m["date"], m["home_team"], m["away_team"])
+            _penalty_map[key] = (ph, pa, m.get("penalty_winner"))
+    for m in all_matches:
+        key = (m["date"], m["home_team"], m["away_team"])
+        if key in _penalty_map:
+            m["penalty_home"], m["penalty_away"], m["penalty_winner"] = _penalty_map[key]
     standings = calculate_standings(all_matches)
 
     # Save match data JSON (for dashboard) — include Chinese names
