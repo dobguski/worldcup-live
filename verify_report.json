@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-06-21T02:51:03.562691+00:00",
+  "timestamp": "2026-07-03T13:31:19.314078+00:00",
   "layers": {
     "completeness": {
       "issues": [
@@ -18,7 +18,13 @@
       ]
     },
     "consistency": {
-      "issues": []
+      "issues": [
+        {
+          "layer": "consistency",
+          "severity": "low",
+          "issue": "1 teams in matches not in wiki_squads"
+        }
+      ]
     },
     "freshness": {
       "issues": []
@@ -34,11 +40,11 @@
     }
   },
   "summary": {
-    "total_issues": 3,
+    "total_issues": 4,
     "critical": 0,
     "high": 1,
     "status": "WARN",
     "verdict": "0 critical, 1 high issues need attention"
   },
-  "quality_score": 88
+  "quality_score": 87
 }
