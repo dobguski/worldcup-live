@@ -1134,12 +1134,23 @@ def merge_api_results(matches: list[dict], api_matches: list[dict]) -> list[dict
 
         # === CORRECTION: only correct if ESPN (most reliable) disagrees ===
         if is_done and current_hs is not None:
+            changed = False
             if espn_r and (best['hs'] != current_hs or best['aws'] != current_aws):
                 old_s = f"{current_hs}-{current_aws}"
                 new_s = f"{best['hs']}-{best['aws']}"
                 print(f"  ⚠️ CORRECTION: {match['home_team']} vs {match['away_team']} {old_s} → {new_s} (src: {best['source']})")
                 match["home_score"] = best['hs']
                 match["away_score"] = best['aws']
+                changed = True
+            # Also propagate penalty data for completed matches (may arrive later via ESPN)
+            if best.get('ph') is not None and best.get('pa') is not None:
+                cur_ph = match.get("penalty_home")
+                cur_pa = match.get("penalty_away")
+                if cur_ph is None or cur_ph != best['ph'] or cur_pa != best['pa']:
+                    match["penalty_home"] = best['ph']
+                    match["penalty_away"] = best['pa']
+                    changed = True
+            if changed:
                 corrections.append(match)
             continue
 
