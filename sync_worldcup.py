@@ -1476,7 +1476,10 @@ def sync_once(commit: bool = True) -> dict:
         for m in all_changes:
             tag = '🔧' if m in corrections else '✅'
             print(f"    {tag} {m['date']}  {m['home_team']} {m['home_score']}-{m['away_score']} {m['away_team']}  [Group {m['group']}]")
-            update_match_in_file(m, m["home_score"], m["away_score"])
+            # Only write to cup.txt if match is actually finished (prevents live scores
+            # from being parsed as final results on re-read)
+            if m.get("is_result"):
+                update_match_in_file(m, m["home_score"], m["away_score"])
             new_results.append(f"{m['home_team']} {m['home_score']}-{m['away_score']} {m['away_team']}")
     else:
         print("  No new results.")
