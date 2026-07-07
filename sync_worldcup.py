@@ -1078,7 +1078,10 @@ def update_match_in_file(match: dict, new_home_score: int, new_away_score: int,
             return False
 
     # Build new score line: "  HH:MM UTC±N     Home X-Y (A-B) Away    @ Venue"
-    halftime = f"{0}-{0}"  # fallback
+    # Use (Live) marker for in-progress matches so parser doesn't mis-identify as finished
+    halftime = f"{0}-{0}"  # fallback for finished matches
+    if not match.get("is_result"):
+        halftime = "Live"
     new_line = f"  {time_str} {tz}     {home}  {new_home_score}-{new_away_score} ({halftime})  {away}    @ {venue}"
 
     lines[line_idx] = new_line
@@ -1476,10 +1479,7 @@ def sync_once(commit: bool = True) -> dict:
         for m in all_changes:
             tag = '🔧' if m in corrections else '✅'
             print(f"    {tag} {m['date']}  {m['home_team']} {m['home_score']}-{m['away_score']} {m['away_team']}  [Group {m['group']}]")
-            # Only write to cup.txt if match is actually finished (prevents live scores
-            # from being parsed as final results on re-read)
-            if m.get("is_result"):
-                update_match_in_file(m, m["home_score"], m["away_score"])
+            update_match_in_file(m, m["home_score"], m["away_score"])
             new_results.append(f"{m['home_team']} {m['home_score']}-{m['away_score']} {m['away_team']}")
     else:
         print("  No new results.")
