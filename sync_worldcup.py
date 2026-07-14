@@ -127,16 +127,19 @@ def fetch_espn_matches() -> list[dict]:
         home_team = away_team = None
         home_score = away_score = None
         penalty_home = penalty_away = None
+        home_team_id = away_team_id = None
         competitors = comp.get("competitors", [])
         for c in competitors:
             if c.get("homeAway") == "home":
                 home_team = c.get("team", {}).get("displayName", "")
                 home_score = c.get("score")
                 penalty_home = c.get("shootoutScore")
+                home_team_id = c.get("team", {}).get("id", "")
             else:
                 away_team = c.get("team", {}).get("displayName", "")
                 away_score = c.get("score")
                 penalty_away = c.get("shootoutScore")
+                away_team_id = c.get("team", {}).get("id", "")
 
         status_info = event.get("status", {})
         status_type = status_info.get("type", {})
@@ -144,6 +147,10 @@ def fetch_espn_matches() -> list[dict]:
         status_detail = status_type.get("detail", "")
         period = status_info.get("period", 0)
         clock = status_info.get("displayClock", "")
+
+        # Extract goal scorer details from ESPN play-by-play data
+        goal_scorers = _extract_espn_goal_details(
+            comp.get("details", []), home_team_id, away_team_id)
 
         matches.append({
             "id": event.get("id", ""),
@@ -161,8 +168,42 @@ def fetch_espn_matches() -> list[dict]:
             "clock": clock,
             "venue": comp.get("venue", {}).get("fullName", ""),
             "source": "espn",
+            "goal_scorers": goal_scorers,
         })
     return matches
+
+
+def _extract_espn_goal_details(details: list[dict],
+                               home_team_id: str = "",
+                               away_team_id: str = "") -> list[dict]:
+    """Extract goal scorer info from ESPN competition details (play-by-play).
+
+    Returns list of dicts with: name, minute, is_penalty, is_own_goal, is_home
+    """
+    scorers = []
+    for d in details:
+        if not d.get("scoringPlay", False):
+            continue
+        athletes = d.get("athletesInvolved", [])
+        if not athletes:
+            continue
+        athlete = athletes[0]
+        name = athlete.get("displayName", "")
+        if not name:
+            continue
+        # Determine if this goal was scored by the home team
+        goal_team_id = str(d.get("team", {}).get("id", ""))
+        is_home = (goal_team_id == str(home_team_id)) if goal_team_id and home_team_id else None
+
+        scorers.append({
+            "name": name,
+            "minute": d.get("clock", {}).get("displayValue", ""),
+            "is_penalty": d.get("penaltyKick", False),
+            "is_own_goal": d.get("ownGoal", False),
+            "is_home": is_home,
+            "goal_type": d.get("type", {}).get("text", "Goal"),
+        })
+    return scorers
 
 
 def fetch_thesportsdb_matches() -> list[dict]:
@@ -1037,6 +1078,67 @@ def parse_cup_txt() -> list[dict]:
     return matches
 
 
+def build_goal_detail_lines(goal_scorers: list[dict], home_team: str = "") -> list[str]:
+    """Build cup.txt goal detail lines from ESPN goal scorer data.
+
+    Returns list of indented lines like:
+        "                    (Player1 23', Player2 45+1'(p); AwayPlayer 67')"
+    or empty list if no scorers.
+    """
+    if not goal_scorers:
+        return []
+
+    home_goals = []
+    away_goals = []
+    for gs in goal_scorers:
+        name = gs.get("name", "")
+        minute = gs.get("minute", "").rstrip("'")  # ESPN includes ' in displayValue
+        if not name or not minute:
+            continue
+        suffix = ""
+        if gs.get("is_penalty"):
+            suffix = "(p)"
+        if gs.get("is_own_goal"):
+            suffix = "(og)"
+
+        entry = f"{name} {minute}'{suffix}"
+
+        is_home = gs.get("is_home")
+        if is_home is True:
+            home_goals.append(entry)
+        elif is_home is False:
+            away_goals.append(entry)
+        else:
+            # Fallback: check team name if is_home not determined
+            gs_team = gs.get("team_name", "")
+            home_norm = NAME_MAP.get(home_team, home_team)
+            if (home_norm.lower() in gs_team.lower() or
+                gs_team.lower() in home_norm.lower() or
+                gs_team == home_norm):
+                home_goals.append(entry)
+            else:
+                away_goals.append(entry)
+
+    lines = []
+    if home_goals and away_goals:
+        home_part = " ".join(home_goals)
+        away_part = " ".join(away_goals)
+        line = f"                    ({home_part}; {away_part})"
+        # Split long lines
+        if len(line) > 120:
+            line1 = f"                    ({home_part};"
+            line2 = f"                      {away_part})"
+            lines = [line1, line2]
+        else:
+            lines = [line]
+    elif home_goals:
+        lines = [f"                    ({' '.join(home_goals)})"]
+    elif away_goals:
+        lines = [f"                    ({'; ' + ' '.join(away_goals)})"]
+
+    return lines
+
+
 def update_match_in_file(match: dict, new_home_score: int, new_away_score: int,
                          goal_details: list[str] = None) -> bool:
     """Update a specific match line in cup.txt with new scores.
@@ -1476,10 +1578,28 @@ def sync_once(commit: bool = True) -> dict:
     new_results = []
     all_changes = list(updated) + list(corrections)
     if all_changes:
+        # Build ESPN match lookup for goal scorer extraction
+        espn_by_teams = {}
+        for e in espn:
+            key = (e.get("date", ""), normalize_name(e["home_team"]), normalize_name(e["away_team"]))
+            espn_by_teams[key] = e
+
         for m in all_changes:
             tag = '🔧' if m in corrections else '✅'
             print(f"    {tag} {m['date']}  {m['home_team']} {m['home_score']}-{m['away_score']} {m['away_team']}  [Group {m['group']}]")
-            update_match_in_file(m, m["home_score"], m["away_score"])
+
+            # Look up ESPN goal scorer data for this match
+            m_key = (m.get("date", ""), normalize_name(m["home_team"]), normalize_name(m["away_team"]))
+            espn_match = espn_by_teams.get(m_key)
+            goal_lines = None
+            if espn_match and espn_match.get("goal_scorers"):
+                goal_lines = build_goal_detail_lines(
+                    espn_match["goal_scorers"], m["home_team"])
+                if goal_lines:
+                    n_scorers = len(espn_match["goal_scorers"])
+                    print(f"       ⚽ {n_scorers} goal scorer(s) from ESPN")
+
+            update_match_in_file(m, m["home_score"], m["away_score"], goal_lines)
             new_results.append(f"{m['home_team']} {m['home_score']}-{m['away_score']} {m['away_team']}")
     else:
         print("  No new results.")
@@ -1536,27 +1656,30 @@ def sync_once(commit: bool = True) -> dict:
     TEAM_NAMES_JSON.write_text(json.dumps(TEAM_CN, ensure_ascii=False, indent=2), encoding="utf-8")
     print(f"  Saved: {DATA_JSON.name} ({len(match_data)} matches)")
 
-    # Update goal scorers from cup.txt (every cycle)
+    # Update goal scorers from cup.txt (every sync cycle)
     try:
         from scripts.fetch_goal_scorers import main as update_goals
         _saved_argv = sys.argv
         sys.argv = ['fetch_goal_scorers.py']  # prevent argparse from picking up --serve/--watch
         try:
-            update_goals()
+            result = update_goals()
+            print(f'  [GOALS] cup.txt parse: {result.get("total_2026_scorers", 0)} players, '
+                  f'{result.get("total_2026_goals", 0)} goals')
         finally:
             sys.argv = _saved_argv
-    except Exception:
-        pass
-    # Wikipedia scrape: triggered when new match results detected
+    except Exception as e:
+        print(f'  [GOALS] Update skipped: {e}')
+    # Extra pass with direct parse: triggered when new match results detected
     if updated:
         try:
             from scripts.fetch_goal_scorers import parse_cuptxt_goals, update_goalscorers, fetch_name_cn_map
             cuptxt = parse_cuptxt_goals()
             name_cn = fetch_name_cn_map()
-            update_goalscorers(cuptxt, name_cn)
-            print('  [GOALS] Wikipedia-ready update triggered by new results')
-        except Exception:
-            pass
+            result = update_goalscorers(cuptxt, name_cn)
+            print(f'  [GOALS] Direct update: {result.get("total_2026_scorers", 0)} players, '
+                  f'{result.get("total_2026_goals", 0)} goals')
+        except Exception as e:
+            print(f'  [GOALS] Direct update failed: {e}')
     print(f"  Saved: {STANDINGS_JSON.name} ({len(standings)} groups)")
     print(f"  Saved: {TEAM_NAMES_JSON.name} ({len(TEAM_CN)} teams)")
 
@@ -2580,6 +2703,107 @@ def text_mode():
     console.print()
 
 
+def backfill_goal_details():
+    """One-time backfill: add ESPN goal scorer details to cup.txt for all
+    finished matches that currently lack goal detail lines.
+
+    Safe to run repeatedly — won't duplicate existing details.
+    """
+    print(f"\n{'='*60}")
+    print(f"  World Cup Goal Detail Backfill")
+    print(f"  {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
+    print(f"{'='*60}")
+
+    # Fetch ESPN data (has goal scorers for all matches)
+    print("\n[1/3] Fetching ESPN play-by-play data...")
+    espn = fetch_espn_matches()
+    print(f"  {len(espn)} matches from ESPN, "
+          f"{sum(1 for e in espn if e.get('goal_scorers'))} with goal details")
+
+    # Parse current cup.txt
+    print("\n[2/3] Parsing cup.txt...")
+    matches = parse_cup_txt()
+    print(f"  {len(matches)} matches total")
+
+    # Find matches with scores but no goal details
+    needs_backfill = [m for m in matches if m.get("is_result") and not m.get("goal_details")]
+    print(f"  {len(needs_backfill)} scored matches lacking goal details")
+
+    if not needs_backfill:
+        print("\n✅ All scored matches already have goal details. Nothing to do.")
+        return
+
+    # Build ESPN lookup
+    espn_by_key = {}
+    for e in espn:
+        key = (e.get("date", ""), normalize_name(e.get("home_team", "")),
+               normalize_name(e.get("away_team", "")))
+        espn_by_key[key] = e
+
+    # Backfill
+    print(f"\n[3/3] Backfilling goal details...")
+    updated = 0
+    for m in needs_backfill:
+        m_key = (m.get("date", ""), normalize_name(m.get("home_team", "")),
+                 normalize_name(m.get("away_team", "")))
+        espn_match = espn_by_key.get(m_key)
+        if not espn_match:
+            # Try fuzzy match
+            for e_key, e_val in espn_by_key.items():
+                if (m_key[0] == e_key[0] and
+                    (m_key[1].lower() in e_key[1].lower() or e_key[1].lower() in m_key[1].lower()) and
+                    (m_key[2].lower() in e_key[2].lower() or e_key[2].lower() in m_key[2].lower())):
+                    espn_match = e_val
+                    break
+
+        if not espn_match or not espn_match.get("goal_scorers"):
+            continue
+
+        goal_lines = build_goal_detail_lines(espn_match["goal_scorers"],
+                                              m.get("home_team", ""))
+        if not goal_lines:
+            continue
+
+        # Insert goal lines after the match line in cup.txt
+        try:
+            text = CUP_TXT.read_text(encoding="utf-8")
+            lines = text.split("\n")
+
+            # Find the match line by content
+            line_idx = None
+            time_str = m.get("time", "")
+            home = m.get("raw_home", m.get("home_team", ""))
+            away = m.get("raw_away", m.get("away_team", ""))
+            for i, line in enumerate(lines):
+                if time_str in line and home in line and away in line and '@' in line:
+                    # Check if next lines already have goal details
+                    j = i + 1
+                    has_details = False
+                    while j < len(lines) and lines[j].strip().startswith("("):
+                        has_details = True
+                        break
+                    if not has_details:
+                        line_idx = i
+                    break
+
+            if line_idx is not None:
+                for gd in reversed(goal_lines):
+                    lines.insert(line_idx + 1, gd)
+                CUP_TXT.write_text("\n".join(lines), encoding="utf-8")
+                updated += 1
+                cn_home = team_cn(m.get("home_team", ""))
+                cn_away = team_cn(m.get("away_team", ""))
+                print(f"  ✅ {m['date']} {cn_home} {m.get('home_score','?')}-{m.get('away_score','?')} {cn_away} "
+                      f"({len(espn_match['goal_scorers'])} scorers)")
+        except Exception as e:
+            print(f"  ❌ {m['date']} {m.get('home_team','?')} vs {m.get('away_team','?')}: {e}")
+
+    print(f"\n✅ Backfill complete: {updated}/{len(needs_backfill)} matches updated")
+    if updated > 0:
+        print("Run sync_once() to rebuild goalscorers.json with new data.")
+    return updated
+
+
 # ============================================================
 # CLI
 # ============================================================
@@ -2589,6 +2813,17 @@ if __name__ == "__main__":
     if "--teams" in sys.argv:
         build_teams_data(force_refresh=True)
         print("\n✅ Teams data built. Run --text or --serve to view.")
+    elif "--backfill-goals" in sys.argv:
+        n = backfill_goal_details()
+        if n > 0:
+            # Rebuild goalscorers with new data
+            print("\n🏗 Rebuilding goalscorers.json...")
+            from scripts.fetch_goal_scorers import parse_cuptxt_goals, update_goalscorers, fetch_name_cn_map
+            cuptxt = parse_cuptxt_goals()
+            name_cn = fetch_name_cn_map()
+            result = update_goalscorers(cuptxt, name_cn)
+            print(f"✅ Goalscorers: {result['total_2026_scorers']} players, "
+                  f"{result['total_2026_goals']} goals")
     elif "--text" in sys.argv:
         text_mode()
     elif "--tui" in sys.argv or "-t" in sys.argv:
