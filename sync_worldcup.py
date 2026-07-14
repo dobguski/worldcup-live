@@ -43,6 +43,14 @@ TEAM_NAMES_JSON = REPO_DIR / "team_names.json"
 TEAMS_JSON = REPO_DIR / "teams.json"
 
 ESPN_API = "https://site.api.espn.com/apis/site/v2/sports/soccer/fifa.world/scoreboard?dates=20260611-20260719"
+# Split date ranges to work around ESPN's 100-event response limit
+ESPN_DATE_RANGES = [
+    "20260611-20260618",
+    "20260618-20260625",
+    "20260625-20260702",
+    "20260702-20260709",
+    "20260709-20260720",
+]
 TSDB_API = "https://www.thesportsdb.com/api/v1/json/3/eventsseason.php?id=4429&s=2026"
 TSDB_PAST_API = "https://www.thesportsdb.com/api/v1/json/3/eventspastleague.php?id=4429"
 TSDB_NEXT_API = "https://www.thesportsdb.com/api/v1/json/3/eventsnextleague.php?id=4429"
@@ -173,6 +181,78 @@ def fetch_espn_matches() -> list[dict]:
     return matches
 
 
+def fetch_espn_all_matches() -> list[dict]:
+    """Fetch ALL World Cup match data from ESPN by querying multiple date ranges.
+
+    ESPN's API caps at ~100 events per request. By splitting into 7-day windows
+    we can retrieve all 104 matches with complete play-by-play details.
+    """
+    all_matches = []
+    seen_ids = set()
+    for date_range in ESPN_DATE_RANGES:
+        url = f"https://site.api.espn.com/apis/site/v2/sports/soccer/fifa.world/scoreboard?dates={date_range}"
+        data = fetch_json(url)
+        if not data:
+            continue
+        for event in data.get("events", []):
+            eid = event.get("id", "")
+            if eid in seen_ids:
+                continue
+            seen_ids.add(eid)
+
+            comp = event.get("competitions", [{}])[0]
+            if not comp:
+                continue
+            home_team = away_team = None
+            home_score = away_score = None
+            penalty_home = penalty_away = None
+            home_team_id = away_team_id = None
+            competitors = comp.get("competitors", [])
+            for c in competitors:
+                if c.get("homeAway") == "home":
+                    home_team = c.get("team", {}).get("displayName", "")
+                    home_score = c.get("score")
+                    penalty_home = c.get("shootoutScore")
+                    home_team_id = c.get("team", {}).get("id", "")
+                else:
+                    away_team = c.get("team", {}).get("displayName", "")
+                    away_score = c.get("score")
+                    penalty_away = c.get("shootoutScore")
+                    away_team_id = c.get("team", {}).get("id", "")
+
+            status_info = event.get("status", {})
+            status_type = status_info.get("type", {})
+            status_name = status_type.get("name", "STATUS_SCHEDULED")
+            status_detail = status_type.get("detail", "")
+            period = status_info.get("period", 0)
+            clock = status_info.get("displayClock", "")
+
+            goal_scorers = _extract_espn_goal_details(
+                comp.get("details", []), home_team_id, away_team_id)
+
+            all_matches.append({
+                "id": eid,
+                "date": event.get("date", "")[:10],
+                "time_utc": event.get("date", ""),
+                "home_team": home_team,
+                "away_team": away_team,
+                "home_score": home_score,
+                "away_score": away_score,
+                "penalty_home": penalty_home,
+                "penalty_away": penalty_away,
+                "status": status_name,
+                "status_detail": status_detail,
+                "period": period,
+                "clock": clock,
+                "venue": comp.get("venue", {}).get("fullName", ""),
+                "source": "espn",
+                "goal_scorers": goal_scorers,
+            })
+
+    print(f"  ESPN multi-range: {len(all_matches)} events across {len(ESPN_DATE_RANGES)} queries")
+    return all_matches
+
+
 def _extract_espn_goal_details(details: list[dict],
                                home_team_id: str = "",
                                away_team_id: str = "") -> list[dict]:
@@ -184,6 +264,17 @@ def _extract_espn_goal_details(details: list[dict],
     for d in details:
         if not d.get("scoringPlay", False):
             continue
+        # Skip penalty shootout goals (not counted in match score / Golden Boot)
+        goal_type = d.get("type", {}).get("text", "")
+        if "Penalty" in goal_type and "Scored" in goal_type:
+            # Check if it's a shootout (120' + penalty) vs regular penalty during play
+            minute = d.get("clock", {}).get("displayValue", "").rstrip("'")
+            try:
+                min_val = int(minute.split("+")[0]) if minute else 0
+                if min_val >= 120:
+                    continue  # Shootout penalty — exclude
+            except ValueError:
+                pass
         athletes = d.get("athletesInvolved", [])
         if not athletes:
             continue
@@ -201,7 +292,7 @@ def _extract_espn_goal_details(details: list[dict],
             "is_penalty": d.get("penaltyKick", False),
             "is_own_goal": d.get("ownGoal", False),
             "is_home": is_home,
-            "goal_type": d.get("type", {}).get("text", "Goal"),
+            "goal_type": goal_type,
         })
     return scorers
 
@@ -2714,10 +2805,10 @@ def backfill_goal_details():
     print(f"  {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
     print(f"{'='*60}")
 
-    # Fetch ESPN data (has goal scorers for all matches)
-    print("\n[1/3] Fetching ESPN play-by-play data...")
-    espn = fetch_espn_matches()
-    print(f"  {len(espn)} matches from ESPN, "
+    # Fetch ESPN data from multiple date ranges (bypasses 100-event limit)
+    print("\n[1/3] Fetching ESPN play-by-play data (multi-range)...")
+    espn = fetch_espn_all_matches()
+    print(f"  {len(espn)} total matches from ESPN, "
           f"{sum(1 for e in espn if e.get('goal_scorers'))} with goal details")
 
     # Parse current cup.txt
@@ -2733,28 +2824,65 @@ def backfill_goal_details():
         print("\n✅ All scored matches already have goal details. Nothing to do.")
         return
 
-    # Build ESPN lookup
+    # Build ESPN lookup with fuzzy date matching (±2 days)
     espn_by_key = {}
     for e in espn:
-        key = (e.get("date", ""), normalize_name(e.get("home_team", "")),
-               normalize_name(e.get("away_team", "")))
+        e_date = e.get("date", "")
+        e_home = normalize_name(e.get("home_team", ""))
+        e_away = normalize_name(e.get("away_team", ""))
+        key = (e_date, e_home, e_away)
         espn_by_key[key] = e
+
+    def _find_espn_match(match: dict):
+        """Find corresponding ESPN match with fuzzy date matching (±2 days)."""
+        m_date = match.get("date", "")
+        m_home = normalize_name(match.get("home_team", ""))
+        m_away = normalize_name(match.get("away_team", ""))
+        m_home_raw = match.get("raw_home", m_home)
+        m_away_raw = match.get("raw_away", m_away)
+
+        # Build date range around match date
+        try:
+            from datetime import date as dt_date, timedelta
+            d = dt_date.fromisoformat(m_date)
+            date_range = [(d + timedelta(days=offset)).isoformat()
+                         for offset in range(-2, 3)]  # -2..+2
+        except (ValueError, TypeError):
+            date_range = [m_date]
+
+        # Try exact date first, then fuzzy dates
+        best = None
+        for d in date_range:
+            key = (d, m_home, m_away)
+            if key in espn_by_key:
+                return espn_by_key[key]
+
+        # Try fuzzy team matching (name containment)
+        for d in date_range:
+            for (e_date, e_home, e_away), e in espn_by_key.items():
+                if e_date != d:
+                    continue
+                h_match = (m_home.lower() in e_home.lower() or e_home.lower() in m_home.lower() or
+                          m_home_raw.lower() in e_home.lower() or e_home.lower() in m_home_raw.lower())
+                a_match = (m_away.lower() in e_away.lower() or e_away.lower() in m_away.lower() or
+                          m_away_raw.lower() in e_away.lower() or e_away.lower() in m_away_raw.lower())
+                if h_match and a_match:
+                    return e
+
+        # Last resort: match by teams only (ignore date)
+        for (e_date, e_home, e_away), e in espn_by_key.items():
+            h_match = (m_home.lower() in e_home.lower() or e_home.lower() in m_home.lower())
+            a_match = (m_away.lower() in e_away.lower() or e_away.lower() in m_away.lower())
+            if h_match and a_match:
+                return e
+
+        return None
 
     # Backfill
     print(f"\n[3/3] Backfilling goal details...")
     updated = 0
     for m in needs_backfill:
-        m_key = (m.get("date", ""), normalize_name(m.get("home_team", "")),
-                 normalize_name(m.get("away_team", "")))
-        espn_match = espn_by_key.get(m_key)
-        if not espn_match:
-            # Try fuzzy match
-            for e_key, e_val in espn_by_key.items():
-                if (m_key[0] == e_key[0] and
-                    (m_key[1].lower() in e_key[1].lower() or e_key[1].lower() in m_key[1].lower()) and
-                    (m_key[2].lower() in e_key[2].lower() or e_key[2].lower() in m_key[2].lower())):
-                    espn_match = e_val
-                    break
+        espn_match = _find_espn_match(m)
 
         if not espn_match or not espn_match.get("goal_scorers"):
             continue
