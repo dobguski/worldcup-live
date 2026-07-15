@@ -247,6 +247,7 @@ Mon June 29
   20:00 UTC-6     Netherlands  1-1 (0-0)  Morocco   2-3 pen.    @ Estadio BBVA
   20:00 UTC-6     Netherlands  1-1 (0-0)  Morocco   2-3 pen.    @ Estadio BBVA
   20:00 UTC-6     Netherlands  1-1 (0-0)  Morocco   2-3 pen.    @ Estadio BBVA
+  20:00 UTC-6     Netherlands  1-1 (0-0)  Morocco   2-3 pen.    @ Estadio BBVA
   17:00 UTC-5     Ivory Coast  1-2 (0-0)  Norway    @ AT&T Stadium
   21:00 UTC-4     France  3-0 (0-0)  Sweden    @ MetLife Stadium
   20:00 UTC-6     Mexico  2-0 (0-0)  Ecuador    @ Estadio Banorte
@@ -254,7 +255,7 @@ Wed July 1
   16:00 UTC-4     England  2-1 (0-0)  DR Congo    @ Mercedes-Benz Stadium
   20:00 UTC-7     Belgium  3-2 (0-0)  Senegal    @ Lumen Field
   19:00 UTC-7     USA  2-0 (0-0)  Bosnia & Herzegovina    @ Levi's Stadium
-Thu July 2
+  17:00 UTC-4     Australia  1-1 (0-0)  Egypt    @ BMO Field
   17:00 UTC-4     Australia  1-1 (0-0)  Egypt    @ BMO Field
   17:00 UTC-4     Australia  1-1 (0-0)  Egypt    @ BMO Field
   17:00 UTC-4     Australia  1-1 (0-0)  Egypt    @ BMO Field
