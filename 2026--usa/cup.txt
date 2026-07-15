@@ -242,8 +242,7 @@ Sun June 28
 Mon June 29
   17:00 UTC-5     Brazil  2-1 (0-0)  Japan    @ NRG Stadium
   20:30 UTC-4     Germany  1-1 (0-0)  Paraguay    @ Gillette Stadium
-  20:00 UTC-6     Netherlands  1-1 (0-0)  Morocco   2-3 pen.    @ Estadio BBVA
-  20:00 UTC-6     Netherlands  1-1 (0-0)  Morocco   2-3 pen.    @ Estadio BBVA
+                    (Kai Havertz 54'; Julio Enciso 42')
   20:00 UTC-6     Netherlands  1-1 (0-0)  Morocco   2-3 pen.    @ Estadio BBVA
   17:00 UTC-5     Ivory Coast  1-2 (0-0)  Norway    @ AT&T Stadium
   21:00 UTC-4     France  3-0 (0-0)  Sweden    @ MetLife Stadium
@@ -255,9 +254,6 @@ Wed July 1
 Thu July 2
   16:00 UTC-4     Spain  3-0 (0-0)  Austria    @ Hard Rock Stadium
   20:00 UTC-7     Portugal  2-1 (0-0)  Croatia    @ BC Place
-  17:00 UTC-4     Australia  1-1 (0-0)  Egypt    @ BMO Field
-  17:00 UTC-4     Australia  1-1 (0-0)  Egypt    @ BMO Field
-  17:00 UTC-4     Australia  1-1 (0-0)  Egypt    @ BMO Field
   17:00 UTC-4     Australia  1-1 (0-0)  Egypt    @ BMO Field
   21:00 UTC-4     Argentina  3-2 (0-0)  Cape Verde    @ MetLife Stadium
   19:30 UTC-5     Colombia  1-0 (0-0)  Ghana    @ Estadio Azteca
