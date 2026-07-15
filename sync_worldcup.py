@@ -1234,41 +1234,26 @@ def update_match_in_file(match: dict, new_home_score: int, new_away_score: int,
                          goal_details: list[str] = None) -> bool:
     """Update a specific match line in cup.txt with new scores.
 
-    Uses content-based lookup (not line_index) to avoid stale-index corruption
-    when multiple matches are updated in a single sync cycle.
+    Uses line_index from parse_cup_txt().  Callers MUST process updates in
+    descending line_index order so that earlier lines stay valid after each write.
     """
     if not CUP_TXT.exists():
         return False
 
+    line_idx = match.get("line_index")
+    if line_idx is None:
+        return False
+
     text = CUP_TXT.read_text(encoding="utf-8")
     lines = text.split("\n")
+    if line_idx >= len(lines):
+        return False
 
     home = match["raw_home"]
     away = match["raw_away"]
     time_str = match["time"]
     tz = match["tz"]
     venue = match["venue"]
-    match_date = match.get("date", "")
-
-    # Content-based search: find the line matching home team, away team, time, and date context
-    line_idx = None
-    date_found = False
-    date_pattern = match_date[-5:] if match_date else ""  # "MM-DD"
-    for i, line in enumerate(lines):
-        stripped = line.strip()
-        # Track which date section we're in
-        if stripped and not stripped.startswith(" "):
-            # This is a date header line
-            date_found = (date_pattern in stripped) if date_pattern else True
-        elif date_found and time_str in line and home in line and away in line:
-            line_idx = i
-            break
-
-    if line_idx is None:
-        # Fallback: try original line_index if content search failed
-        line_idx = match.get("line_index")
-        if line_idx is None or line_idx >= len(lines):
-            return False
 
     # Build new score line: "  HH:MM UTC±N     Home X-Y (A-B) Away    @ Venue"
     # Use (Live) marker for in-progress matches so parser doesn't mis-identify as finished
@@ -1669,6 +1654,10 @@ def sync_once(commit: bool = True) -> dict:
     new_results = []
     all_changes = list(updated) + list(corrections)
     if all_changes:
+        # Sort by descending line_index so file writes from bottom to top —
+        # earlier line indices remain valid after later writes.
+        all_changes.sort(key=lambda m: m.get("line_index", 0), reverse=True)
+
         # Build ESPN match lookup for goal scorer extraction
         espn_by_teams = {}
         for e in espn:
