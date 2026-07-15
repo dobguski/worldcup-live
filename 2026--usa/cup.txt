@@ -244,6 +244,7 @@ Mon June 29
   20:30 UTC-4     Germany  1-1 (0-0)  Paraguay    @ Gillette Stadium
   20:00 UTC-6     Netherlands  1-1 (0-0)  Morocco   2-3 pen.    @ Estadio BBVA
   20:00 UTC-6     Netherlands  1-1 (0-0)  Morocco   2-3 pen.    @ Estadio BBVA
+  20:00 UTC-6     Netherlands  1-1 (0-0)  Morocco   2-3 pen.    @ Estadio BBVA
   17:00 UTC-5     Ivory Coast  1-2 (0-0)  Norway    @ AT&T Stadium
   21:00 UTC-4     France  3-0 (0-0)  Sweden    @ MetLife Stadium
   20:00 UTC-6     Mexico  2-0 (0-0)  Ecuador    @ Estadio Banorte
@@ -254,9 +255,9 @@ Wed July 1
 Thu July 2
   16:00 UTC-4     Spain  3-0 (0-0)  Austria    @ Hard Rock Stadium
   20:00 UTC-7     Portugal  2-1 (0-0)  Croatia    @ BC Place
-  21:00 UTC-5     Switzerland  2-0 (0-0)  Algeria    @ Arrowhead Stadium
   17:00 UTC-4     Australia  1-1 (0-0)  Egypt    @ BMO Field
-                    (Mohamed Hany 55'(og); Emam Ashour 13')
+  17:00 UTC-4     Australia  1-1 (0-0)  Egypt    @ BMO Field
+  17:00 UTC-4     Australia  1-1 (0-0)  Egypt    @ BMO Field
   17:00 UTC-4     Australia  1-1 (0-0)  Egypt    @ BMO Field
   21:00 UTC-4     Argentina  3-2 (0-0)  Cape Verde    @ MetLife Stadium
   19:30 UTC-5     Colombia  1-0 (0-0)  Ghana    @ Estadio Azteca
@@ -272,9 +273,9 @@ Sun July 5
   18:00 UTC-6     Mexico  2-3 (0-0)  England    @ Estadio Azteca
 Mon July 6
   14:00 UTC-5     Portugal  0-1 (0-0)  Spain    @ AT&T Stadium
-  17:00 UTC-7     USA  1-4 (0-0)  Belgium    @ Lumen Field
   13:00 UTC-7     Switzerland  0-0 (0-0)  Colombia    @ BC Place
-  12:00 UTC-4     Argentina  3-2 (0-0)  Egypt    @ Mercedes-Benz Stadium
+  13:00 UTC-7     Switzerland  0-0 (0-0)  Colombia    @ BC Place
+  13:00 UTC-7     Switzerland  0-0 (0-0)  Colombia    @ BC Place
   13:00 UTC-7     Switzerland  0-0 (0-0)  Colombia    @ BC Place
 
 
