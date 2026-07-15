@@ -994,21 +994,41 @@ function renderGoals() {
   }
   let html = '';
 
+  // Flag emoji mapping (country name → flag)
+  const FLAGS = {
+    'Argentina':'🇦🇷','France':'🇫🇷','Norway':'🇳🇴','England':'🏴󠁧󠁢󠁥󠁮󠁧󠁿','Brazil':'🇧🇷',
+    'Spain':'🇪🇸','Mexico':'🇲🇽','Senegal':'🇸🇳','Belgium':'🇧🇪','Canada':'🇨🇦',
+    'DR Congo':'🇨🇩','Germany':'🇩🇪','Morocco':'🇲🇦','Netherlands':'🇳🇱',
+    'New Zealand':'🇳🇿','Portugal':'🇵🇹','Switzerland':'🇨🇭','USA':'🇺🇸',
+    'Algeria':'🇩🇿','Austria':'🇦🇹','Bosnia & Herzegovina':'🇧🇦','Ivory Coast':'🇨🇮',
+    'Colombia':'🇨🇴','Cape Verde':'🇨🇻','Croatia':'🇭🇷','Curaçao':'🇨🇼',
+    'Czech Republic':'🇨🇿','Ecuador':'🇪🇨','Egypt':'🇪🇬','Ghana':'🇬🇭',
+    'Haiti':'🇭🇹','Iran':'🇮🇷','Iraq':'🇮🇶','Jordan':'🇯🇴','Japan':'🇯🇵',
+    'South Korea':'🇰🇷','Saudi Arabia':'🇸🇦','Paraguay':'🇵🇾','Qatar':'🇶🇦',
+    'South Africa':'🇿🇦','Scotland':'🏴󠁧󠁢󠁳󠁣󠁴󠁿','Sweden':'🇸🇪','Tunisia':'🇹🇳',
+    'Turkey':'🇹🇷','Uruguay':'🇺🇾','Uzbekistan':'🇺🇿','Australia':'🇦🇺',
+  };
+
   // 2026 tournament
   const wc2026 = goalsData.wc2026 || [];
   html += '<div id=\"wc2026-section\" style=\"font-size:.95em;color:#e2b04a;margin-bottom:8px;font-weight:bold\">⚽ 2026世界杯 射手榜</div>';
   if (wc2026.length > 0) {
     html += '<div style=\"background:#1e293b;border:1px solid #334155;border-radius:10px;padding:14px;margin-bottom:20px\">';
-    wc2026.slice(0, 20).forEach((p, i) => {
+    wc2026.slice(0, 30).forEach((p, i) => {
       const maxG = wc2026[0]?.goals || 6;
-      const barW = Math.round((p.goals / maxG) * 100);  // percentage of leader
+      const barW = Math.round((p.goals / maxG) * 100);
       const color = i < 3 ? '#e2b04a' : (i < 10 ? '#60a5fa' : '#475569');
       const cn = p.name_cn || '';
-      const nameDisplay = cn ? `<span style=\"font-size:.82em\">${cn}</span><br><span style=\"font-size:.6em;color:#64748b\">${p.name}</span>` : `<span style=\"font-size:.82em\">${p.name}</span>`;
-      html += `<div style=\"display:flex;align-items:center;gap:6px;margin-bottom:3px;font-size:.75em\">
-        <span style=\"min-width:18px;text-align:right;color:#64748b;font-size:.7em\">${i+1}</span>
-        <span style=\"flex:0 0 clamp(90px,30vw,140px);text-align:right;line-height:1.3;overflow:hidden\">${nameDisplay}</span>
-        <div style=\"flex:1;background:#0f1724;border-radius:3px;height:16px;min-width:30px;overflow:hidden\">
+      const flag = FLAGS[p.nation] || '';
+      const nation = p.nation || '';
+      const nameDisplay = cn
+        ? `<span style=\"font-size:.82em\">${cn}</span><br><span style=\"font-size:.55em;color:#94a3b8\">${p.name}</span>`
+        : `<span style=\"font-size:.82em\">${p.name}</span>`;
+      html += `<div style=\"display:flex;align-items:center;gap:4px;margin-bottom:3px;font-size:.75em\">
+        <span style=\"min-width:16px;text-align:right;color:#64748b;font-size:.65em\">${i+1}</span>
+        <span style=\"flex:0 0 40px;text-align:center;font-size:1.3em\" title=\"${nation}\">${flag}</span>
+        <span style=\"flex:0 0 clamp(75px,28vw,130px);text-align:left;line-height:1.3;overflow:hidden\">${nameDisplay}</span>
+        <div style=\"flex:1;background:#0f1724;border-radius:3px;height:16px;min-width:25px;overflow:hidden\">
           <div style=\"background:linear-gradient(90deg,${color},${color}88);height:16px;border-radius:3px;width:${barW}%;max-width:100%;display:flex;align-items:center;justify-content:flex-end;padding-right:4px\">
             <span style=\"font-size:.65em;font-weight:bold;color:#fff;white-space:nowrap\">${p.goals}</span>
           </div>
