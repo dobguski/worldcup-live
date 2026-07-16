@@ -1107,7 +1107,6 @@ function renderPM() {
 }
 
 function renderBracket() {
-  console.log('[bracket] start, matchData=' + matchData.length + ', standings=' + Object.keys(standings||{}).length);
   const container = document.getElementById('bracketView');
   if (!standings || Object.keys(standings).length === 0) {
     container.innerHTML = '<div style=\"text-align:center;color:#64748b;padding:30px\">对阵数据加载中...</div>';
@@ -1193,7 +1192,6 @@ function renderBracket() {
   }
 
   html += '<div style=\"font-size:.9em;color:#e2b04a;margin-bottom:8px;font-weight:bold\">🏆 淘汰赛 · Knockout (' + koDone.length + '场完赛)</div>';
-  console.log('[bracket] koDone=' + koDone.length + ', koUpcoming=' + koUpcoming.length);
 
   // ── Upcoming KO matches (if any) at top ──
   if (koUpcoming.length > 0) {
