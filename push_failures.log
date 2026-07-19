@@ -4,3 +4,1044 @@ To push the current branch and set the remote as upstream, use
     git push --set-upstream origin master
 
 To have this happen automatically fo
+11:29:23 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+11:30:05 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+11:30:47 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+11:31:30 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+11:32:13 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+11:32:55 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+11:33:42 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+11:34:24 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+11:35:07 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+11:35:50 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+11:36:33 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+11:37:16 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+11:37:59 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+11:38:42 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+11:39:28 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+11:40:10 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+11:40:55 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+11:41:38 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+11:42:21 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+11:43:05 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+11:43:49 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+11:44:33 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+11:45:16 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+11:45:59 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+11:46:42 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+11:47:25 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+11:48:08 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+11:48:50 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+11:49:34 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+11:50:16 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+11:50:59 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+11:51:41 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+11:52:25 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+11:53:07 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+11:53:52 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+11:54:35 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+11:55:18 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+11:56:01 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+11:56:44 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+11:57:26 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+11:58:09 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+11:58:53 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+11:59:36 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+12:00:20 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+12:01:04 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+12:01:48 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+12:02:32 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+12:03:15 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+12:04:31 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+12:05:18 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+12:06:01 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+12:06:45 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+12:07:27 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+12:08:11 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+12:08:53 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+12:09:36 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+12:10:18 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+12:11:00 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+12:11:44 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+12:12:27 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+12:13:10 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+12:13:54 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+12:14:36 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+12:15:19 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+12:16:01 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+12:16:43 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+12:17:26 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+12:18:08 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+12:18:50 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+12:19:35 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+12:20:18 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+12:21:00 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+12:21:43 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+12:22:26 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+12:23:08 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+12:23:51 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+12:24:34 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+12:25:17 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+12:25:59 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+12:26:41 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+12:27:24 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+12:28:07 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+12:28:51 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+12:29:34 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+12:30:17 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+12:31:01 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+12:31:43 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+12:32:26 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+12:33:09 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+12:33:51 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+12:34:34 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+12:35:17 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+12:35:59 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+12:36:42 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+12:37:26 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+12:38:08 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+12:38:50 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+12:39:33 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+12:40:16 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+12:40:59 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+12:41:43 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+12:42:25 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+12:43:08 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+12:43:50 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+12:44:33 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+12:45:17 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+12:46:00 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+12:46:42 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+12:47:25 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+12:48:07 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+12:48:51 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+12:49:34 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+12:50:16 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+12:50:58 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+12:51:41 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+12:52:23 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+12:53:05 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+12:53:48 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+12:54:31 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+12:55:14 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+12:55:57 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+12:56:40 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+12:57:22 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+12:58:05 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+12:58:48 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+12:59:30 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+13:00:15 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+13:00:59 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+13:01:43 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+13:02:27 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+13:03:10 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+13:03:52 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+13:04:35 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+13:05:18 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+13:06:01 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+13:06:44 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+13:07:28 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+13:08:10 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+13:08:53 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+13:09:37 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+13:10:23 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+13:11:06 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+13:11:49 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+13:12:31 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+13:13:15 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+13:13:58 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+13:14:41 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+13:15:27 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+13:16:10 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+13:16:52 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+13:17:36 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+13:18:18 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+13:19:00 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+13:19:43 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+13:20:25 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+13:21:09 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+13:21:51 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+13:22:35 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+13:23:18 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+13:24:02 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+13:24:44 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+15:33:38 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+15:34:21 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+15:35:06 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+15:35:48 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+15:36:31 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+15:37:16 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+15:37:59 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+15:38:42 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+15:39:25 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+15:40:07 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+15:40:50 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+15:41:34 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+15:42:16 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+15:43:05 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+15:43:49 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+15:44:32 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+15:45:15 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+15:46:00 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+15:46:44 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+15:47:27 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+15:48:10 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+15:48:54 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+15:49:39 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+15:50:26 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+15:51:09 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+15:51:53 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+15:52:36 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+15:53:19 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+15:54:03 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+15:54:46 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+15:55:30 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+15:56:14 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+15:56:57 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+15:57:41 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+15:58:23 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+15:59:07 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+15:59:49 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+16:00:33 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+16:01:17 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+16:02:03 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+16:02:47 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+16:03:30 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+16:04:14 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+16:04:59 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+16:05:46 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+16:06:30 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+16:07:14 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+16:08:03 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+16:08:47 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+16:09:30 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+16:10:12 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+16:10:55 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+16:11:37 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+16:12:20 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+16:13:04 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+16:13:49 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+16:14:33 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+16:15:15 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+16:15:59 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+16:16:42 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+16:17:25 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+16:18:10 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+16:18:53 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+16:19:35 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+16:20:20 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+16:21:03 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+16:21:46 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+16:22:30 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+16:23:13 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+16:23:56 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+16:24:40 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+16:25:22 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+16:26:06 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+16:26:49 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+16:27:35 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+16:28:17 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+16:29:01 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+16:29:43 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+16:30:29 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+16:31:11 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+16:31:56 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+16:32:40 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+16:33:23 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+16:34:07 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+16:34:54 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+16:35:37 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+16:36:19 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+16:37:02 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+16:37:45 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+16:38:29 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+16:39:13 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+16:40:12 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+16:40:56 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+16:41:40 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+16:42:24 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+16:43:06 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+16:43:54 | fatal: unable to access 'https://github.com/dobguski/worldcup-live.git/': schannel: failed to receive handshake, SSL/TLS connection failed
+16:44:40 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+16:45:23 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
+12:33:18 | To https://github.com/dobguski/worldcup-live.git
+ ! [rejected]          master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/dobguski/worldcup-live.git'
+hint: Updates
