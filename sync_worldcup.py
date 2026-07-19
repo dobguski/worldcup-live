@@ -302,7 +302,7 @@ def fetch_thesportsdb_matches() -> list[dict]:
     matches = []
     seen = set()
     def add_events(data, status_hint=""):
-        if not data or "events" not in data:
+        if not data or not data.get("events"):
             return
         for e in data["events"]:
             eid = e.get("idEvent", "")
