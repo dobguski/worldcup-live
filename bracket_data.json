@@ -226,22 +226,13 @@
   ],
   "final": [
     {
-      "home": "France",
-      "away": "England",
-      "label": "3rd Place",
-      "date": "2026-07-18",
-      "venue": "Hard Rock Stadium, Miami Gardens",
-      "score": null,
-      "winner": null
-    },
-    {
       "home": "Spain",
       "away": "Argentina",
       "label": "Final",
-      "date": "2026-07-19",
+      "date": "2026-07-20",
       "venue": "MetLife Stadium, East Rutherford",
-      "score": null,
-      "winner": null
+      "score": "1-0",
+      "winner": "Spain"
     }
   ],
   "third": [
@@ -254,5 +245,10 @@
       "score": "4-6",
       "winner": "England"
     }
-  ]
+  ],
+  "champion": {
+    "team": "Spain",
+    "flag": "🇪🇸",
+    "runners_up": "Argentina"
+  }
 }
