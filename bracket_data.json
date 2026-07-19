@@ -243,5 +243,16 @@
       "score": null,
       "winner": null
     }
+  ],
+  "third": [
+    {
+      "home": "France",
+      "away": "England",
+      "label": "3rd Place",
+      "date": "2026-07-19",
+      "venue": "Hard Rock Stadium, Miami Gardens",
+      "score": "4-6",
+      "winner": "England"
+    }
   ]
 }
